@@ -153,6 +153,10 @@ class AppColors {
   static Color errorSnackBar = Colors.red.shade900;
   static Color doneSnackBar = Colors.green.shade900;
 
+  static const Color correctAnswer = Color(0xff28A265);
+  static const Color incorrectAnswer = Color(0xffD50012);
+  static const Color notAnswered = Color(0xffB8B8B8);
+
 // icon color
 
   static const Color iconWight = Color(0xFFFFFFFF);

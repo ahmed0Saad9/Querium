@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
+import 'package:querium/src/Features/HomeFeature/UI/screens/quiz_details_screen.dart';
 import 'package:querium/src/Features/HomeFeature/UI/screens/quiz_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Appbars/app_bars.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Other/base_scaffold.dart';
@@ -17,7 +18,7 @@ class ChaptersScreen extends StatelessWidget {
       appBar: AppBars.appBarBack(title: 'Chapters'),
       backgroundColor: AppColors.backGroundGreyF4,
       body: ListView.separated(
-          itemBuilder: (context, index) => const _ChaptersCard(),
+          itemBuilder: (context, index) => const ChaptersCard(),
           separatorBuilder: (context, index) => 16.ESH(),
           padding:
               EdgeInsets.only(right: 36.w, left: 36.w, top: 40.h, bottom: 16.h),
@@ -26,14 +27,14 @@ class ChaptersScreen extends StatelessWidget {
   }
 }
 
-class _ChaptersCard extends StatelessWidget {
-  const _ChaptersCard({super.key});
+class ChaptersCard extends StatelessWidget {
+  const ChaptersCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Get.to(
-        () => QuizScreen(),
+        () => QuizDetailsScreen(),
         transition: Transition.rightToLeftWithFade,
         duration: const Duration(milliseconds: 200),
       ),

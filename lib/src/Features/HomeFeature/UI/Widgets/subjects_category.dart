@@ -49,11 +49,13 @@ class _CategoryCard extends StatelessWidget {
             color: isSelected ? AppColors.main : AppColors.transparentColor,
             borderRadius: BorderRadius.circular(25.r),
             border: Border.all(color: AppColors.main)),
-        child: CustomTextR(
-          subjectsCategory.label,
-          fontSize: 16.sp,
-          color: isSelected ? AppColors.titleWhite : AppColors.main,
-          fontWeight: FW.bold,
+        child: Center(
+          child: CustomTextR(
+            subjectsCategory.label,
+            fontSize: 16.sp,
+            color: isSelected ? AppColors.titleWhite : AppColors.main,
+            fontWeight: FW.bold,
+          ),
         ),
       ),
     );

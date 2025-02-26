@@ -20,7 +20,7 @@ List<onboardingModel> contents = [
     title: 'Welcome to Querium',
     discription:
         'Querium transforms your documents into interactive quizzes ,making study sessions engaging and effective.',
-    height: 411,
+    height: 388,
     width: double.infinity,
   ),
   onboardingModel(
@@ -28,7 +28,7 @@ List<onboardingModel> contents = [
     title: 'Effortless quiz creation',
     discription:
         'Upload your document and let an AI craft structured quizzes instantly.',
-    height: 411,
+    height: 388,
     width: double.infinity,
   ),
   onboardingModel(
@@ -36,7 +36,7 @@ List<onboardingModel> contents = [
     title: 'Adaptable Learning for\nEveryone',
     discription:
         'Customize quizzes for any subject or level for a personalized learning experience.',
-    height: 411,
+    height: 388,
     width: double.infinity,
   ),
 ];

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:querium/src/Features/HomeFeature/Bloc/controller/quiz_controller.dart';
 import 'package:querium/src/Features/HomeFeature/Bloc/model/answers_model.dart';
+import 'package:querium/src/Features/HomeFeature/UI/screens/results_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Appbars/app_bars.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Other/base_scaffold.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
@@ -49,6 +50,7 @@ class QuizScreen extends StatelessWidget {
                         ),
                         20.ESW(),
                         ButtonDefault.main(
+                          onTap: () => Get.off(() => const ResultsScreen()),
                           title: 'Next',
                           fw: FW.regular,
                           width: 200.w,

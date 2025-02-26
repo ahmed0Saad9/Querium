@@ -7,7 +7,7 @@ import '../../../core/services/svg_widget.dart';
 import '../Text/custom_text.dart';
 
 class BaseIconWidget extends StatelessWidget {
-  final String selectedIcon;
+  final String icon;
   final String title;
   final VoidCallback onTap;
   final bool active;
@@ -16,7 +16,7 @@ class BaseIconWidget extends StatelessWidget {
     super.key,
     required this.onTap,
     this.active = false,
-    required this.selectedIcon,
+    required this.icon,
     required this.title,
   });
 
@@ -31,16 +31,16 @@ class BaseIconWidget extends StatelessWidget {
           children: [
             Center(
               child: IconSvg(
-                selectedIcon,
-                size: 24,
-                color: active ? AppColors.main : AppColors.iconGray95,
+                icon,
+                size: 23,
+                color: active ? const Color(0xff28895E) : AppColors.iconBlack,
                 boxFit: BoxFit.fill,
               ),
             ),
             6.ESH(),
             CustomTextL(
               title,
-              color: active ? AppColors.titleGold : AppColors.secondary,
+              color: active ? const Color(0xff28895E) : AppColors.titleBlack,
               fontWeight: FW.medium,
               fontSize: 12,
               textAlign: TextAlign.center,

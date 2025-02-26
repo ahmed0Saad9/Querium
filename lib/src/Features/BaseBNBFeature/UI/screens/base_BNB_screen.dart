@@ -33,7 +33,7 @@ class BaseBNBScreen extends StatelessWidget {
                     .map(
                       (e) => Expanded(
                         child: BaseIconWidget(
-                          selectedIcon: e.selectedIcon,
+                          icon: e.icon,
                           title: e.title,
                           onTap: () {
                             _.updateIndex(e.id);

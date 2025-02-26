@@ -1,7 +1,4 @@
-
-
-enum EnumGetOpportunities{
-
+enum EnumGetOpportunities {
   tabOpportunities('tabOpportunities'),
   investmentOpportunities('investmentOpportunities'),
   company('company');
@@ -10,7 +7,6 @@ enum EnumGetOpportunities{
   final String type;
 }
 
-
 enum EnumAccountType {
   investor('investor'),
   company('company');
@@ -18,8 +14,6 @@ enum EnumAccountType {
   const EnumAccountType(this.type);
   final String type;
 }
-
-
 
 enum EnumImageType {
   png,

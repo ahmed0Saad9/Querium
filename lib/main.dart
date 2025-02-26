@@ -83,8 +83,7 @@ class MyApp extends StatelessWidget {
             : route.isBack!
                 ? kNumOfNav--
                 : kNumOfNav++,
-        home: const SplashScreen(),
-        // home: BaseBNBScreen(),
+        home: const BaseBNBScreen(),
       ),
     );
   }

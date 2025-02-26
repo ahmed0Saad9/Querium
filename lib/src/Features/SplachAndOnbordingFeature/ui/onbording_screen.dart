@@ -45,7 +45,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 onlastpage
                     ? 65.ESH()
                     : SizedBox(
-                        height: 55.h,
+                        height: 65.h,
                         child: TextButton(
                             onPressed: () {
                               _controller.jumpToPage(2);
@@ -63,8 +63,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: PageView.builder(
                 itemBuilder: (context, index) => Column(
                   children: [
+                    40.ESH(),
                     Image.asset(contents[index].image),
-                    8.ESH(),
+                    36.ESH(),
                     CustomTextL(
                       contents[index].title,
                       textAlign: TextAlign.center,
@@ -108,28 +109,31 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         onTap: () {
                           Get.offAll(() => const LoginScreen());
                         },
-                        child: CustomTextL.title(
-                          'Get Started',
+                        child: SizedBox(
+                          height: 50.h,
+                          child: CustomTextL.title(
+                            'Get Started',
+                          ),
                         ))
-                    : Container(
-                        width: 50.w,
-                        height: 50.h,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: AppColors.iconBlack,
-                            ),
-                            shape: BoxShape.circle),
-                        child: IconButton(
-                          onPressed: () {
-                            _controller.nextPage(
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeIn,
-                            );
-                          },
-                          icon: const Icon(Icons.arrow_forward_ios_rounded,
+                    : InkWell(
+                        onTap: () {
+                          _controller.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeIn,
+                          );
+                        },
+                        child: Container(
+                          width: 50.w,
+                          height: 50.h,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                color: AppColors.iconBlack,
+                              ),
+                              shape: BoxShape.circle),
+                          child: const Icon(Icons.arrow_forward_ios_rounded,
                               size: 20),
                         ),
-                      )
+                      ),
               ],
             ),
           ],
