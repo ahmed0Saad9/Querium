@@ -24,7 +24,7 @@ class RegisterRepository with ApiKey {
       Response response = await _networkService.post(
         url: uRLRegister,
         // body: registerParams.toMap(),
-        bodyFormData: await registerParams.toFormData(),
+        // bodyFormData: await registerParams.toFormData(),
       );
       return ApiResult.success(response);
     } catch (e) {

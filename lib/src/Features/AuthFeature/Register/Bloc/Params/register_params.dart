@@ -9,26 +9,19 @@ enum GenderType {
 
 class RegisterParams {
   final String name;
-  final String address;
   final String email;
-  final String mobile;
   final String password;
   final String passwordConfirmation;
-  final int cityId;
-  final int districtId;
-  // final String description;
-  final MediaType? image;
+  final String id;
+  final String nationalId;
 
   RegisterParams({
-    this.image,
-    required this.cityId,
-    required this.districtId,
     required this.name,
-    required this.address,
     required this.email,
-    required this.mobile,
     required this.password,
     required this.passwordConfirmation,
+    required this.id,
+    required this.nationalId,
     // this.description,
   });
 
@@ -45,30 +38,27 @@ class RegisterParams {
     return {
       'name': name,
       'email': email,
-      'phone': '+2$mobile',
       'password': password,
-      'city_id': cityId,
-      'address': address,
-      'district_id': districtId,
-      'password_confirmation': password,
-      // 'description': description,
+      'password_confirmation': passwordConfirmation,
+      'id': id,
+      'national_id': nationalId,
       'device_key': 'token',
     };
   }
 
-  Future<FormData> toFormData() async {
-    FormData formMap = FormData.fromMap(await toMap());
-    if (image != null) {
-      formMap.files.add(
-        MapEntry(
-          'image',
-          await MultipartFile.fromFile(
-            image!.media.path,
-            filename: path.basename(image!.media.path),
-          ),
-        ),
-      );
-    }
-    return formMap;
-  }
+  // Future<FormData> toFormData() async {
+  //   FormData formMap = FormData.fromMap(await toMap());
+  //   if (image != null) {
+  //     formMap.files.add(
+  //       MapEntry(
+  //         'image',
+  //         await MultipartFile.fromFile(
+  //           image!.media.path,
+  //           filename: path.basename(image!.media.path),
+  //         ),
+  //       ),
+  //     );
+  //   }
+  //   return formMap;
+  // }
 }

@@ -14,12 +14,14 @@ import 'package:querium/src/core/services/pin_code.dart';
 import '/src/core/utils/extensions.dart';
 
 class VerificationForgetPasswordScreen extends StatelessWidget {
-  final String phone;
+  // final String phone;
+  final String email;
   final String token;
 
   const VerificationForgetPasswordScreen({
     super.key,
-    required this.phone,
+    // required this.phone,
+    required this.email,
     required this.token,
   });
 
@@ -37,7 +39,8 @@ class VerificationForgetPasswordScreen extends StatelessWidget {
               40.ESH(),
               VerificationTopWidget(
                 title: 'استرجاع كلمة المرور',
-                phone: phone,
+                // phone: phone,
+                email: email,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0.w),

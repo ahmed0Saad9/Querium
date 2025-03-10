@@ -5,16 +5,16 @@ import 'package:querium/src/core/services/Network/api_result.dart';
 import 'package:querium/src/core/services/Network/network_exceptions.dart';
 import 'package:querium/src/core/services/Network/network_services.dart';
 
-class CheckPhoneAndSendOtpRepo with ApiKey {
+class CheckEmailAndSendOtpRepo with ApiKey {
   final NetworkService _networkService = Get.find();
 
-  Future<ApiResult<Response>> checkPhoneAndSendOtp(
-      {required String phone}) async {
+  Future<ApiResult<Response>> checkEmailAndSendOtp(
+      {required String email}) async {
     try {
       final response = await _networkService.post(
-        url: uRLCheckPhoneAndSendOtp,
+        // url: uRLCheckEmailAndSendOtp,
         body: {
-          "phone": '+2$phone',
+          "email": email,
         },
       );
       return ApiResult.success(response);

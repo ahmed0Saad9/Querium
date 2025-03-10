@@ -20,95 +20,59 @@ class NewPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var node = FocusScope.of(context);
     return BaseScaffold(
-      appBar: AppBars.appBarDefault(),
+      appBar: AppBars.appBarBack(title: 'Change password'),
       body: Padding(
-        padding: AppPadding.paddingScreenSH16,
+        padding: AppPadding.paddingScreenSH36,
         child: Form(
+          // key: _.resetPasswordGlobalKey,
           child: GetBuilder<ForgetPasswordController>(
-            builder: (_) => Form(
-              // key: _.resetPasswordGlobalKey,
-              child: ListView(
-                children: [
-                  Column(
-                    children: [
-                      16.ESH(),
-                      Row(
-                        children: [
-                          const CustomTextL(
-                            'ادخل كلمة المرور الجديدة',
-                            fontSize: 18,
-                            fontWeight: FW.bold,
-                            color: AppColors.titleBlack1A,
-                          ),
-                          8.ESW(),
-                          IconSvg(
-                            'new_password',
-                            width: 28.w,
-                            height: 28.h,
-                          ),
-                        ],
-                      ),
-                      const CustomTextL(
-                        'احفظ كلمة المرور الجديدة في مكان آمن، إذا نسيتها، عليك أن تفعل كلمة المرور المنسية مرة أخرى.',
-                        textAlign: TextAlign.right,
-                        fontSize: 14,
-                        fontWeight: FW.medium,
-                        color: AppColors.titleGray65,
-                      ),
-                    ],
-                  ),
-                  36.ESH(),
-                  TextFieldDefault(
-                    upperTitle: 'كلمة المرور',
-                    upperTitleColor: AppColors.titleBlack0B,
-                    hint: 'كلمة المرور',
-                    controller: _.passwordController,
-                    prefixIconWidget: const IconSvg('lock'),
-                    validation: passwordValidator,
-                    secureType: SecureType.toggle,
-                    outerVerticalPadding: 0,
-                  ),
-                  // const Column(
-                  //   children: [
-                  //     PasswordCheck(
-                  //       label: 'من 8 الي 20 حرف',
-                  //     ),
-                  //     PasswordCheck(
-                  //       label: 'علي الاقل حرف كبير و حرف صغير',
-                  //     ),
-                  //     PasswordCheck(
-                  //       label: 'علي الاقل رمز واحد خاص',
-                  //     ),
-                  //     PasswordCheck(
-                  //       label: 'علي الاقل رقم واحد',
-                  //     ),
-                  //   ],
-                  // ),
-                  24.ESH(),
-                  TextFieldDefault(
-                    upperTitle: 'تأكيد كلمة المرور',
-                    hint: 'تأكيد كلمة المرور',
-                    prefixIconWidget: IconSvg('lock'),
-                    controller: _.confirmPasswordController,
-                    secureType: SecureType.toggle,
-                    outerVerticalPadding: 0,
-                    validation: (value) {
-                      return confirmPasswordValidator(
-                          value, _.passwordController.text);
-                    },
-                  ),
-                  // const PasswordCheck(label: 'يجب ان تكون كلمتا المرور متطابقان'),
-                  153.ESH(),
-                  ButtonDefault.main(
-                    title: 'حفظ التغييرات',
-                    onTap: () {
-                      _.validateOtpAndChangePassword();
-                    },
-                  ),
-                ],
+            builder: (_) =>
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              40.ESH(),
+              const CustomTextL(
+                'Reset Password',
+                fontSize: 28,
+                fontWeight: FW.bold,
               ),
-            ),
+              8.ESH(),
+              CustomTextL.subtitle(
+                'Set the new password for your account so you\ncan log in and access all the features.',
+                fontWeight: FW.medium,
+              ),
+              40.ESH(),
+              TextFieldDefault(
+                label: 'New password',
+                controller: _.passwordController,
+                validation: passwordValidator,
+                secureType: SecureType.toggle,
+                onComplete: () {
+                  node.nextFocus();
+                },
+              ),
+              24.ESH(),
+              TextFieldDefault(
+                label: 'Re-enter password ',
+                controller: _.confirmPasswordController,
+                validation: (value) {
+                  return confirmPasswordValidator(
+                      value, _.passwordController.text);
+                },
+                secureType: SecureType.toggle,
+                onComplete: () {
+                  node.unfocus();
+                },
+              ),
+              const Spacer(),
+              ButtonDefault.main(
+                title: 'Continue',
+                onTap: () {
+                  _.validateOtpAndChangePassword();
+                },
+              ),
+              33.ESH(),
+            ]),
           ),
         ),
       ),

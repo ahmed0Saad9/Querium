@@ -1,5 +1,5 @@
 mixin ApiKey {
-  static const String apiBaseUrl = 'https://investorapp.org/api/';
+  static const String apiBaseUrl = '';
   static const String account = 'account/';
   static const String public = 'public/';
   static const String transactions = 'transactions/';

@@ -6,18 +6,19 @@ import 'package:get/route_manager.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:querium/src/Features/AuthFeature/ForgetPassword/Bloc/repo/check_email_and_send_otp_repo.dart';
 import 'package:querium/src/Features/AuthFeature/ForgetPassword/Bloc/repo/validate-otp-and-change-password_repo.dart';
-import 'package:querium/src/Features/AuthFeature/ForgetPassword/Ui/Screens/back_to_login_screen.dart';
 import 'package:querium/src/Features/AuthFeature/ForgetPassword/Ui/Screens/new_password_screen.dart';
+import 'package:querium/src/Features/AuthFeature/ForgetPassword/Ui/Screens/pin_code.dart';
+import 'package:querium/src/Features/AuthFeature/LogIn/Ui/Screens/login_screen.dart';
 import 'package:querium/src/Features/AuthFeature/Verification/Ui/Screens/verification_forget_password_screen.dart';
 import 'package:querium/src/core/services/Base/base_controller.dart';
 import 'package:querium/src/core/services/Network/network_exceptions.dart';
 import 'package:querium/src/core/services/services_locator.dart';
 
 class ForgetPasswordController
-    extends BaseController<CheckPhoneAndSendOtpRepo> {
+    extends BaseController<CheckEmailAndSendOtpRepo> {
   @override
   // TODO: implement repository
-  get repository => sl<CheckPhoneAndSendOtpRepo>();
+  get repository => sl<CheckEmailAndSendOtpRepo>();
   TextEditingController pinCodeController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
@@ -27,14 +28,15 @@ class ForgetPasswordController
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
 
   String _token = '';
-  String _code = '';
+  // String _code = '';
+  String _code = '1111';
 
   Future<void> sendOtp({bool isResendCode = false}) async {
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();
       showEasyLoading();
       var result =
-          await repository!.checkPhoneAndSendOtp(phone: emailController.text);
+          await repository!.checkEmailAndSendOtp(email: emailController.text);
       closeEasyLoading();
       result.when(success: (Response response) {
         _token = response.data['data']['verify_token'];
@@ -42,7 +44,7 @@ class ForgetPasswordController
         if (!isResendCode) {
           Get.to(() => VerificationForgetPasswordScreen(
                 token: _token,
-                phone: emailController.text,
+                email: emailController.text,
               ));
         }
         successEasyLoading(response.data["message"] ?? "Success");
@@ -97,8 +99,31 @@ class ForgetPasswordController
       );
       closeEasyLoading();
       result.when(success: (Response response) {
-        Get.offAll(() => const BackToLoginScreen());
+        Get.offAll(() => const LoginScreen());
         successEasyLoading(response.data["message"] ?? "Success");
+      }, failure: (NetworkExceptions error) {
+        actionNetworkExceptions(error);
+      });
+    }
+  }
+
+  Future<void> checkEmailAndSendOtp({bool isResendCode = false}) async {
+    if (globalKey.currentState!.validate()) {
+      globalKey.currentState!.save();
+      showEasyLoading();
+      var result =
+          await repository!.checkEmailAndSendOtp(email: emailController.text);
+      closeEasyLoading();
+      result.when(success: (Response response) {
+        _token = response.data['data']['verify_token'];
+        _code = response.data['data']['code'];
+        if (!isResendCode) {
+          Get.to(() => const PinCodeScreen(
+                title: 'aaaaa',
+              ));
+        }
+        successEasyLoading(response.data["message"] ?? "Success");
+        // showToast(_code);
       }, failure: (NetworkExceptions error) {
         actionNetworkExceptions(error);
       });

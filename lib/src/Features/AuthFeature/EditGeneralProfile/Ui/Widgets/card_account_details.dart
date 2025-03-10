@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Bloc/Controller/account_details_controller.dart';
 import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Ui/Screen/edit_profile_screen.dart';
-import 'package:querium/src/Features/AuthFeature/ForgetPassword/Ui/Screens/reset_password_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/constants/sizes.dart';
@@ -90,7 +89,7 @@ class CardAccountDetails extends StatelessWidget {
                 const Spacer(),
                 InkWell(
                   onTap: () {
-                    Get.to(() => const ResetPasswordScreen());
+                    // Get.to(() => const ResetPasswordScreen());
                   },
                   child: Container(
                     width: 60.w,

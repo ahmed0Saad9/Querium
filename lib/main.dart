@@ -3,6 +3,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:querium/src/Features/AuthFeature/LogIn/Ui/Screens/login_screen.dart';
+import 'package:querium/src/Features/AuthFeature/Register/Ui/Screens/register_screen.dart';
 import 'package:querium/src/Features/BaseBNBFeature/UI/screens/base_BNB_screen.dart';
 
 import 'src/Features/SplachAndOnbordingFeature/ui/splash_screen.dart';
@@ -83,7 +85,7 @@ class MyApp extends StatelessWidget {
             : route.isBack!
                 ? kNumOfNav--
                 : kNumOfNav++,
-        home: const BaseBNBScreen(),
+        home: const LoginScreen(),
       ),
     );
   }

@@ -8,14 +8,17 @@ import 'package:querium/src/core/services/Network/network_services.dart';
 class SendOTPRepository with ApiKey {
   final NetworkService _networkService = Get.find();
 
-  Future<ApiResult<Response>> sendOTP({required String phone}) async {
+  Future<ApiResult<Response>> sendOTP(
+      {
+      // required String phone
+      required String email}) async {
     Response response;
     try {
       response = await _networkService.post(
         url: uRLSendOTP,
         auth: true,
         // body: {
-        //   "phone": phone,
+        //   "email": email,
         // },
       );
       return ApiResult.success(response);

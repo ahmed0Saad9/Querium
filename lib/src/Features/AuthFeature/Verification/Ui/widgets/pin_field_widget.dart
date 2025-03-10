@@ -38,7 +38,7 @@ class PinFieldWidget extends StatelessWidget {
             ResendButton(
               resendCode: () {
                 sl<SendOTPController>().sendOTP(
-                  phone: phone,
+                  email: phone,
                   inVerificationScreen: true,
                   verifyAccount: true,
                 );

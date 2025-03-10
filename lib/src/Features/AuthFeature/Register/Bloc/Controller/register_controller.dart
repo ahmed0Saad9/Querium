@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 // import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -28,10 +29,15 @@ class RegisterController extends BaseController<RegisterRepository> {
   @override
   // TODO: implement repository
   get repository => sl<RegisterRepository>();
+  final GlobalKey<FormState> registerGlobalKey = GlobalKey<FormState>();
+  final SendOTPController _sendOTPController = Get.put(SendOTPController());
 
   late TextEditingController nameController;
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  late TextEditingController confirmPasswordController;
+  late TextEditingController idController;
+  late TextEditingController nationalIdController;
 
   // void _navigateAfterRegister() {
   //   sl<SendOTPController>().sendOTP(
@@ -39,11 +45,32 @@ class RegisterController extends BaseController<RegisterRepository> {
   //     verifyAccount: true,
   //   );
   // }
-  bool agree = false;
 
-  void agreeWithServices() {
-    agree = !agree;
-    update(); // To refresh the UI
+  void createAccount() async {
+    if (registerGlobalKey.currentState!.validate()) {
+      registerGlobalKey.currentState!.save();
+      showEasyLoading();
+      var result = await repository!.register(
+        registerParams: RegisterParams(
+          name: nameController.text,
+          email: emailController.text,
+          password: passwordController.text,
+          passwordConfirmation: confirmPasswordController.text,
+          id: idController.text,
+          nationalId: nationalIdController.text,
+        ),
+      );
+      closeEasyLoading();
+      result.when(success: (Response response) {
+        BaseUserModel userModel = BaseUserModel.fromJson(response.data);
+        LocalStorageCubit().storeUserModel(userModel);
+        // LocalStorageCubit().saveItem(key: 'avatar',item: userModel.data.user.image);
+        _sendOTPController.sendOTP(email: userModel.data.user.email);
+        successEasyLoading(response.data['message'] ?? "success");
+      }, failure: (NetworkExceptions error) {
+        actionNetworkExceptions(error);
+      });
+    }
   }
 
   void moveToLogIn() {
@@ -61,5 +88,9 @@ class RegisterController extends BaseController<RegisterRepository> {
     emailController = TextEditingController();
 
     passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
+
+    idController = TextEditingController();
+    nationalIdController = TextEditingController();
   }
 }

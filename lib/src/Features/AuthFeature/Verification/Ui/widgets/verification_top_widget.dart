@@ -6,11 +6,15 @@ import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
 class VerificationTopWidget extends StatelessWidget {
-  final String phone;
+  // final String phone;
+  final String email;
   final String title;
 
   const VerificationTopWidget(
-      {required this.phone, super.key, required this.title});
+      {
+        // required this.phone,
+        required this.email,
+        super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,7 @@ class VerificationTopWidget extends StatelessWidget {
             ),
             4.ESH(),
             CustomTextR.subtitle(
-              phone,
+              email,
               fontWeight: FW.bold,
             ),
             4.ESH(),
