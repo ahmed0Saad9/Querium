@@ -17,7 +17,10 @@ import 'package:querium/src/Features/AuthFeature/Register/Bloc/Model/nationality
 import 'package:querium/src/Features/AuthFeature/Register/Bloc/Model/user_model.dart';
 import 'package:querium/src/Features/AuthFeature/Register/Bloc/Params/register_params.dart';
 import 'package:querium/src/Features/AuthFeature/Register/Bloc/Repo/register_repo.dart';
+import 'package:querium/src/Features/AuthFeature/Register/Ui/Screens/pending_screen.dart';
 import 'package:querium/src/Features/AuthFeature/Verification/Bloc/Controller/send_otp_controller.dart';
+import 'package:querium/src/Features/BaseBNBFeature/UI/screens/base_BNB_screen.dart';
+import 'package:querium/src/Features/HomeFeature/UI/screens/home_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/ImageViewer/image_viewer_list.dart';
 import 'package:querium/src/core/services/Base/base_controller.dart';
 import 'package:querium/src/core/services/Network/network_exceptions.dart';
@@ -37,6 +40,7 @@ class RegisterController extends BaseController<RegisterRepository> {
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
   late TextEditingController idController;
+  late TextEditingController idOfCollegeController;
   late TextEditingController nationalIdController;
 
   // void _navigateAfterRegister() {
@@ -56,16 +60,17 @@ class RegisterController extends BaseController<RegisterRepository> {
           email: emailController.text,
           password: passwordController.text,
           passwordConfirmation: confirmPasswordController.text,
-          id: idController.text,
           nationalId: nationalIdController.text,
+          idOfCollege: idOfCollegeController.text,
         ),
       );
       closeEasyLoading();
       result.when(success: (Response response) {
-        BaseUserModel userModel = BaseUserModel.fromJson(response.data);
-        LocalStorageCubit().storeUserModel(userModel);
+        UserModel userModel = UserModel.fromJson(response.data);
+        // LocalStorageCubit().storeUserModel(userModel);
         // LocalStorageCubit().saveItem(key: 'avatar',item: userModel.data.user.image);
-        _sendOTPController.sendOTP(email: userModel.data.user.email);
+        Get.off(() => const PendingScreen());
+        // _sendOTPController.sendOTP(email: userModel.data.user.email);
         successEasyLoading(response.data['message'] ?? "success");
       }, failure: (NetworkExceptions error) {
         actionNetworkExceptions(error);
@@ -91,6 +96,7 @@ class RegisterController extends BaseController<RegisterRepository> {
     confirmPasswordController = TextEditingController();
 
     idController = TextEditingController();
+    idOfCollegeController = TextEditingController();
     nationalIdController = TextEditingController();
   }
 }

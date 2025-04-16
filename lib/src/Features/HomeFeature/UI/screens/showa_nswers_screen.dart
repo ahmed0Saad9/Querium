@@ -18,7 +18,7 @@ class ShowAnswersScreen extends StatelessWidget {
       init: ShowAnswersController(),
       builder: (controller) => BaseScaffold(
         backgroundColor: AppColors.scaffoldBackGround,
-        appBar: AppBars.appBarBack(title: 'Show answers'),
+        appBar: AppBars.appBarBack(title: 'Show_answers'),
         body: Padding(
           padding: AppPadding.paddingScreenSH36,
           child: ListView(
@@ -28,7 +28,7 @@ class ShowAnswersScreen extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 itemCount: controller.answersListCards.length,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   mainAxisSpacing: 20,
@@ -53,7 +53,7 @@ class ShowAnswersScreen extends StatelessWidget {
                   ),
                   20.ESW(),
                   const CustomTextL(
-                    'Correct Answer',
+                    'Correct_Answer',
                   ),
                 ],
               ),
@@ -69,7 +69,7 @@ class ShowAnswersScreen extends StatelessWidget {
                   ),
                   20.ESW(),
                   const CustomTextL(
-                    'Incorrect Answer',
+                    'Incorrect_Answer',
                   ),
                 ],
               ),
@@ -85,7 +85,7 @@ class ShowAnswersScreen extends StatelessWidget {
                   ),
                   20.ESW(),
                   const CustomTextL(
-                    'Not Answered',
+                    'Not_Answered',
                   ),
                 ],
               ),

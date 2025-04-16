@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Bloc/Controller/edit_general_profile_controller.dart';
-import 'package:querium/src/Features/AuthFeature/Register/Ui/Widgets/bottom_sheet_country_snigle.dart';
-import 'package:querium/src/Features/AuthFeature/Register/Ui/Widgets/card_acount_type.dart';
+
 import 'package:querium/src/GeneralWidget/Widgets/Other/custom_stepper.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Other/top_custom_container.dart';
 import 'package:querium/src/GeneralWidget/Widgets/StaggeredAnimations/base_column.dart';
@@ -36,13 +35,6 @@ class EditProfileTFBody extends StatelessWidget {
         child: BaseStaggeredColumn(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CardAccountType(
-              isActive: false,
-              title: 'create_investor_account',
-              subTitle:
-                  'you_can_start_earning_from_investments_available_from_companies',
-              image: 'assets/images/CreateInvestorAccount.png',
-            ),
             16.ESH(),
             Padding(
               padding: AppPadding.paddingScreenSH16,

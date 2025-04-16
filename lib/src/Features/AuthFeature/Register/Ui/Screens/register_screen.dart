@@ -29,10 +29,10 @@ class RegisterScreen extends StatelessWidget {
             child: BaseStaggeredColumn(
               children: [
                 160.ESH(),
-                const CustomTextL('Join us to start', fontWeight: FW.bold),
+                const CustomTextL('Join_us_to_start', fontWeight: FW.bold),
                 85.ESH(),
                 TextFieldDefault(
-                  label: 'Name',
+                  label: 'Full_Name',
                   controller: _.nameController,
                   validation: nameValidator,
                   onComplete: () {
@@ -61,7 +61,7 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 24.ESH(),
                 TextFieldDefault(
-                  label: 'Confirm Password',
+                  label: 'Confirm_Password',
                   controller: _.confirmPasswordController,
                   validation: (value) {
                     return confirmPasswordValidator(
@@ -74,8 +74,8 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 24.ESH(),
                 TextFieldDefault(
-                  label: 'ID',
-                  controller: _.idController,
+                  label: 'College_ID',
+                  controller: _.idOfCollegeController,
                   validation: idValidator,
                   keyboardType: TextInputType.number,
                   maxLength: 5,
@@ -85,11 +85,11 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 24.ESH(),
                 TextFieldDefault(
-                  label: 'National ID',
+                  label: 'National_ID',
                   controller: _.nationalIdController,
                   validation: nationalIdValidator,
                   keyboardType: TextInputType.number,
-                  maxLength: 16,
+                  maxLength: 14,
                   onComplete: () {
                     node.unfocus();
                     _.createAccount();
@@ -98,11 +98,11 @@ class RegisterScreen extends StatelessWidget {
                 50.ESH(),
                 ButtonDefault.main(
                   onTap: () {
-                    Get.to(
-                        VerificationAccountScreen(token: '1', email: 'email'));
+                    // Get.to(const VerificationAccountScreen(
+                    //     token: '1', email: 'email'));
                     _.createAccount();
                   },
-                  title: 'Sign up',
+                  title: 'Sign_up',
                 ),
                 _LoginWidget(
                   controller: _,
@@ -130,10 +130,11 @@ class _LoginWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CustomTextL(
-          'Have an account ?',
+          'Have_an_Account',
           fontSize: 14.sp,
           color: AppColors.main,
         ),
+        6.ESW(),
         TextButton(
           onPressed: () {
             controller.moveToLogIn();
@@ -141,7 +142,7 @@ class _LoginWidget extends StatelessWidget {
           style: TextButton.styleFrom(padding: EdgeInsets.zero),
           child: CustomTextL(
             decoration: CustomTextDecoration.underLine,
-            'Log in',
+            'login',
             fontSize: 14.sp,
             fontWeight: FW.medium,
             color: AppColors.main,

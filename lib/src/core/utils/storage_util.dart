@@ -8,11 +8,11 @@ class LocalStorageCubit extends GetxController {
 
   static const String user = 'user_model';
 
-  void storeUserModel(BaseUserModel data) {
-    sl<GetStorage>().write("UserName", data.data.user.name);
-    sl<GetStorage>().write("token", data.data.token);
-    sl<GetStorage>().write("email", data.data.user.email);
-    sl<GetStorage>().write("verified", data.data.user.verified);
+  void storeUserModel(UserModel data) {
+    sl<GetStorage>().write("UserName", data.student.fullName);
+    // sl<GetStorage>().write("token", data.token);
+    sl<GetStorage>().write("email", data.student.email);
+    sl<GetStorage>().write("verified", data.student.isApproved);
   }
 
   void updateUserModel(dynamic data) {

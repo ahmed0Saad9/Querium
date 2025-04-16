@@ -44,9 +44,9 @@ class NetworkService with ApiKey {
                   "Accept": "application/json",
                   "X-Language": sl<GetStorage>().read('X-Language'),
                   if (auth)
-                    'Authorization':
-                        'Bearer 39|G5enxqiHngDT6uY4NGQY52S0o65n3wKj1WDe0pXk19ece3de',
-                  // 'Authorization': 'Bearer ${sl<GetStorage>().read("token")}',
+                    // 'Authorization':
+                    //     'Bearer 39|G5enxqiHngDT6uY4NGQY52S0o65n3wKj1WDe0pXk19ece3de',
+                    'Authorization': 'Bearer ${sl<GetStorage>().read("token")}',
                   if (profileID)
                     'ProfileID': sl<GetStorage>().read("ProfileID"),
                 }),

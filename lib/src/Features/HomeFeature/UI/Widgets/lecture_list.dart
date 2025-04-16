@@ -6,13 +6,17 @@ class _LectureList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250.h,
-      child: ListView.separated(
+      height: Get.height,
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisExtent: 230.h,
+            // childAspectRatio: 0.7,
+            mainAxisSpacing: 12.h,
+            crossAxisSpacing: 12.w),
         itemBuilder: (context, index) => const _LectureCard(),
-        separatorBuilder: (context, index) => 14.ESW(),
         itemCount: 6,
         padding: AppPadding.paddingScreenSH36,
-        scrollDirection: Axis.horizontal,
       ),
     );
   }
@@ -28,72 +32,34 @@ class _LectureCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       decoration: BoxDecoration(
-        color: AppColors.transparentColor,
+        color: AppColors.backGroundGreyF4,
         borderRadius: BorderRadius.circular(
           12.r,
         ),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Stack(
-            alignment: Alignment.topRight,
+          Container(
+              height: 138.h,
+              width: 146.w,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(16.r)),
+              child: Image.asset(
+                'assets/images/LectureImage.png',
+              )),
+          10.ESH(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                  height: 138.h,
-                  width: 146.w,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(16.r)),
-                  child: Image.asset(
-                    'assets/images/LectureImage.png',
-                  )),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50.r),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 0.2, sigmaY: 0.2),
-                    child: Container(
-                      width: 35.w,
-                      height: 35.h,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: AppColors.gradientTransparentWhite,
-                        border: Border.all(
-                          color: AppColors.borderwhite.withOpacity(0.43),
-                        ),
-                      ),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const IconSvg(
-                          'Heart',
-                          boxFit: BoxFit.fill,
-                          size: 18,
-                        ),
-                        style: const ButtonStyle(
-                          padding: MaterialStatePropertyAll(
-                            EdgeInsets.all(5),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+              CustomTextR(
+                'Subject',
+                fontSize: 14.sp,
+                fontWeight: FW.bold,
               ),
             ],
           ),
-          10.ESH(),
-          CustomTextR(
-            'lecture',
-            fontSize: 14.sp,
-            fontWeight: FW.bold,
-          ),
-          CustomTextR(
-            'By: Antony Hopkins',
-            fontSize: 10.sp,
-            fontWeight: FW.medium,
-          ),
-          15.ESH(),
+          13.ESH(),
           SizedBox(
               height: 25.h,
               width: 140.w,

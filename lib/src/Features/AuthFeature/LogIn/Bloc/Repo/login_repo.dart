@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/instance_manager.dart';
 import 'package:querium/src/core/constants/api_key.dart';
+import 'package:querium/src/core/constants/app_assets.dart';
 import 'package:querium/src/core/services/Network/api_result.dart';
 import 'package:querium/src/core/services/Network/network_exceptions.dart';
 import 'package:querium/src/core/services/Network/network_services.dart';
@@ -15,19 +16,18 @@ class LogInRepository with ApiKey {
     required String email,
     required String password,
   }) async {
-    String? token = '';
-    // try{
-    //   if(Platform.isIOS) token = await _fcm.getAPNSToken();
-    //   if(Platform.isAndroid) token = await _fcm.getToken();
+    // String? token = '';
+    // try {
+    //   token = await _fcm.getToken();
     //   printDM("device_key is => $token");
-    // }catch(e){
+    // } catch (e) {
     //   printDM('an error occur in fetch token');
     // }
     try {
       Response response = await _networkService.post(url: uRLLogin, body: {
         'email': email,
         'password': password,
-        'login_type': 'phone',
+        // 'login_type': 'phone',
         // 'device_key': token,
         // 'device_id':deviceId,
         // 'device_type':deviceType,

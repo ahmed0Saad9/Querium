@@ -10,20 +10,13 @@ import 'package:querium/src/core/constants/color_constants.dart';
 class QuizController extends GetxController {
   Timer? _timer;
   int remainingSeconds = 1;
-  String time = '00:00';
+  String time = '00:01';
   @override
   void onReady() {
     // TODO: implement onReady
     // startTimer(600);
-    startTimer(10);
+    startTimer(1);
     super.onReady();
-  }
-
-  String questionType = 'True&false';
-
-  void changeQuestionType(String question) {
-    questionType = question;
-    update(); // To refresh the UI
   }
 
   @override
@@ -38,37 +31,37 @@ class QuizController extends GetxController {
     const duration = Duration(seconds: 1);
     remainingSeconds = seconds;
     _timer = Timer.periodic(duration, (Timer timer) {
-      if (remainingSeconds == 0) {
+      if (remainingSeconds == 10) {
         timer.cancel();
-        Get.off(const ResultsScreen());
-        // showNotification();
+        // Get.off(const ResultsScreen());
+        showNotification();
       } else {
         int minutes = remainingSeconds ~/ 60;
         int seconds = remainingSeconds % 60;
         time = minutes.toString().padLeft(2, "0") +
             ":" +
             seconds.toString().padLeft(2, "0");
-        remainingSeconds--;
+        remainingSeconds++;
         update();
       }
     });
   }
 
-  // void showNotification() {
-  //   // Show a SnackBar using GetX
-  //   Get.snackbar(
-  //     "Time is up", // Title
-  //     "Be faster next time", // Message
-  //     snackPosition: SnackPosition.BOTTOM,
-  //     duration: const Duration(seconds: 5),
-  //     mainButton: TextButton(
-  //       onPressed: () {
-  //         Get.back(); // Dismiss the SnackBar
-  //       },
-  //       child: const CustomTextL("Dismiss", color: AppColors.main),
-  //     ),
-  //   );
-  // }
+  void showNotification() {
+    // Show a SnackBar using GetX
+    Get.snackbar(
+      "Time is up", // Title
+      "This will effect your results", // Message
+      snackPosition: SnackPosition.TOP,
+      duration: const Duration(seconds: 3),
+      mainButton: TextButton(
+        onPressed: () {
+          Get.back(); // Dismiss the SnackBar
+        },
+        child: const CustomTextL("Dismiss", color: AppColors.main),
+      ),
+    );
+  }
 
   int answerIdSelected = 0;
 

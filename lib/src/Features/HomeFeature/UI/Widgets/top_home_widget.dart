@@ -9,22 +9,25 @@ class _TopHomeWidget extends StatelessWidget {
       padding: AppPadding.paddingScreenSH36,
       child: Row(
         children: [
-          CardAvatarImage(
-              size: 45,
-              image: LocalStorageCubit().getItem(
-                    key: 'avatar',
-                  ) ??
-                  ''),
-          20.ESW(),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomTextR(
-                'Hello, Ahmed',
-                fontWeight: FW.bold,
+              Row(
+                children: [
+                  CustomTextL(
+                    'Hello',
+                    fontWeight: FW.bold,
+                  ),
+                  4.ESW(),
+                  CustomTextR(
+                    'Ahmed',
+                    fontWeight: FW.bold,
+                  ),
+                ],
               ),
-              CustomTextR(
-                'let’s start the  journey.',
+              4.ESH(),
+              CustomTextL(
+                'lets_start_the_journey',
                 fontSize: 13,
                 fontWeight: FW.medium,
               ),

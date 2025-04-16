@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var node = FocusScope.of(context);
     return BaseScaffold(
-        backgroundColor: AppColors.backGroundGreyF4,
+        backgroundColor: AppColors.scaffoldBackGround,
         body: SafeArea(
           top: true,
           child: Column(
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                     node: node,
                     enable: false,
                     onComplete: () {},
-                    hint: 'Search lecture name, topic...'),
+                    hint: 'Search_lecture_name'),
               ),
               30.ESH(),
               Expanded(
@@ -56,9 +56,6 @@ class HomeScreen extends StatelessWidget {
                       const _SubjectsCategory(),
                       20.ESH(),
                       const _LectureList(),
-                      30.ESH(),
-                      const _HistoryGrid(),
-                      // 80.ESH(),
                     ],
                   ),
                 ),

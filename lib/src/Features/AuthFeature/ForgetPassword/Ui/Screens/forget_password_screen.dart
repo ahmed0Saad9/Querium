@@ -36,7 +36,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     Get.put(ForgetPasswordController());
     var node = FocusScope.of(context);
     return BaseScaffold(
-        appBar: AppBars.appBarBack(title: 'Forget password'),
+        appBar: AppBars.appBarBack(title: 'Forget_password'),
         body: GetBuilder<ForgetPasswordController>(
           init: ForgetPasswordController(),
           builder: (_) => Form(
@@ -46,7 +46,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               child: Column(children: [
                 30.ESH(),
                 CustomTextL.subtitle(
-                  'Enter your email for the verification process,\nwe will send 4 digits code to your email.',
+                  'Forget_password_subtitle',
                   fontWeight: FW.medium,
                   textAlign: TextAlign.center,
                 ),
@@ -63,12 +63,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 const Spacer(),
                 ButtonDefault.main(
                   title: 'Continue',
+                  active: _.emailController.text.isNotEmpty,
                   onTap: () {
-                    Get.to(
-                      () => const PinCodeScreen(
-                        title: 'OTP',
-                      ),
-                    );
                     _.checkEmailAndSendOtp();
                     // Get.bottomSheet(BottomSheetSendOTP(), isScrollControlled: true);
                   },

@@ -26,10 +26,12 @@ class QuizScreen extends StatelessWidget {
         color: AppColors.backGroundWhite,
         child: Stack(
           children: [
-            Image.asset('assets/images/QuizBG.png', width: 300.w),
+            Image.asset(
+              'assets/images/QuizBG.png',
+            ),
             BaseScaffold(
               backgroundColor: Colors.transparent,
-              appBar: AppBars.appBarBack(title: 'Quiz 1'),
+              appBar: AppBars.appBarBack(title: 'Compiler'),
               body: Padding(
                 padding: AppPadding.paddingScreenSH36,
                 child: Column(
@@ -105,7 +107,7 @@ class _TimerWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(27.r)),
           child: const LinearTimer(
             backgroundColor: Colors.transparent,
-            forward: false,
+            forward: true,
             minHeight: 7,
             color: AppColors.linearTimer,
             duration: Duration(

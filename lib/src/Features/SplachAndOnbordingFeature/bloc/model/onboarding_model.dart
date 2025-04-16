@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class onboardingModel {
   String image;
   String title;
@@ -9,34 +11,25 @@ class onboardingModel {
     required this.image,
     required this.title,
     required this.discription,
-    required this.height,
-    required this.width,
+    this.height = 388,
+    this.width = double.infinity,
   });
 }
 
 List<onboardingModel> contents = [
   onboardingModel(
     image: 'assets/images/OnBoarding1.png',
-    title: 'Welcome to Querium',
-    discription:
-        'Querium transforms your documents into interactive quizzes ,making study sessions engaging and effective.',
-    height: 388,
-    width: double.infinity,
+    title: 'onBoarding_title_1',
+    discription: 'onBoarding_subtitle_1',
   ),
   onboardingModel(
     image: 'assets/images/OnBoarding2.png',
-    title: 'Effortless quiz creation',
-    discription:
-        'Upload your document and let an AI craft structured quizzes instantly.',
-    height: 388,
-    width: double.infinity,
+    title: 'onBoarding_title_2',
+    discription: 'onBoarding_subtitle_2',
   ),
   onboardingModel(
     image: 'assets/images/OnBoarding3.png',
-    title: 'Adaptable Learning for\nEveryone',
-    discription:
-        'Customize quizzes for any subject or level for a personalized learning experience.',
-    height: 388,
-    width: double.infinity,
+    title: 'onBoarding_title_3',
+    discription: 'onBoarding_subtitle_3',
   ),
 ];

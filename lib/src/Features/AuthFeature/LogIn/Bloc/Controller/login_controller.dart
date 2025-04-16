@@ -20,7 +20,7 @@ class LoginController extends BaseController<LogInRepository> {
   TextEditingController? passwordController;
 
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-  BaseUserModel? _userModel;
+  UserModel? _userModel;
 
   Future<void> logIn() async {
     if (globalKey.currentState!.validate()) {
@@ -30,11 +30,11 @@ class LoginController extends BaseController<LogInRepository> {
           password: passwordController!.text, email: emailController!.text);
       closeEasyLoading();
       result.when(success: (Response response) {
-        _userModel = BaseUserModel.fromJson(response.data);
+        _userModel = UserModel.fromJson(response.data);
         LocalStorageCubit().storeUserModel(_userModel!);
-        LocalStorageCubit()
-            .saveItem(key: 'avatar', item: _userModel!.data.user.image);
-        _navigatorAfterLogIn(_userModel!.data.user);
+        // LocalStorageCubit()
+        //     .saveItem(key: 'avatar', item: _userModel!.data.user.image);
+        _navigatorAfterLogIn(_userModel!);
       }, failure: (NetworkExceptions error) {
         actionNetworkExceptions(error);
       });
@@ -49,18 +49,18 @@ class LoginController extends BaseController<LogInRepository> {
   final SendOTPController _sendOTPController = sl<SendOTPController>();
 
   void _navigatorAfterLogIn(UserModel user) async {
-    if (!user.verified) {
-      _sendOTPController.sendOTP(
-          email: emailController!.text, verifyAccount: true);
-    } else {
-      navigatorToBaseBNBScreen();
-      successEasyLoading(_userModel!.message);
-    }
+    // if (!user.verified) {
+    //   _sendOTPController.sendOTP(
+    //       email: emailController!.text, verifyAccount: true);
+    // } else {
+    navigatorToBaseBNBScreen();
+    successEasyLoading('hello');
+    // }
   }
 
   /// move To Forget Password
   void moveToForgetPassword() {
-    Get.to(()=>const ForgetPasswordScreen());
+    Get.to(() => const ForgetPasswordScreen());
   }
 
   /// move To Register
@@ -72,8 +72,8 @@ class LoginController extends BaseController<LogInRepository> {
   void onInit() {
     super.onInit();
 
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    emailController = TextEditingController(text: 'moamenyasser@gmail.com');
+    passwordController = TextEditingController(text: 'freefree');
   }
 
   @override

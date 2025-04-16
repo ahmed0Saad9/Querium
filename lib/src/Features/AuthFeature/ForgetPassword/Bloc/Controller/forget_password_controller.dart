@@ -54,29 +54,13 @@ class ForgetPasswordController
     }
   }
 
-  bool message = true;
-  bool email = false;
-
-  void viaMessage() {
-    message = true;
-    email = false;
-
-    update();
-  }
-
-  void viaEmail() {
-    email = true;
-    message = false;
-    update();
-  }
-
   void checkCode() {
     if (pinCodeController.text.length == 4) {
-      if (_code == pinCodeController.text) {
-        Get.to(() => const NewPasswordScreen());
-      } else {
-        errorEasyLoading("كود خاطء");
-      }
+      // if (_code == pinCodeController.text) {
+      Get.to(() => const NewPasswordScreen());
+      // } else {
+      //   errorEasyLoading("كود خاطء");
+      // }
     }
   }
 
@@ -111,22 +95,22 @@ class ForgetPasswordController
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();
       showEasyLoading();
-      var result =
-          await repository!.checkEmailAndSendOtp(email: emailController.text);
+      // var result =
+      //     await repository!.checkEmailAndSendOtp(email: emailController.text);
       closeEasyLoading();
-      result.when(success: (Response response) {
-        _token = response.data['data']['verify_token'];
-        _code = response.data['data']['code'];
-        if (!isResendCode) {
-          Get.to(() => const PinCodeScreen(
-                title: 'aaaaa',
-              ));
-        }
-        successEasyLoading(response.data["message"] ?? "Success");
-        // showToast(_code);
-      }, failure: (NetworkExceptions error) {
-        actionNetworkExceptions(error);
-      });
+      // result.when(success: (Response response) {
+      // _token = response.data['data']['verify_token'];
+      // _code = response.data['data']['code'];
+      if (!isResendCode) {
+        Get.to(() => const PinCodeScreen(
+              title: 'OTP',
+            ));
+      }
+      // successEasyLoading(response.data["message"] ?? "Success");
+      // showToast(_code);
+      // }, failure: (NetworkExceptions error) {
+      //   actionNetworkExceptions(error);
+      // });
     }
   }
 

@@ -1,162 +1,116 @@
-import 'package:querium/src/Features/AuthFeature/Register/Bloc/Model/nationality_model.dart';
-
-class BaseUserModel {
-  BaseUserModel({
-    required this.success,
-    required this.data,
-    required this.message,
-  });
-  late final bool success;
-  late final Data data;
-  late final String message;
-
-  BaseUserModel.fromJson(Map<String, dynamic> json) {
-    success = json['success'] ?? false;
-    data = Data.fromJson(json['data']);
-    message = json['message'] ?? "-Error-";
-  }
-}
-
-class Data {
-  Data({
-    required this.user,
-    required this.token,
-  });
-  late final UserModel user;
-  late final String token;
-
-  Data.fromJson(Map<String, dynamic> json) {
-    user = UserModel.fromJson(json['user']);
-    token = json['token'] ?? '';
-  }
-}
-
+// import 'package:querium/src/Features/AuthFeature/Register/Bloc/Model/nationality_model.dart';
+//
+// class BaseUserModel {
+//   BaseUserModel({
+//     required this.success,
+//     required this.data,
+//     required this.message,
+//   });
+//   late final bool success;
+//   late final Data data;
+//   late final String message;
+//
+//   BaseUserModel.fromJson(Map<String, dynamic> json) {
+//     success = json['success'] ?? false;
+//     data = Data.fromJson(json['data']);
+//     message = json['message'] ?? "-Error-";
+//   }
+// }
+//
+// class Data {
+//   Data({
+//     required this.user,
+//     // required this.token,
+//   });
+//   late final UserModel user;
+//   // late final String token;
+//
+//   Data.fromJson(Map<String, dynamic> json) {
+//     user = UserModel.fromJson(json['user']);
+//     // token = json['token'] ?? '';
+//   }
+// }
+//
+// class UserModel {
+//   UserModel({
+//     required this.id,
+//     required this.name,
+//     required this.email,
+//     required this.verified,
+//     // required this.image,
+//   });
+//   late final int id;
+//   late final String name;
+//   late final String email;
+//   late final bool verified;
+//   // late final String image;
+//
+//   UserModel.fromJson(Map<String, dynamic> json) {
+//     id = json['id'] ?? 0;
+//     name = json['name'] ?? "";
+//     email = json['email'] ?? "";
+//     verified = json['verified'] ?? false;
+//     // image = json['image'] ?? "";
+//   }
+// }
 class UserModel {
   UserModel({
-    required this.id,
-    required this.image,
-    required this.reference,
-    required this.name,
-    required this.email,
-    required this.phone,
-    required this.verified,
-    required this.hasPinCode,
-    required this.walletStatus,
-    required this.hasApprovedWallet,
-    required this.address,
-    required this.generalBalance,
-    required this.investmentBalance,
-    required this.rank,
-    required this.creditLimit,
-    required this.city,
+    required this.message,
+    required this.student,
   });
-  late final String id;
-  late final String image;
-  late final String reference;
-  late final String name;
-  late final String email;
-  late final String phone;
-  late final bool verified;
-  late final bool hasPinCode;
-  late final WalletStatus walletStatus;
-  late final bool hasApprovedWallet;
-  late final String address;
-  late final BalanceModel generalBalance;
-  late final BalanceModel investmentBalance;
-  late final Rank rank;
-  late final CreditLimit creditLimit;
-  late final CityModel city;
+  late final String message;
+  late final Student student;
 
   UserModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'] ?? "";
-    image = json['image'] ?? "";
-    reference = json['reference'] ?? "";
-    name = json['name'] ?? "";
-    email = json['email'] ?? "";
-    phone = json['phone'] ?? "";
-    verified = json['verified'] ?? false;
-    hasPinCode = json['hasPinCode'] ?? false;
-    // walletStatus = WalletStatus.fromJson(json['WalletStatus']);
-    hasApprovedWallet = json['hasApprovedWallet'] ?? false;
-    address = json['address'] ?? '';
-    generalBalance = BalanceModel.fromJson(json['general_balance']);
-    investmentBalance = BalanceModel.fromJson(json['investment_balance']);
-    rank = Rank.fromJson(json['rank']);
-    creditLimit = CreditLimit.fromJson(json['credit_limit']);
-    city = CityModel.fromJson(json['city']);
+    message = json['message'];
+    student = Student.fromJson(json['student']);
+  }
+
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['message'] = message;
+    _data['student'] = student.toJson();
+    return _data;
   }
 }
 
-class WalletStatus {
-  WalletStatus({
-    required this.value,
-    required this.label,
-  });
-  late final String value;
-  late final String label;
-
-  WalletStatus.fromJson(Map<String, dynamic> json) {
-    value = json['value'] ?? "";
-    label = json['label'] ?? "";
-  }
-}
-
-class BalanceModel {
-  BalanceModel({
-    required this.amount,
-    required this.formatted,
-  });
-  late final int amount;
-  late final String formatted;
-
-  BalanceModel.fromJson(Map<String, dynamic> json) {
-    amount = json['amount'] ?? 0;
-    formatted = json['formatted'] ?? "";
-  }
-}
-
-class Rank {
-  Rank({
+class Student {
+  Student({
     required this.id,
-    required this.title,
-    required this.minPoints,
-    required this.maxPoints,
-    required this.description,
-    required this.mainColor,
-    required this.secondaryColor,
+    required this.fullName,
+    required this.email,
+    required this.universityIDCard,
+    required this.nationalIDCard,
+    required this.isApproved,
+    required this.createdAt,
   });
   late final int id;
-  late final String title;
-  late final int minPoints;
-  late final int maxPoints;
-  late final String description;
-  late final String mainColor;
-  late final String secondaryColor;
+  late final String fullName;
+  late final String email;
+  late final String universityIDCard;
+  late final String nationalIDCard;
+  late final bool isApproved;
+  late final String createdAt;
 
-  Rank.fromJson(Map<String, dynamic> json) {
-    id = json['id'] ?? 0;
-    title = json['title'] ?? '';
-    minPoints = json['min_points'] ?? 0;
-    maxPoints = json['max_points'] ?? 0;
-    description = json['description'] ?? '';
-    mainColor = json['main_color'] ?? '';
-    secondaryColor = json['secondary_color'] ?? '';
+  Student.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    fullName = json['fullName'];
+    email = json['email'];
+    universityIDCard = json['universityIDCard'];
+    nationalIDCard = json['nationalIDCard'];
+    isApproved = json['isApproved'];
+    createdAt = json['createdAt'];
   }
-}
 
-class CreditLimit {
-  CreditLimit({
-    required this.amount,
-    required this.formatted,
-    required this.formattedString,
-  });
-  late final int amount;
-  late final String formatted;
-  late final String formattedString;
-
-  CreditLimit.fromJson(Map<String, dynamic> json) {
-    amount = json['amount'] ?? 0;
-    formatted = json['formatted'] ?? '';
-    formattedString = json['formatted_string'] ?? '';
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['fullName'] = fullName;
+    _data['email'] = email;
+    _data['universityIDCard'] = universityIDCard;
+    _data['nationalIDCard'] = nationalIDCard;
+    _data['isApproved'] = isApproved;
+    _data['createdAt'] = createdAt;
+    return _data;
   }
 }

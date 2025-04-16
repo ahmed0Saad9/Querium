@@ -43,14 +43,16 @@ class LocalizationServices extends Translations {
       final locale = getLocaleFormLanguage(box.read("lng"));
       defaultLocale = locale!;
     } else {
-      defaultLocale = const Locale("en", "US");
-      sl<GetStorage>().write("X-Language", "en");
+      // defaultLocale = const Locale("en", "US");
+      // sl<GetStorage>().write("X-Language", "en");
+      defaultLocale = const Locale("ar", "AE");
+      sl<GetStorage>().write("X-Language", "ar");
     }
     return defaultLocale;
   }
 
   String getCurrentLang() {
     final box = GetStorage();
-    return box.read("lng") ?? 'English';
+    return box.read("lng") ?? 'Arabic';
   }
 }

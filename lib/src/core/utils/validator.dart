@@ -64,8 +64,8 @@ String? idValidator(String? text) {
 }
 
 String? nationalIdValidator(String? text) {
-  if (text!.isEmpty || text.length != 16) {
-    return 'your national id must be 16 numbers';
+  if (text!.isEmpty || text.length != 14) {
+    return 'your national id must be 14 numbers';
   }
   return null;
 }

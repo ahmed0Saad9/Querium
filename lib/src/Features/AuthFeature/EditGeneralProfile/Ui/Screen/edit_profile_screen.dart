@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Bloc/Controller/edit_general_profile_controller.dart';
 import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Ui/Widgets/edit_profile_TF_body.dart';
-import 'package:querium/src/Features/AuthFeature/Register/Ui/Widgets/card_acount_type.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Appbars/app_bars.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Other/base_scaffold.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Other/custom_stepper.dart';

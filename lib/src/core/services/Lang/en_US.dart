@@ -10,23 +10,24 @@ const Map<String, String> enUS = {
   "Email": "Email",
   "Enter_Email": "Enter Email",
   "Password": "Password",
+  "College_ID": "College ID",
+  "National_ID": "National ID",
   "Enter_Password": "Enter Password",
   "Confirm_Password": "Confirm Password",
-  "onBoarding_title_1": "Make a visit to save time",
-  "onBoarding_title_2": "Notify quickly",
-  "onBoarding_title_3": "Notify quickly",
-  "onBoarding_sup_title_1":
-      "You can easy save time by sending visits and get date and time of your visits",
-  "onBoarding_sup_title_2":
-      "You can easy save time by sending visits and get date and time of your visits",
-  "onBoarding_sup_title_3":
-      "Get notification and updates of your received and sent visits status",
+  "Re_Enter_Password": "Re-enter password",
+  "onBoarding_title_1": "Welcome to Querium",
+  "onBoarding_title_2": "Effortless quiz creation",
+  "onBoarding_title_3": "Adaptable Learning for\nEveryone",
+  "onBoarding_subtitle_1":
+      "Querium transforms your documents into interactive quizzes ,making study sessions engaging and effective.",
+  "onBoarding_subtitle_2":
+      "Upload your document and let an AI craft structured quizzes instantly.",
+  "onBoarding_subtitle_3":
+      "Customize quizzes for any subject or level for a personalized learning experience.",
   "next_": "next",
   "Skip": "Skip",
+  "Confirm": "Confirm",
   "User_Name": "User Name",
-  "onBoarding_title_4": "Recruitment",
-  "onBoarding_sup_title_4":
-      "You can apply to search for work within a medical center or find a doctor for work or training as a medical center",
   "home": "Home",
   "my_visits": "My Visits",
   "notification": "Notification",
@@ -35,9 +36,10 @@ const Map<String, String> enUS = {
   "today_visits": "Today Visits:",
   "select_day": "Select Day",
   "visitor": "Visitors:",
-  "Log_In": "Log In",
+  "login": "Login",
+  "Sign_up": "Sign up",
   "Create_Account": "Create Account",
-  "Have_an_Account": "Have an Account .....",
+  "Have_an_Account": "Have an account ?",
   "LOG_IN": "LOG IN",
   "ID_Type": "ID Type",
   "User_Data": "National ID",
@@ -61,10 +63,20 @@ const Map<String, String> enUS = {
   'No_City_fount': 'No city fount',
   "Verification": "Verification",
   'Please_review_your_email': 'Please review your email',
-  "Please_enter_the_code_sent_your_email":
-      "Enter the code sent your email",
+  "Please_enter_the_code_sent_your_email": "Enter the code sent your email",
   "Enter_email_to_reset_password": "Enter email to reset password",
-  "Forget_password": "Forget password",
+  "Forget_password": "Forget password ?",
+  "Forget_password_subtitle":
+      "Enter your email for the verification process,\nwe will send 4 digits code to your email.",
+
+  "dont_have_account_register": "Don’t have an account?",
+  "join_us": "join us",
+  "OTP": "OTP",
+  "Enter_code": "Enter 4 Digits Code",
+  "Enter_code_subtitle":
+      "Enter the 4 digits code that you received on\nyour email.",
+
+  "Join_us_to_start": "Join us to start",
   "Please_enter_the_code": "Please enter the code",
   "Please_enter_the_new_password": "Please enter the new password",
   "send_code": "Send code",
@@ -97,8 +109,8 @@ const Map<String, String> enUS = {
   "Opinions": "Opinions",
   "Finger_Print": "Finger Print",
   "Edit_Profile": "Edit Profile",
-  "English": "العربية",
-  "English_": "English",
+  "select_language": "Select Language",
+  "English": "English",
   "Current_month": "Current month",
   "No_Event_Found": "No Event Found",
   "To": "To",
@@ -198,7 +210,6 @@ const Map<String, String> enUS = {
   "No_Comments_yet": "No Comments yet",
   "Terms_and_Conditions": "Terms and conditions",
 
-
   ///old
 
   "Enter_A_4_Digit_Number_That_Was_Sent_To":
@@ -206,6 +217,10 @@ const Map<String, String> enUS = {
   "Change_Phone_Number": "Change Phone Number",
   "Verify": "Verify",
   "Create_Password": "Create_Password",
+  "change_password": "Change password",
+  "Reset_Password": "Reset Password",
+  "Reset_Password_subtitle":
+      "Set the new password for your account so you\ncan log in and access all the features.",
   "Very_Strong": "Very Strong",
   "Strong": "Strong",
   "Week": "Week",
@@ -262,11 +277,24 @@ const Map<String, String> enUS = {
   "Delete_Service": "Delete Service",
   "Event_Name": "Event name",
   "business_category": "Business category",
-"Reply":"Reply",
+  "Reply": "Reply",
   "empty_date": "Empty date",
-  "Booking_requests":"Booking Requests",
-  /// new keys
-"comments":"Comments",
-"Delete_account":"Delete account",
+  "Booking_requests": "Booking Requests",
 
+  /// new keys
+  "comments": "Comments",
+  "Delete_account": "Delete account",
+  "Home": "Home",
+  "Upload": "Upload",
+  "Favorite": "Favorite",
+  "Profile": "Profile",
+  "lets_start_the_journey": "Let's begin the journey.",
+  "Search_lecture_name": "Search for lecture name and topic...",
+  "Total_answers": "Total answers:",
+  "Sign_up_successful": "Sign-up successful.",
+  "Please_wait_for_admin_to_approve_your_account":
+      "Please wait for admin to approve your account.",
+  "Now_you_can_use_the_app_freely": "Now you can use the app freely.",
+  "Account_Denied": "Account Denied.",
+  "Account_Approved": "Account Approved.",
 };

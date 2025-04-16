@@ -12,17 +12,18 @@ class RegisterParams {
   final String email;
   final String password;
   final String passwordConfirmation;
-  final String id;
   final String nationalId;
+  final String idOfCollege;
+  final String? isApproved;
 
   RegisterParams({
     required this.name,
     required this.email,
     required this.password,
     required this.passwordConfirmation,
-    required this.id,
     required this.nationalId,
-    // this.description,
+    required this.idOfCollege,
+    this.isApproved,
   });
 
   // final FirebaseMessaging _fcm = FirebaseMessaging.instance;
@@ -36,12 +37,13 @@ class RegisterParams {
     //   printDM('an error occur in fetch token');
     // }
     return {
-      'name': name,
+      'fullName': name,
       'email': email,
       'password': password,
       'password_confirmation': passwordConfirmation,
-      'id': id,
-      'national_id': nationalId,
+      'nationalIDCard': nationalId,
+      'universityIDCard': idOfCollege,
+      'isApproved': isApproved,
       'device_key': 'token',
     };
   }

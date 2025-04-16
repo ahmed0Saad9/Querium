@@ -34,7 +34,7 @@ class ChaptersCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Get.to(
-        () => QuizDetailsScreen(),
+        () => const QuizDetailsScreen(),
         transition: Transition.rightToLeftWithFade,
         duration: const Duration(milliseconds: 200),
       ),

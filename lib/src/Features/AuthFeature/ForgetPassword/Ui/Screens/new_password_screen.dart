@@ -22,7 +22,7 @@ class NewPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var node = FocusScope.of(context);
     return BaseScaffold(
-      appBar: AppBars.appBarBack(title: 'Change password'),
+      appBar: AppBars.appBarBack(title: 'change_password'),
       body: Padding(
         padding: AppPadding.paddingScreenSH36,
         child: Form(
@@ -32,18 +32,18 @@ class NewPasswordScreen extends StatelessWidget {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               40.ESH(),
               const CustomTextL(
-                'Reset Password',
+                'Reset_Password',
                 fontSize: 28,
                 fontWeight: FW.bold,
               ),
               8.ESH(),
               CustomTextL.subtitle(
-                'Set the new password for your account so you\ncan log in and access all the features.',
+                'Reset_Password_subtitle',
                 fontWeight: FW.medium,
               ),
               40.ESH(),
               TextFieldDefault(
-                label: 'New password',
+                label: 'new_Password',
                 controller: _.passwordController,
                 validation: passwordValidator,
                 secureType: SecureType.toggle,
@@ -53,7 +53,7 @@ class NewPasswordScreen extends StatelessWidget {
               ),
               24.ESH(),
               TextFieldDefault(
-                label: 'Re-enter password ',
+                label: 'Re_Enter_Password',
                 controller: _.confirmPasswordController,
                 validation: (value) {
                   return confirmPasswordValidator(

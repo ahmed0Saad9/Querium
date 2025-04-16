@@ -22,12 +22,14 @@ class ResultsScreen extends StatelessWidget {
       height: Get.height,
       child: Stack(
         children: [
-          Image.asset('assets/images/QuizBG.png', width: 300.w),
+          Image.asset(
+            'assets/images/QuizBG.png',
+          ),
           BaseScaffold(
             backgroundColor: AppColors.transparentColor,
             appBar: AppBars.appBarBack(
               isBack: true,
-              title: 'Create Quiz',
+              title: 'Results',
             ),
             body: Padding(
               padding: AppPadding.paddingScreenSH36,
@@ -55,40 +57,72 @@ class ResultsScreen extends StatelessWidget {
                     ),
                     44.ESH(),
                     const CustomTextL(
-                      'Total correct answers:',
+                      'Total_answers',
                       fontWeight: FW.bold,
                       fontSize: 24,
                       color: AppColors.main,
                     ),
                     18.ESH(),
-                    const CustomTextR(
-                      'Total Exam degree 10',
-                      fontSize: 20,
-                      color: AppColors.main,
+                    Row(
+                      children: [
+                        const CustomTextL(
+                          'Total_Exam_degree',
+                          fontSize: 20,
+                          color: AppColors.main,
+                        ),
+                        4.ESW(),
+                        const CustomTextR(
+                          '10',
+                          fontSize: 20,
+                          color: AppColors.main,
+                        ),
+                      ],
                     ),
                     12.ESH(),
-                    const CustomTextR(
-                      'Right Questions Count 6',
-                      fontSize: 20,
-                      color: AppColors.main,
+                    Row(
+                      children: [
+                        const CustomTextL(
+                          'Right_Questions_Count',
+                          fontSize: 20,
+                          color: AppColors.main,
+                        ),
+                        4.ESW(),
+                        const CustomTextR(
+                          '6',
+                          fontSize: 20,
+                          color: AppColors.main,
+                        ),
+                      ],
                     ),
                     12.ESH(),
-                    const CustomTextR(
-                      'Wrong Questions Count 4',
-                      fontSize: 20,
-                      color: AppColors.main,
+                    Row(
+                      children: [
+                        const CustomTextL(
+                          'Wrong_Questions_Count',
+                          fontSize: 20,
+                          color: AppColors.main,
+                        ),
+                        4.ESW(),
+                        const CustomTextR(
+                          '4',
+                          fontSize: 20,
+                          color: AppColors.main,
+                        ),
+                      ],
                     ),
-                    42.ESH(),
+                    // 42.ESH(),
+                    Spacer(),
                     ButtonDefault.main(
-                      title: 'Show answers',
+                      title: 'Show_answers',
                       onTap: () => Get.to(() => const ShowAnswersScreen()),
                     ),
                     23.ESH(),
                     const ButtonDefault.main(
-                      title: 'Try Again',
+                      title: 'Try_Again',
                       iconSvg: 'TryAgain',
                       iconSize: 32,
                     ),
+                    36.ESH(),
                   ]),
             ),
           ),

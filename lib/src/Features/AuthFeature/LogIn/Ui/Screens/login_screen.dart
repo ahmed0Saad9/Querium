@@ -37,12 +37,12 @@ class LoginScreen extends StatelessWidget {
                 child: BaseStaggeredColumn(
                   children: [
                     160.ESH(),
-                    const CustomTextL('Welcome back', fontWeight: FW.bold),
+                    const CustomTextL('welcome_back', fontWeight: FW.bold),
                     85.ESH(),
                     TextFieldDefault(
                       label: 'Email',
                       controller: _.emailController,
-                      validation: emailValidator,
+                      // validation: emailValidator,
                       keyboardType: TextInputType.emailAddress,
                       onComplete: () {
                         node.nextFocus();
@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
                     TextFieldDefault(
                       label: 'Password',
                       controller: _.passwordController,
-                      validation: passwordValidator,
+                      // validation: passwordValidator,
                       secureType: SecureType.toggle,
                       onComplete: () {
                         node.unfocus();
@@ -62,8 +62,9 @@ class LoginScreen extends StatelessWidget {
                     ButtonForgetPassword(controller: _),
                     350.ESH(),
                     ButtonDefault.main(
-                      onTap: () => _.logIn(),
-                      title: 'Log in',
+                      // onTap: () => _.logIn(),
+                      onTap: () => _.navigatorToBaseBNBScreen(),
+                      title: 'login',
                     ),
                     _DoNotHaveAccountWidget(
                       controller: _,
@@ -92,7 +93,7 @@ class _DoNotHaveAccountWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CustomTextL(
-          'Don’t have an account?',
+          'dont_have_account_register',
           fontSize: 14.sp,
           color: AppColors.main,
         ),
@@ -103,7 +104,7 @@ class _DoNotHaveAccountWidget extends StatelessWidget {
           style: TextButton.styleFrom(padding: EdgeInsets.zero),
           child: CustomTextL(
             decoration: CustomTextDecoration.underLine,
-            'Join us',
+            'join_us',
             fontSize: 14.sp,
             fontWeight: FW.medium,
             color: AppColors.main,
@@ -132,7 +133,7 @@ class ButtonForgetPassword extends StatelessWidget {
             },
             style: TextButton.styleFrom(padding: EdgeInsets.zero),
             child: CustomTextL(
-              'Forget password?',
+              'Forget_password',
               fontSize: 14.sp,
               fontWeight: FW.medium,
               color: AppColors.main,

@@ -26,10 +26,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final _itemCount = contents.length;
   bool onlastpage = false;
 
-  // bool onpage1 =false;
-  // bool onpage2 =false;
-  // bool onpage3 =false;
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -67,7 +63,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     Image.asset(contents[index].image),
                     36.ESH(),
                     CustomTextL(
-                      contents[index].title,
+                      contents[index].title.tr,
                       textAlign: TextAlign.center,
                       fontSize: 30.sp,
                       fontWeight: FW.bold,
@@ -112,7 +108,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         child: SizedBox(
                           height: 50.h,
                           child: CustomTextL.title(
-                            'Get Started',
+                            'Get_Started',
                           ),
                         ))
                     : InkWell(

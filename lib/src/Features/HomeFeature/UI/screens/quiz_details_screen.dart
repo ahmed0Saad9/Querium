@@ -18,104 +18,58 @@ import 'package:querium/src/core/services/svg_widget.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
 class QuizDetailsScreen extends StatelessWidget {
-  QuizDetailsScreen({super.key});
+  const QuizDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<QuizDetailsController>(
       init: QuizDetailsController(),
-      builder: (controller) => Container(
-        color: AppColors.wight,
-        width: Get.width,
-        height: Get.height,
-        child: Stack(
-          children: [
-            Image.asset('assets/images/QuizBG.png', width: 300.w),
-            BaseScaffold(
-              backgroundColor: AppColors.transparentColor,
-              appBar: AppBars.appBarBack(
-                isBack: true,
-                title: 'Create Quiz',
-              ),
-              body: Padding(
-                padding: AppPadding.paddingScreenSH36,
-                child: BaseStaggeredColumn(children: [
-                  Column(
-                    children: [
-                      50.ESH(),
-                      const CustomDropDownMenu(
-                        hint: 'Number of Question',
-                        items: <DropdownMenuEntry<String>>[
-                          DropdownMenuEntry(value: '10', label: '10'),
-                          DropdownMenuEntry(value: '20', label: '20'),
-                        ],
-                      ),
-                      40.ESH(),
-                      const CustomDropDownMenu(
-                        hint: 'Quiz Duration',
-                        items: <DropdownMenuEntry<String>>[
-                          DropdownMenuEntry(value: '10', label: '10 minutes'),
-                          DropdownMenuEntry(value: '20', label: '20 minutes'),
-                        ],
-                      ),
-                      25.ESH(),
-                      const Row(
-                        children: [
-                          CustomTextL('Question Type'),
-                        ],
-                      ),
-                      25.ESH(),
-                      Row(
-                        children: [
-                          InkWell(
-                            onTap: () =>
-                                controller.changeQuestionType('True&false'),
-                            child: Row(
-                              children: [
-                                Radio(
-                                  value: 'True&false',
-                                  groupValue: controller.questionType,
-                                  onChanged: (value) =>
-                                      controller.changeQuestionType(value!),
-                                  activeColor: AppColors.main,
-                                ),
-                                const CustomTextL('True&false',
-                                    fontSize: 18, fontWeight: FW.bold),
-                              ],
-                            ),
-                          ),
-                          Spacer(),
-                          InkWell(
-                            onTap: () =>
-                                controller.changeQuestionType('MultiChoice'),
-                            child: Row(
-                              children: [
-                                Radio(
-                                  value: 'MultiChoice',
-                                  groupValue: controller.questionType,
-                                  onChanged: (value) =>
-                                      controller.changeQuestionType(value!),
-                                  activeColor: AppColors.main,
-                                ),
-                                const CustomTextL('MultiChoice',
-                                    fontSize: 18, fontWeight: FW.bold),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  380.ESH(),
-                  ButtonDefault.main(
-                    title: 'Continue',
-                    onTap: () => Get.off(() => const QuizScreen()),
-                  ),
-                ]),
-              ),
-            )
-          ],
-        ),
+      builder: (controller) => Stack(
+        children: [
+          Image.asset(
+            'assets/images/QuizBG.png',
+            // width: 300.w,
+          ),
+          BaseScaffold(
+            backgroundColor: AppColors.transparentColor,
+            appBar: AppBars.appBarBack(
+              isBack: true,
+              title: 'Create_Quiz',
+            ),
+            body: Padding(
+              padding: AppPadding.paddingScreenSH36,
+              child: Column(children: [
+                Column(
+                  children: [
+                    50.ESH(),
+                    const CustomDropDownMenu(
+                      hint: 'Number_of_Questions',
+                      items: <DropdownMenuEntry<String>>[
+                        DropdownMenuEntry(value: '10', label: '10'),
+                        DropdownMenuEntry(value: '20', label: '20'),
+                      ],
+                    ),
+                    40.ESH(),
+                    CustomDropDownMenu(
+                      hint: 'Quiz_Difficulty',
+                      items: <DropdownMenuEntry<String>>[
+                        DropdownMenuEntry(value: '1', label: 'Easy'.tr),
+                        DropdownMenuEntry(value: '2', label: 'Medium'.tr),
+                        DropdownMenuEntry(value: '3', label: 'Hard'.tr),
+                      ],
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                ButtonDefault.main(
+                  title: 'Continue',
+                  onTap: () => Get.off(() => const QuizScreen()),
+                ),
+                36.ESH(),
+              ]),
+            ),
+          )
+        ],
       ),
     );
   }

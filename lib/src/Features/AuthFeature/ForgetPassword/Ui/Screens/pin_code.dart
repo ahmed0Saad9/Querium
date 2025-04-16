@@ -30,13 +30,14 @@ class PinCodeScreen extends StatelessWidget {
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             50.ESH(),
             const CustomTextL(
-              'Enter 4 Digits Code',
+              'Enter_code',
               fontSize: 28,
               fontWeight: FW.bold,
+              textAlign: TextAlign.center,
             ),
             8.ESH(),
             CustomTextL.subtitle(
-              'Enter the 4 digits code that you received on\nyour email.',
+              'Enter_code_subtitle',
               fontWeight: FW.medium,
             ),
             40.ESH(),
@@ -50,11 +51,6 @@ class PinCodeScreen extends StatelessWidget {
               title: 'Continue',
               onTap: () {
                 _.checkCode();
-                // Get.back();
-                // Get.bottomSheet(
-                // BottomSheetResetPassword(),
-                //   isScrollControlled: true,
-                // );
               },
             ),
             33.ESH(),

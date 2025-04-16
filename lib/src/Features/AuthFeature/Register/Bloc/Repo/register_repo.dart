@@ -15,15 +15,15 @@ class RegisterRepository with ApiKey {
     required RegisterParams registerParams,
   }) async {
     // String? token = '';
-    try {
-      // token = await _fcm.getToken();
-    } catch (e) {
-      printDM('an error occur in fetch token');
-    }
+    // try {
+    //   token = await _fcm.getToken();
+    // } catch (e) {
+    //   printDM('an error occur in fetch token');
+    // }
     try {
       Response response = await _networkService.post(
         url: uRLRegister,
-        // body: registerParams.toMap(),
+        body: await registerParams.toMap(),
         // bodyFormData: await registerParams.toFormData(),
       );
       return ApiResult.success(response);
