@@ -3,17 +3,12 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:querium/src/Features/AuthFeature/LogIn/Bloc/Controller/login_controller.dart';
-import 'package:querium/src/Features/AuthFeature/LogIn/Ui/Widgets/social_card.dart';
-import 'package:querium/src/Features/AuthFeature/Register/Ui/Screens/register_screen.dart';
-import 'package:querium/src/GeneralWidget/Widgets/Other/base_scaffold.dart';
-
 import 'package:querium/src/GeneralWidget/Widgets/StaggeredAnimations/base_column.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/GeneralWidget/Widgets/TextFields/text_field_default.dart';
 import 'package:querium/src/GeneralWidget/Widgets/buttons/button_default.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/constants/sizes.dart';
-import 'package:querium/src/core/services/svg_widget.dart';
 import 'package:querium/src/core/utils/validator.dart';
 
 import '/src/core/utils/extensions.dart';
@@ -42,7 +37,7 @@ class LoginScreen extends StatelessWidget {
                     TextFieldDefault(
                       label: 'Email',
                       controller: _.emailController,
-                      // validation: emailValidator,
+                      validation: emailValidator,
                       keyboardType: TextInputType.emailAddress,
                       onComplete: () {
                         node.nextFocus();
@@ -62,13 +57,13 @@ class LoginScreen extends StatelessWidget {
                     ButtonForgetPassword(controller: _),
                     350.ESH(),
                     ButtonDefault.main(
-                      // onTap: () => _.logIn(),
-                      onTap: () => _.navigatorToBaseBNBScreen(),
+                      onTap: () => _.logIn(),
+                      // onTap: () => _.navigatorToBaseBNBScreen(),
                       title: 'login',
                     ),
                     _DoNotHaveAccountWidget(
                       controller: _,
-                    )
+                    ),
                   ],
                 ),
               ),

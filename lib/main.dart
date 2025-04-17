@@ -95,8 +95,8 @@ class MyApp extends StatelessWidget {
                 : kNumOfNav++,
         // home: const BaseBNBScreen(),
         // home: const ForgetPasswordScreen(),
-        // home: const LoginScreen(),
-        home: const AccountDeniedScreen(),
+        home: const LoginScreen(),
+        // home: const AccountDeniedScreen(),
       ),
     );
   }

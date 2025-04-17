@@ -82,6 +82,7 @@ class Student {
     required this.universityIDCard,
     required this.nationalIDCard,
     required this.isApproved,
+    required this.isDeleted,
     required this.createdAt,
   });
   late final int id;
@@ -90,6 +91,7 @@ class Student {
   late final String universityIDCard;
   late final String nationalIDCard;
   late final bool isApproved;
+  late final bool isDeleted;
   late final String createdAt;
 
   Student.fromJson(Map<String, dynamic> json) {
@@ -99,6 +101,7 @@ class Student {
     universityIDCard = json['universityIDCard'];
     nationalIDCard = json['nationalIDCard'];
     isApproved = json['isApproved'];
+    isDeleted = json['isDeleted'];
     createdAt = json['createdAt'];
   }
 
@@ -110,6 +113,7 @@ class Student {
     _data['universityIDCard'] = universityIDCard;
     _data['nationalIDCard'] = nationalIDCard;
     _data['isApproved'] = isApproved;
+    _data['isDeleted'] = isDeleted;
     _data['createdAt'] = createdAt;
     return _data;
   }

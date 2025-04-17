@@ -17,6 +17,7 @@ import 'package:querium/src/Features/AuthFeature/Register/Bloc/Model/nationality
 import 'package:querium/src/Features/AuthFeature/Register/Bloc/Model/user_model.dart';
 import 'package:querium/src/Features/AuthFeature/Register/Bloc/Params/register_params.dart';
 import 'package:querium/src/Features/AuthFeature/Register/Bloc/Repo/register_repo.dart';
+import 'package:querium/src/Features/AuthFeature/Register/Ui/Screens/account_approved_screen.dart';
 import 'package:querium/src/Features/AuthFeature/Register/Ui/Screens/pending_screen.dart';
 import 'package:querium/src/Features/AuthFeature/Verification/Bloc/Controller/send_otp_controller.dart';
 import 'package:querium/src/Features/BaseBNBFeature/UI/screens/base_BNB_screen.dart';
@@ -49,6 +50,7 @@ class RegisterController extends BaseController<RegisterRepository> {
   //     verifyAccount: true,
   //   );
   // }
+  UserModel? _userModel;
 
   void createAccount() async {
     if (registerGlobalKey.currentState!.validate()) {
@@ -69,7 +71,11 @@ class RegisterController extends BaseController<RegisterRepository> {
         UserModel userModel = UserModel.fromJson(response.data);
         // LocalStorageCubit().storeUserModel(userModel);
         // LocalStorageCubit().saveItem(key: 'avatar',item: userModel.data.user.image);
-        Get.off(() => const PendingScreen());
+        if (userModel.student.isApproved == false) {
+          Get.to(
+            () => PendingScreen(),
+          );
+        }
         // _sendOTPController.sendOTP(email: userModel.data.user.email);
         successEasyLoading(response.data['message'] ?? "success");
       }, failure: (NetworkExceptions error) {
@@ -85,16 +91,15 @@ class RegisterController extends BaseController<RegisterRepository> {
   @override
   void onInit() {
     super.onInit();
+
     initTextEditingController();
   }
 
   void initTextEditingController() {
     nameController = TextEditingController();
     emailController = TextEditingController();
-
-    passwordController = TextEditingController();
-    confirmPasswordController = TextEditingController();
-
+    passwordController = TextEditingController(text: '123456789aA@');
+    confirmPasswordController = TextEditingController(text: '123456789aA@');
     idController = TextEditingController();
     idOfCollegeController = TextEditingController();
     nationalIdController = TextEditingController();
