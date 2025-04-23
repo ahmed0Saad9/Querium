@@ -4,6 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 // import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get/get_rx/src/rx_workers/rx_workers.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
@@ -40,7 +42,6 @@ class RegisterController extends BaseController<RegisterRepository> {
   late TextEditingController emailController;
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
-  late TextEditingController idController;
   late TextEditingController idOfCollegeController;
   late TextEditingController nationalIdController;
 
@@ -51,6 +52,7 @@ class RegisterController extends BaseController<RegisterRepository> {
   //   );
   // }
   UserModel? _userModel;
+  var isApproved = false.obs;
 
   void createAccount() async {
     if (registerGlobalKey.currentState!.validate()) {
@@ -70,10 +72,17 @@ class RegisterController extends BaseController<RegisterRepository> {
       result.when(success: (Response response) {
         UserModel userModel = UserModel.fromJson(response.data);
         // LocalStorageCubit().storeUserModel(userModel);
-        // LocalStorageCubit().saveItem(key: 'avatar',item: userModel.data.user.image);
+        // LocalStorageCubit()
+        //     .saveItem(key: 'isApproved', item: userModel.student.isApproved);
+        // box.write('isApproved', _userModel?.student.isApproved);
+        // if (box.read('isApproved') == false) {
         if (userModel.student.isApproved == false) {
           Get.to(
             () => PendingScreen(),
+          );
+        } else {
+          Get.to(
+            () => AccountApprovedScreen(),
           );
         }
         // _sendOTPController.sendOTP(email: userModel.data.user.email);
@@ -82,6 +91,20 @@ class RegisterController extends BaseController<RegisterRepository> {
         actionNetworkExceptions(error);
       });
     }
+  }
+
+  void _startApprovalPolling(String userId) {
+    // Check every 5 seconds (adjust as needed)
+    const interval = Duration(seconds: 5);
+
+    // Use Worker to manage the polling
+    ever(isApproved, (approved) {
+      if (approved) {
+        // Stop polling when approved
+        Get.off(
+            const AccountApprovedScreen()); // Navigate to home when approved
+      }
+    });
   }
 
   void moveToLogIn() {
@@ -100,7 +123,6 @@ class RegisterController extends BaseController<RegisterRepository> {
     emailController = TextEditingController();
     passwordController = TextEditingController(text: '123456789aA@');
     confirmPasswordController = TextEditingController(text: '123456789aA@');
-    idController = TextEditingController();
     idOfCollegeController = TextEditingController();
     nationalIdController = TextEditingController();
   }

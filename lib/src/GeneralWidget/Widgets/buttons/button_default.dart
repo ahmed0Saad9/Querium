@@ -34,6 +34,31 @@ class ButtonDefault extends StatelessWidget {
   final double verticalPadding;
   final List<BoxShadow>? boxShadow;
 
+  const ButtonDefault({
+    super.key,
+    this.isLoading = false,
+    this.child,
+    this.borderColor,
+    this.disActiveButtonColor = AppColors.backGroundButtonMain,
+    this.disActiveBorderColor = AppColors.transparentColor,
+    this.title = '',
+    this.titleSize = 20,
+    this.titleColor = AppColors.titleWhite,
+    this.fw = FW.medium,
+    this.radius = kNButtonRadius12,
+    this.iconSize = 24,
+    this.iconSvg = '',
+    this.buttonColor = AppColors.backGroundButtonMain,
+    this.titleColorIsMain = false,
+    this.iconColor,
+    this.onTap,
+    this.height = 62,
+    this.width = double.infinity,
+    this.active = true,
+    this.horizontalPadding = 0,
+    this.verticalPadding = 0,
+    this.boxShadow,
+  });
   const ButtonDefault.main({
     super.key,
     this.isLoading = false,

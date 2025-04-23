@@ -1,7 +1,7 @@
 part of '../screens/home_screen.dart';
 
-class _LectureList extends StatelessWidget {
-  const _LectureList({super.key});
+class _SubjectsList extends StatelessWidget {
+  const _SubjectsList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +14,17 @@ class _LectureList extends StatelessWidget {
             // childAspectRatio: 0.7,
             mainAxisSpacing: 12.h,
             crossAxisSpacing: 12.w),
-        itemBuilder: (context, index) => const _LectureCard(),
+        itemBuilder: (context, index) => const _SubjectsCard(),
         itemCount: 6,
-        padding: AppPadding.paddingScreenSH36,
+        padding:
+            EdgeInsetsDirectional.only(start: 36.w, end: 36.w, bottom: 50.h),
       ),
     );
   }
 }
 
-class _LectureCard extends StatelessWidget {
-  const _LectureCard({
+class _SubjectsCard extends StatelessWidget {
+  const _SubjectsCard({
     super.key,
   });
 
@@ -50,7 +51,7 @@ class _LectureCard extends StatelessWidget {
               )),
           10.ESH(),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               CustomTextR(
                 'Subject',

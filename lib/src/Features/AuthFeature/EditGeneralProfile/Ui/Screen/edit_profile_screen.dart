@@ -21,38 +21,24 @@ class EditProfileScreen extends StatelessWidget {
       init: EditProfileController(),
       builder: (_) => BaseScaffold(
         backgroundColor: Colors.white,
-        body: BaseStaggeredColumn(
-          children: [
-            const TopCustomContainer(
-                icon: 'EditAccount',
-                title: 'edit_account',
-                subTitle: 'you_can_modify_your_account_personal_data'),
-            _.dataModifiedSuccessfully
-                ? Padding(
-                    padding: AppPadding.paddingScreenSH20SV20,
-                    child: const DataSuccessScreen(
-                        image: 'assets/images/DataModifiedSuccefully.png',
-                        title: 'data_has_been_modified_successfully',
-                        subTitle: ''),
-                  )
-                : EditProfileTFBody(
-                    controller: _,
-                  ),
-            _.dataModifiedSuccessfully
-                ? 0.0.ESH()
-                : Column(
-                    children: [
-                      const MainDivider(
-                        thickness: 8,
-                      ),
-                      ButtonDefault.main(
-                        title: 'confirm',
-                        onTap: () => _.modifiesData(),
-                        horizontalPadding: 16,
-                      ),
-                    ],
-                  ),
-          ],
+        appBar: AppBars.appBarBack(title: 'edit_account'),
+        body: Padding(
+          padding: AppPadding.paddingScreenSH36,
+          child: Column(
+            children: [
+              EditProfileTFBody(
+                controller: _,
+              ),
+              const Spacer(),
+              ButtonDefault.main(
+                title: 'Confirm',
+                active: _.emailController!.text.isNotEmpty &&
+                    _.fullNameController!.text.isNotEmpty,
+                onTap: () => _.modifiesData(),
+              ),
+              24.ESH(),
+            ],
+          ),
         ),
       ),
     );

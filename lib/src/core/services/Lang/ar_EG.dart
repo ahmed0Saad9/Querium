@@ -21,6 +21,7 @@ const Map<String, String> arAE = {
   "current_Password": "كلمة المرور الحالية",
   "new_Password": "كلمة المرور الجديدة",
   "Confirm_Password": "تأكيد كلمة المرور",
+  "Confirm_New_Password": "تأكيد كلمة المرور الجديدة",
   "Re_Enter_Password": "تأكيد كلمة المرور",
   "College_ID": "الجامعة ID",
   "National_ID": "الرقم القومي",
@@ -71,6 +72,7 @@ const Map<String, String> arAE = {
   "join_us": "انضم الان",
   "send_code": "ارسال الرمز",
   "login": "تسجيل الدخول",
+  "Logout": "تسجيل الخروج",
   "Sign_up": "انشاء حساب",
   "show_details": "عرض التفاصيل",
   "Continue": "التالي",
@@ -115,4 +117,11 @@ const Map<String, String> arAE = {
   "GO": "انطلق",
   "Check_on_your_Credentials_and_Try_again":
       "تحقق من بيانات الاعتماد الخاصة بك وحاول مرة أخرى.",
+  "Quizzes": "الاختبارات",
+  "Settings": "الإعدادات",
+  "Remove_Account": "إزالة الحساب",
+  "edit_account": "تعديل الحساب",
+  "personal_data": "البيانات الشخصية",
+  "edit": "تعديل",
+  "change": "تغيير",
 };

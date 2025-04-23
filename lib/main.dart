@@ -10,6 +10,7 @@ import 'package:querium/src/Features/AuthFeature/ForgetPassword/Ui/Screens/forge
 import 'package:querium/src/Features/AuthFeature/LogIn/Ui/Screens/login_screen.dart';
 import 'package:querium/src/Features/AuthFeature/Register/Ui/Screens/account_approved_screen.dart';
 import 'package:querium/src/Features/AuthFeature/Register/Ui/Screens/pending_screen.dart';
+import 'package:querium/src/Features/AuthFeature/Register/Ui/Screens/register_screen.dart';
 import 'package:querium/src/Features/BaseBNBFeature/UI/screens/base_BNB_screen.dart';
 import 'package:querium/src/Features/HomeFeature/UI/screens/home_screen.dart';
 import 'package:querium/src/Features/SplachAndOnbordingFeature/ui/onbording_screen.dart';
@@ -18,6 +19,7 @@ import 'src/Features/AuthFeature/Register/Ui/Screens/account_denied_screen.dart'
 import 'src/Features/SplachAndOnbordingFeature/ui/choose_language_screen.dart';
 import 'src/GeneralWidget/Widgets/Loading/loading_dialog.dart';
 import 'src/core/App/app_initializer.dart';
+import 'src/core/ThemeData/theme_constant.dart';
 import 'src/core/constants/app_strings.dart';
 import 'src/core/constants/color_constants.dart';
 import 'src/core/services/Lang/localization_services.dart';
@@ -84,7 +86,8 @@ class MyApp extends StatelessWidget {
         translations: LocalizationServices(),
         locale: LocalizationServices().getCurrentLocale(),
         title: AppStrings.appName,
-        // theme: mainTheme(AppColors.main),
+        theme: mainTheme(AppColors.main),
+
         routingCallback: (Routing? route) => route == null ||
                 route.isBlank! ||
                 route.isBottomSheet! ||
@@ -93,9 +96,10 @@ class MyApp extends StatelessWidget {
             : route.isBack!
                 ? kNumOfNav--
                 : kNumOfNav++,
-        // home: const BaseBNBScreen(),
+        // home: const SplashScreen(),
+
+        home: const BaseBNBScreen(),
         // home: const ForgetPasswordScreen(),
-        home: const LoginScreen(),
         // home: const AccountDeniedScreen(),
       ),
     );

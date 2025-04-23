@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:querium/src/Features/AccountFeature/UI/screens/profile_screen.dart';
-import 'package:querium/src/Features/FavoriteFeature/UI/screens/favorite_screen.dart';
 import 'package:querium/src/Features/HomeFeature/UI/screens/home_screen.dart';
+import 'package:querium/src/Features/QuizzesFeature/UI/screens/quizzes_screen.dart';
 import 'package:querium/src/Features/UploadPDFFeature/UI/screens/upload_pdf_screen.dart';
 
 class AdminBaseModel {
@@ -34,9 +34,9 @@ List<AdminBaseModel> adminBaseModels = [
   ),
   AdminBaseModel(
     id: 2,
-    title: "Favorite",
-    icon: 'Favorite',
-    child: const FavoriteScreen(),
+    title: "Quizzes",
+    icon: 'Quizzes',
+    child: const QuizzesScreen(),
   ),
   AdminBaseModel(
     id: 3,

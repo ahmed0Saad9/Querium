@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:querium/src/Features/AccountFeature/Bloc/Controller/account_details_controller.dart';
+import 'package:querium/src/Features/AccountFeature/UI/screens/reset_password_screen.dart';
 import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Bloc/Controller/account_details_controller.dart';
 import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Ui/Screen/edit_profile_screen.dart';
+import 'package:querium/src/Features/AccountFeature/UI/widgets/list_personal_data.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/constants/sizes.dart';
@@ -18,8 +21,7 @@ class CardAccountDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<AccountDetailsController>(
       init: AccountDetailsController(),
-      builder: (controller) => Container(
-        height: 413.h,
+      builder: (_) => Container(
         width: Get.width,
         decoration: BoxDecoration(
           boxShadow: [
@@ -64,9 +66,13 @@ class CardAccountDetails extends StatelessWidget {
                           CustomTextL.title(
                             "edit",
                             fontSize: 13,
-                            color: AppColors.titleGold,
+                            decoration: CustomTextDecoration.underLine,
+                            color: AppColors.main,
                           ),
-                          const IconSvg('edit_2'),
+                          const IconSvg(
+                            'Edit',
+                            color: AppColors.main,
+                          ),
                         ],
                       ),
                     ),
@@ -74,32 +80,41 @@ class CardAccountDetails extends StatelessWidget {
                 ),
               ),
             ),
-            //  ListPersonalData(
-            //   accountDetailsModel: accountDetailsModel,
-            // ),
+            ListPersonalData(
+              accountDetailsModel: _.accountDetails,
+            ),
+            6.ESH(),
             Row(
               children: [
-                const IconSvg('lock'),
+                const IconSvg(
+                  'Lock',
+                  color: AppColors.iconGray95,
+                  size: 20,
+                  boxFit: BoxFit.fill,
+                ),
                 9.ESW(),
                 CustomTextL.title(
-                  "password",
+                  "Password",
                   fontSize: 14,
                   color: AppColors.titleGray54,
                 ),
                 const Spacer(),
                 InkWell(
                   onTap: () {
-                    // Get.to(() => const ResetPasswordScreen());
+                    Get.to(() => const ResetPasswordScreen());
                   },
                   child: Container(
-                    width: 60.w,
-                    height: 26.h,
+                    padding: AppPadding.paddingScreenSH8SV8,
                     decoration: BoxDecoration(
-                      color: AppColors.backGroundGreen,
+                      color: AppColors.main,
                       borderRadius: BorderRadius.circular(30.r),
                     ),
                     child: const Center(
-                      child: CustomTextL("change", color: AppColors.titleWhite),
+                      child: CustomTextL(
+                        "change",
+                        color: AppColors.titleWhite,
+                        fontSize: 12,
+                      ),
                     ),
                   ),
                 )

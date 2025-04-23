@@ -25,8 +25,7 @@ class EditProfileController
   @override
   // TODO: implement repository
   get repository => sl<EditGeneralProfileRepository>();
-  TextEditingController? firstNameController;
-  TextEditingController? secondNameController;
+  TextEditingController? fullNameController;
   TextEditingController? addressController;
   TextEditingController? activityController;
   TextEditingController? countryController;
@@ -184,7 +183,7 @@ class EditProfileController
       var result = await repository!.updateProfile(
         param: EditProfileParam(
           // image: _image,
-          name: firstNameController!.text,
+          name: fullNameController!.text,
           mobile: phoneController!.text,
           email: emailController!.text,
           role: activitySelected,
@@ -246,8 +245,7 @@ class EditProfileController
   }
 
   void initTextEditingController() {
-    firstNameController = TextEditingController();
-    secondNameController = TextEditingController();
+    fullNameController = TextEditingController();
     addressController = TextEditingController();
     countryController = TextEditingController();
     companyCategoryController = TextEditingController();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:querium/src/Features/AccountFeature/UI/widgets/card_account_details.dart';
 import 'package:querium/src/Features/SettingsFeature/UI/screens/settings_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Cards/card_avatar_image.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
@@ -19,78 +20,46 @@ class ProfileScreen extends StatelessWidget {
     return Container(
       height: Get.height,
       width: Get.width,
-      color: AppColors.scaffoldBackGround,
-      child: SafeArea(
-        top: true,
-        child: Padding(
-          padding: AppPadding.paddingScreenSH36,
-          child: Column(
-            children: [
-              50.ESH(),
-              CardAvatarImage(
-                  size: 160,
-                  image: LocalStorageCubit().getItem(
-                        key: 'avatar',
-                      ) ??
-                      ''),
-              80.ESH(),
-              _Tab(
-                onTap: () {},
-                label: 'Personal info',
-                icon: 'PersonalInfo',
-              ),
-              const Divider(
-                color: AppColors.dividerGrayC7,
-                thickness: 0.5,
-                height: 32,
-              ),
-              _Tab(
-                onTap: () {},
-                label: 'Rewards',
-                icon: 'Rewards',
-              ),
-              const Divider(
-                color: AppColors.dividerGrayC7,
-                thickness: 0.5,
-                height: 32,
-              ),
-              _Tab(
-                onTap: () {},
-                label: 'Change Password',
-                icon: 'ChangePassword',
-              ),
-              const Divider(
-                color: AppColors.dividerGrayC7,
-                thickness: 0.5,
-                height: 32,
-              ),
-              _Tab(
-                onTap: () => Get.to(() => const SettingsScreen(),
-                    transition: Transition.rightToLeftWithFade),
-                label: 'Settings',
-                icon: 'setting',
-              ),
-              const Divider(
-                color: AppColors.dividerGrayC7,
-                thickness: 0.5,
-                height: 32,
-              ),
-              _Tab(
-                onTap: () {},
-                label: 'Remove Account',
-                icon: 'RemoveAcc',
-              ),
-              50.ESH(),
-              const ButtonDefault.main(
-                title: 'Logout',
-                fw: FW.bold,
-                titleColor: AppColors.borderRedF2,
-                borderColor: AppColors.borderRedF2,
-                buttonColor: AppColors.transparentColor,
-              )
-            ],
+      padding: AppPadding.paddingScreenSH36,
+      decoration: const BoxDecoration(
+        color: AppColors.scaffoldBackGround,
+        image: DecorationImage(
+          image: AssetImage(
+            'assets/images/Gradiant.png',
           ),
+          fit: BoxFit.cover,
         ),
+      ),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 300.h,
+            width: 300.w,
+            child: Image.asset(
+              'assets/images/logo.png',
+              // height: 250.h,
+              fit: BoxFit.cover,
+            ),
+          ),
+          const CardAccountDetails(),
+          const Spacer(),
+          const ButtonDefault.main(
+            title: 'Remove_Account',
+            fw: FW.bold,
+            titleColor: AppColors.borderRedF2,
+            borderColor: AppColors.borderRedF2,
+            buttonColor: AppColors.transparentColor,
+          ),
+          16.ESH(),
+          const ButtonDefault.main(
+            title: 'Logout',
+            fw: FW.bold,
+            titleColor: AppColors.titleBlack,
+            borderColor: AppColors.borderBlack0B,
+            buttonColor: AppColors.transparentColor,
+          ),
+          50.ESH(),
+        ],
       ),
     );
   }

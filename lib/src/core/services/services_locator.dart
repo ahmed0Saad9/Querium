@@ -60,7 +60,7 @@ class ServicesLocator {
     // sl.registerLazySingleton<BaseHomeDataSource>(() => HomeDataSource());
 
     sl.registerLazySingleton(() => AreaRepository());
-    sl.registerLazySingleton(() => AccountDetailsRepository());
+    // sl.registerLazySingleton(() => AccountDetailsRepository());
 
     /// Other
     sl.registerFactory(() => ThemeManagerController());

@@ -32,145 +32,29 @@ class EditProfileTFBody extends StatelessWidget {
       width: Get.width,
       child: Form(
         key: controller.globalKey,
-        child: BaseStaggeredColumn(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            16.ESH(),
-            Padding(
-              padding: AppPadding.paddingScreenSH16,
-              child: Row(
-                children: [
-                  Expanded(
-                      child: TextFieldDefault(
-                    hint: 'first_name',
-                    prefixIconUrl: 'user',
-                    controller: controller.firstNameController,
-                    validation: emptyValidator,
-                    onComplete: () {
-                      node.nextFocus();
-                    },
-                  )),
-                  8.ESW(),
-                  Expanded(
-                      child: TextFieldDefault(
-                    hint: 'second_name',
-                    prefixIconUrl: 'user',
-                    controller: controller.secondNameController,
-                    validation: emptyValidator,
-                    onComplete: () {
-                      node.nextFocus();
-                    },
-                  )),
-                ],
-              ),
-            ),
-            16.ESH(),
+            50.ESH(),
             TextFieldDefault(
-              hint: 'phone_number',
-              prefixIconUrl: 'PhoneNumber',
-              keyboardType: TextInputType.phone,
-              controller: controller.phoneController,
-              validation: phoneValidator,
-              outerHorizontalPadding: 16.w,
+              label: 'Full_Name',
+              controller: controller.fullNameController,
+              validation: emptyValidator,
               onComplete: () {
                 node.nextFocus();
               },
             ),
             16.ESH(),
             TextFieldDefault(
-              hint: 'Email',
-              prefixIconUrl: 'Email',
-              isPrefixIcon: true,
+              label: 'Email',
               controller: controller.emailController,
               validation: emailValidator,
-              outerHorizontalPadding: 16.w,
               keyboardType: TextInputType.emailAddress,
               onComplete: () {
                 node.nextFocus();
               },
             ),
             16.ESH(),
-            Padding(
-              padding: AppPadding.paddingScreenSH16,
-              child: Row(
-                children: [],
-              ),
-            ),
-            16.ESH(),
-            TextFieldDefault(
-              hint: 'address',
-              prefixIconUrl: 'Address',
-              controller: controller.addressController,
-              validation: emptyValidator,
-              outerHorizontalPadding: 16.w,
-              keyboardType: TextInputType.text,
-              onComplete: () {
-                node.nextFocus();
-              },
-            ),
-            16.ESH(),
-            DottedBorder(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              borderType: BorderType.RRect,
-              radius: Radius.circular(8.r),
-              dashPattern: const [5, 5],
-              color: AppColors.main,
-              strokeWidth: 1,
-              borderPadding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: InkWell(
-                onTap: () => controller.pickImage(),
-                child: SizedBox(
-                  height: 80.h,
-                  width: Get.width,
-                  child: Center(
-                    child: controller.fileName != null
-                        ? Padding(
-                            padding: AppPadding.paddingScreenSH16SV16,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                IconButton(
-                                  onPressed: () {
-                                    controller.clearFile();
-                                  },
-                                  icon: const IconSvg('CloseCircle'),
-                                ),
-                                const Spacer(),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    CustomTextR(
-                                      '${controller.fileName}',
-                                      fontWeight: FW.medium,
-                                      fontSize: 14,
-                                    ),
-                                    15.ESH(),
-                                    Row(
-                                      children: [
-                                        CustomTextR.subtitle(
-                                          'KB ',
-                                          fontSize: 11,
-                                        ),
-                                        CustomTextR.subtitle(
-                                          controller.fileSize!
-                                              .toStringAsFixed(2),
-                                          fontSize: 11,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                10.ESW(),
-                                Image.asset('assets/images/PDF.png'),
-                              ],
-                            ),
-                          )
-                        : const CustomTextL('upload_your_Personal_identity',
-                            color: AppColors.titleGreen),
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),

@@ -13,7 +13,13 @@ class SplashScreen extends StatelessWidget {
       builder: (_) => Container(
         height: Get.height,
         width: Get.width,
-        decoration: const BoxDecoration(gradient: AppColors.gradientSplash),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(
+                'assets/images/Gradiant.png',
+              ),
+              fit: BoxFit.cover),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

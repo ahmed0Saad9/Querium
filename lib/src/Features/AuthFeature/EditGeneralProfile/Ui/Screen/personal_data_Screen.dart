@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Ui/Widgets/card_account_details.dart';
+import 'package:querium/src/Features/AccountFeature/UI/widgets/card_account_details.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/constants/sizes.dart';

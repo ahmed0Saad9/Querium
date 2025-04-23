@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Bloc/model/account_details_model.dart';
+import 'package:querium/src/Features/AccountFeature/Bloc/Model/account_details_model.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/services/svg_widget.dart';
@@ -9,6 +9,7 @@ import 'package:querium/src/core/utils/extensions.dart';
 
 class ListPersonalData extends StatelessWidget {
   final AccountDetailsModel accountDetailsModel;
+
   const ListPersonalData({
     super.key,
     required this.accountDetailsModel,
@@ -19,7 +20,39 @@ class ListPersonalData extends StatelessWidget {
     return Column(
       children: [
         PersonalData(
-            icon: 'profile', label: 'label', data: accountDetailsModel.name),
+            icon: 'Profile',
+            label: 'Full_Name',
+            data: accountDetailsModel.name),
+        const Divider(
+          color: AppColors.dividerGrayD0,
+          height: 0,
+          thickness: 0.5,
+        ),
+        PersonalData(
+          icon: 'Email',
+          label: 'Email',
+          data: accountDetailsModel.email,
+        ),
+        const Divider(
+          color: AppColors.dividerGrayD0,
+          height: 0,
+          thickness: 0.5,
+        ),
+        PersonalData(
+          icon: 'CollegeID',
+          label: 'College_ID',
+          data: accountDetailsModel.idOfCollege,
+        ),
+        const Divider(
+          color: AppColors.dividerGrayD0,
+          height: 0,
+          thickness: 0.5,
+        ),
+        PersonalData(
+          icon: 'NationalID',
+          label: 'National_ID',
+          data: accountDetailsModel.nationalID,
+        ),
         const Divider(
           color: AppColors.dividerGrayD0,
           height: 0,
@@ -51,7 +84,12 @@ class PersonalData extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            IconSvg(icon),
+            IconSvg(
+              icon,
+              color: AppColors.iconGray95,
+              size: 20,
+              boxFit: BoxFit.fill,
+            ),
             9.ESW(),
             CustomTextL.title(
               label,
@@ -61,6 +99,8 @@ class PersonalData extends StatelessWidget {
             const Spacer(),
             CustomTextR(
               data,
+              fontSize: 14,
+              color: AppColors.titleMain,
             ),
           ],
         ),

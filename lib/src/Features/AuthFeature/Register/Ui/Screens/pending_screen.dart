@@ -20,76 +20,63 @@ class PendingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RegisterController>(
-        builder: (controller) => LazyLoadScrollView(
-              onEndOfPage: () {},
-              child: RefreshIndicator(
-                onRefresh: () async {
-                  controller.createAccount();
-                },
-                child: CustomScrollView(slivers: [
-                  SliverList(
-                    delegate: SliverChildListDelegate.fixed([
-                      Padding(
-                        padding: AppPadding.paddingScreenSH36,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            150.ESH(),
-                            Image.asset(
-                              'assets/images/PendingImage.png',
-                              width: 283.w,
-                              height: 180.h,
-                            ),
-                            45.ESH(),
-                            const CustomTextL(
-                              'Sign_up_successful',
-                              textAlign: TextAlign.center,
-                              fontWeight: FW.bold,
-                              fontSize: 25,
-                            ),
-                            9.ESH(),
-                            CustomTextL.subtitle(
-                              'Please_wait_for_admin_to_approve_your_account',
-                              textAlign: TextAlign.center,
-                              fontSize: 16,
-                            ),
-                            40.ESH(),
-                            Row(
-                              children: [
-                                Container(
-                                  color: AppColors.dividerBlack,
-                                  height: 1.h,
-                                  width: 130.w,
-                                ),
-                                const Spacer(),
-                                const CustomTextL(
-                                  'OR',
-                                  textAlign: TextAlign.center,
-                                  fontWeight: FW.bold,
-                                  fontSize: 25,
-                                ),
-                                const Spacer(),
-                                Container(
-                                  color: AppColors.dividerBlack,
-                                  height: 1.h,
-                                  width: 130.w,
-                                ),
-                              ],
-                            ),
-                            30.ESH(),
-                            ButtonDefault.main(
-                              onTap: () => Get.off(() => const LoginScreen()),
-                              title: 'login',
-                              fw: FW.regular,
-                              // width: 200.w,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ]),
-                  )
-                ]),
-              ),
-            ));
+      builder: (controller) => Padding(
+        padding: AppPadding.paddingScreenSH36,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            150.ESH(),
+            Image.asset(
+              'assets/images/PendingImage.png',
+              width: 283.w,
+              height: 180.h,
+            ),
+            45.ESH(),
+            const CustomTextL(
+              'Sign_up_successful',
+              textAlign: TextAlign.center,
+              fontWeight: FW.bold,
+              fontSize: 25,
+            ),
+            9.ESH(),
+            CustomTextL.subtitle(
+              'Please_wait_for_admin_to_approve_your_account',
+              textAlign: TextAlign.center,
+              fontSize: 16,
+            ),
+            40.ESH(),
+            Row(
+              children: [
+                Container(
+                  color: AppColors.dividerBlack,
+                  height: 1.h,
+                  width: 130.w,
+                ),
+                Spacer(),
+                const CustomTextL(
+                  'OR',
+                  textAlign: TextAlign.center,
+                  fontWeight: FW.bold,
+                  fontSize: 25,
+                ),
+                Spacer(),
+                Container(
+                  color: AppColors.dividerBlack,
+                  height: 1.h,
+                  width: 130.w,
+                ),
+              ],
+            ),
+            30.ESH(),
+            ButtonDefault.main(
+              onTap: () => Get.off(() => const LoginScreen()),
+              title: 'login',
+              fw: FW.regular,
+              // width: 200.w,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

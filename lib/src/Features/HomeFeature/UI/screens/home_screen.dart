@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       const _SubjectsCategory(),
                       20.ESH(),
-                      const _LectureList(),
+                      const _SubjectsList(),
                     ],
                   ),
                 ),

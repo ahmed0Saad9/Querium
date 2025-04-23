@@ -21,6 +21,7 @@ class ForgetPasswordController
   get repository => sl<CheckEmailAndSendOtpRepo>();
   TextEditingController pinCodeController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController currentPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   StreamController<ErrorAnimationType> errorController =
