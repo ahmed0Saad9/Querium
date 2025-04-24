@@ -42,7 +42,7 @@ class AccountApprovedScreen extends StatelessWidget {
             ),
             90.ESH(),
             ButtonDefault.main(
-              onTap: () => Get.off(() => const BaseBNBScreen()),
+              onTap: () => Get.offAll(() => const BaseBNBScreen()),
               title: 'GO',
               fw: FW.regular,
               // width: 200.w,

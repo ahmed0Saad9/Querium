@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:querium/src/Features/AuthFeature/ForgetPassword/Ui/Screens/forget_password_screen.dart';
 import 'package:querium/src/Features/AuthFeature/LogIn/Bloc/Repo/login_repo.dart';
 import 'package:querium/src/Features/AuthFeature/Register/Bloc/Model/user_model.dart';
+import 'package:querium/src/Features/AuthFeature/Register/Ui/Screens/account_approved_screen.dart';
+import 'package:querium/src/Features/AuthFeature/Register/Ui/Screens/account_denied_screen.dart';
+import 'package:querium/src/Features/AuthFeature/Register/Ui/Screens/pending_screen.dart';
 import 'package:querium/src/Features/AuthFeature/Register/Ui/Screens/register_screen.dart';
 import 'package:querium/src/Features/AuthFeature/Verification/Bloc/Controller/send_otp_controller.dart';
 import 'package:querium/src/Features/BaseBNBFeature/UI/screens/base_BNB_screen.dart';
@@ -27,7 +30,9 @@ class LoginController extends BaseController<LogInRepository> {
       globalKey.currentState!.save();
       showEasyLoading();
       var result = await repository!.logIn(
-          password: passwordController!.text, email: emailController!.text);
+        password: passwordController!.text,
+        email: emailController!.text,
+      );
       closeEasyLoading();
       result.when(success: (Response response) {
         _userModel = UserModel.fromJson(response.data);
@@ -36,6 +41,11 @@ class LoginController extends BaseController<LogInRepository> {
         //     .saveItem(key: 'avatar', item: _userModel!.data.user.image);
         _navigatorAfterLogIn(_userModel!);
       }, failure: (NetworkExceptions error) {
+        if (_userModel!.student.isApproved == false) {
+          Get.offAll(() => const PendingScreen());
+        } else {
+          Get.offAll(() => const AccountDeniedScreen());
+        }
         actionNetworkExceptions(error);
       });
     }
@@ -53,7 +63,10 @@ class LoginController extends BaseController<LogInRepository> {
     //   _sendOTPController.sendOTP(
     //       email: emailController!.text, verifyAccount: true);
     // } else {
-    navigatorToBaseBNBScreen();
+    if (user.student.isApproved) {
+      Get.offAll(() => const AccountApprovedScreen());
+    }
+    // navigatorToBaseBNBScreen();
     successEasyLoading('hello');
     // }
   }
@@ -72,7 +85,7 @@ class LoginController extends BaseController<LogInRepository> {
   void onInit() {
     super.onInit();
 
-    emailController = TextEditingController(text: 'moamenyasser@gmail.com');
+    emailController = TextEditingController(text: 'xzhoadpsjdf@gmail.com');
     passwordController = TextEditingController(text: 'freefree');
   }
 

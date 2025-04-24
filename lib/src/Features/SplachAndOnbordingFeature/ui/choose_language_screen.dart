@@ -21,13 +21,12 @@ class ChooseLanguageScreen extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            100.ESH(),
-            Hero(
-              tag: 'logo',
-              child: Image.asset(
-                'assets/images/logo.png',
-                color: Colors.white,
-              ),
+            150.ESH(),
+            Image.asset(
+              'assets/images/logo.png',
+              width: 218.w,
+              height: 295.h,
+              color: Colors.white,
             ),
             const Spacer(),
             LanguageSelect(controller: _),

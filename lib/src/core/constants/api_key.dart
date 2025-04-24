@@ -1,5 +1,6 @@
 mixin ApiKey {
-  static const String apiBaseUrl = 'http://querim.runasp.net/api/Student/';
+  static const String apiBaseUrl = 'http://querium13.runasp.net/api/Student/';
+
   static const String account = 'account/';
   static const String public = 'public/';
   static const String transactions = 'transactions/';

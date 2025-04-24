@@ -42,9 +42,14 @@ class ChooseLanguageController extends GetxController {
     Get.offAll(() => const OnBoardingScreen());
   }
 
+  double position = -600;
+  Timer? _chooseLanguageCardTimer;
   @override
   void onInit() async {
     super.onInit();
+    _chooseLanguageCardTimer = Timer(const Duration(seconds: 3), () {
+      chooseLanguageAppear();
+    });
     Timer(const Duration(hours: 2), () async {
       if (await _isLogged() && _box.read('verified') ?? false) {
         // if(_box.read('verified')??false){
@@ -56,5 +61,17 @@ class ChooseLanguageController extends GetxController {
         moveToOnBoarding();
       }
     });
+  }
+
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    super.onClose();
+    _chooseLanguageCardTimer?.cancel();
+  }
+
+  void chooseLanguageAppear() {
+    position = 0;
+    update();
   }
 }
