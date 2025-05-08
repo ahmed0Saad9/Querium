@@ -22,51 +22,82 @@ class ResetPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(ForgetPasswordController());
     var node = FocusScope.of(context);
-    return BaseScaffold(
-      appBar: AppBars.appBarBack(title: "Reset_Password"),
-      body: SizedBox(
-        height: double.infinity,
-        width: double.infinity,
-        child: Padding(
+    return Container(
+      decoration: const BoxDecoration(
+        color: AppColors.scaffoldBackGround,
+        image: DecorationImage(
+            image: AssetImage('assets/images/Gradiant.png'), fit: BoxFit.cover),
+      ),
+      child: BaseScaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBars.appBarBack(),
+        body: Padding(
           padding: AppPadding.paddingScreenSH36,
           child: GetBuilder<ForgetPasswordController>(
             builder: (_) => Form(
-              key: _.resetPasswordGlobalKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  24.ESH(),
-                  TextFieldDefault(
-                    label: "current_Password",
-                    validation: passwordValidator,
-                    controller: _.currentPasswordController,
-                    secureType: SecureType.toggle,
-                  ),
-                  24.ESH(),
-                  TextFieldDefault(
-                    label: "new_Password",
-                    validation: passwordValidator,
-                    controller: _.passwordController,
-                    secureType: SecureType.toggle,
-                  ),
-                  24.ESH(),
-                  TextFieldDefault(
-                    label: "Confirm_New_Password",
-                    validation: passwordValidator,
-                    controller: _.confirmPasswordController,
-                    secureType: SecureType.toggle,
-                  ),
-                  Spacer(),
-                  ButtonDefault.main(
-                    title: 'Confirm',
-                    active: _.currentPasswordController.text.isNotEmpty &&
-                        _.passwordController.text.isNotEmpty &&
-                        _.confirmPasswordController.text.isNotEmpty,
-                  ),
-                  24.ESH(),
-                ],
-              ),
-            ),
+                key: _.resetPasswordGlobalKey,
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/logo.png',
+                      width: 148.w,
+                      height: 181.h,
+                    ),
+                    62.ESH(),
+                    Container(
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.05),
+                            blurRadius: 30,
+                            offset: const Offset(0, 10),
+                          )
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
+                      padding: AppPadding.paddingScreenSH16,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          24.ESH(),
+                          CustomTextL('Reset_Password'),
+                          18.ESH(),
+                          TextFieldDefault(
+                            label: "current_Password",
+                            validation: passwordValidator,
+                            controller: _.currentPasswordController,
+                            secureType: SecureType.toggle,
+                          ),
+                          24.ESH(),
+                          TextFieldDefault(
+                            label: "new_Password",
+                            validation: passwordValidator,
+                            controller: _.passwordController,
+                            secureType: SecureType.toggle,
+                          ),
+                          24.ESH(),
+                          TextFieldDefault(
+                            label: "Confirm_New_Password",
+                            validation: passwordValidator,
+                            controller: _.confirmPasswordController,
+                            secureType: SecureType.toggle,
+                          ),
+                          24.ESH(),
+                        ],
+                      ),
+                    ),
+                    Spacer(),
+                    ButtonDefault.main(
+                      title: 'change_password',
+                      active: _.currentPasswordController.text.isNotEmpty &&
+                          _.passwordController.text.isNotEmpty &&
+                          _.confirmPasswordController.text.isNotEmpty,
+                    ),
+                    24.ESH(),
+                  ],
+                )),
           ),
         ),
       ),

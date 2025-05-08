@@ -19,14 +19,20 @@ class PinCodeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseScaffold(
-      appBar: AppBars.appBarBack(
-        title: title,
+    return Container(
+      decoration: const BoxDecoration(
+        color: AppColors.scaffoldBackGround,
+        image: DecorationImage(
+            image: AssetImage('assets/images/Gradiant.png'), fit: BoxFit.cover),
       ),
-      body: GetBuilder<ForgetPasswordController>(
-        builder: (_) => Padding(
-          padding: AppPadding.paddingScreenSH36,
-          child:
+      padding: AppPadding.paddingScreenSH36,
+      child: BaseScaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBars.appBarBack(
+          title: title,
+        ),
+        body: GetBuilder<ForgetPasswordController>(
+          builder: (_) =>
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             50.ESH(),
             const CustomTextL(

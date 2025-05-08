@@ -11,11 +11,10 @@ class _SubjectsList extends StatelessWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisExtent: 230.h,
-            // childAspectRatio: 0.7,
             mainAxisSpacing: 12.h,
             crossAxisSpacing: 12.w),
         itemBuilder: (context, index) => const _SubjectsCard(),
-        itemCount: 6,
+        itemCount: 16,
         padding:
             EdgeInsetsDirectional.only(start: 36.w, end: 36.w, bottom: 50.h),
       ),

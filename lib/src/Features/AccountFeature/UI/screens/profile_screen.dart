@@ -32,15 +32,13 @@ class ProfileScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          SizedBox(
-            height: 300.h,
-            width: 300.w,
-            child: Image.asset(
-              'assets/images/logo.png',
-              // height: 250.h,
-              fit: BoxFit.cover,
-            ),
+          50.ESH(),
+          Image.asset(
+            'assets/images/logo.png',
+            height: 200.h,
+            fit: BoxFit.cover,
           ),
+          50.ESH(),
           const CardAccountDetails(),
           const Spacer(),
           const ButtonDefault.main(
@@ -59,39 +57,6 @@ class ProfileScreen extends StatelessWidget {
             buttonColor: AppColors.transparentColor,
           ),
           50.ESH(),
-        ],
-      ),
-    );
-  }
-}
-
-class _Tab extends StatelessWidget {
-  final String icon;
-  final String label;
-  final VoidCallback onTap;
-  const _Tab(
-      {super.key,
-      required this.icon,
-      required this.label,
-      required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Row(
-        children: [
-          IconSvg(
-            icon,
-            size: 32,
-          ),
-          18.ESW(),
-          CustomTextL(
-            label,
-            color: AppColors.titleGray52,
-            fontSize: 18.sp,
-            fontWeight: FW.medium,
-          ),
         ],
       ),
     );

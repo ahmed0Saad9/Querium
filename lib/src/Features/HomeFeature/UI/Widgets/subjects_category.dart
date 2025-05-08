@@ -50,7 +50,7 @@ class _CategoryCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(25.r),
             border: Border.all(color: AppColors.main)),
         child: Center(
-          child: CustomTextR(
+          child: CustomTextL(
             subjectsCategory.label,
             fontSize: 16.sp,
             color: isSelected ? AppColors.titleWhite : AppColors.main,

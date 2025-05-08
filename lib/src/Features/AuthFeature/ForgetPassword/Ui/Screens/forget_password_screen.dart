@@ -35,14 +35,20 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   Widget build(BuildContext context) {
     Get.put(ForgetPasswordController());
     var node = FocusScope.of(context);
-    return BaseScaffold(
-        appBar: AppBars.appBarBack(title: 'Forget_password'),
-        body: GetBuilder<ForgetPasswordController>(
-          init: ForgetPasswordController(),
-          builder: (_) => Form(
-            key: _.globalKey,
-            child: Padding(
-              padding: AppPadding.paddingScreenSH36,
+    return Container(
+      decoration: const BoxDecoration(
+        color: AppColors.scaffoldBackGround,
+        image: DecorationImage(
+            image: AssetImage('assets/images/Gradiant.png'), fit: BoxFit.cover),
+      ),
+      padding: AppPadding.paddingScreenSH36,
+      child: BaseScaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBars.appBarBack(title: 'Forget_password'),
+          body: GetBuilder<ForgetPasswordController>(
+            init: ForgetPasswordController(),
+            builder: (_) => Form(
+              key: _.globalKey,
               child: Column(children: [
                 30.ESH(),
                 CustomTextL.subtitle(
@@ -72,7 +78,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 33.ESH(),
               ]),
             ),
-          ),
-        ));
+          )),
+    );
   }
 }

@@ -109,7 +109,7 @@ class TextFieldDefault extends StatefulWidget {
     this.maxLength,
     this.enable = true,
     this.hintColor = TextFieldColors.hintTitle,
-    this.labelColor = TextFieldColors.hintTitle,
+    this.labelColor = TextFieldColors.mainTitle,
     this.titleColor = TextFieldColors.mainTitle,
     this.errorColor = TextFieldColors.errorText,
     this.fieldColor = TextFieldColors.backGroundWhite,

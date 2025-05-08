@@ -21,8 +21,11 @@ import 'package:querium/src/core/utils/extensions.dart';
 import 'package:querium/src/core/utils/storage_util.dart';
 
 part '../Widgets/top_home_widget.dart';
+
 part '../Widgets/subjects_category.dart';
+
 part '../Widgets/lecture_list.dart';
+
 part '../Widgets/history_grid.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,36 +35,43 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var node = FocusScope.of(context);
     return BaseScaffold(
-        backgroundColor: AppColors.scaffoldBackGround,
-        body: SafeArea(
-          top: true,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const _TopHomeWidget(),
-              28.ESH(),
-              Padding(
-                padding: AppPadding.paddingScreenSH36,
-                child: SearchTextField(
-                    node: node,
-                    enable: false,
-                    onComplete: () {},
-                    hint: 'Search_lecture_name'),
-              ),
-              30.ESH(),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const _SubjectsCategory(),
-                      20.ESH(),
-                      const _SubjectsList(),
-                    ],
-                  ),
+      backgroundColor: AppColors.scaffoldBackGround,
+      body: SafeArea(
+        top: true,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const _TopHomeWidget(),
+            28.ESH(),
+            Padding(
+              padding: AppPadding.paddingScreenSH36,
+              child: SearchTextField(
+                  node: node,
+                  enable: false,
+                  onComplete: () {},
+                  hint: 'Search_lecture_name'),
+            ),
+            30.ESH(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomTextL(
+                      'Academic_year',
+                      padding: AppPadding.paddingScreenSH36,
+                    ),
+                    8.ESH(),
+                    const _SubjectsCategory(),
+                    20.ESH(),
+                    const _SubjectsList(),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

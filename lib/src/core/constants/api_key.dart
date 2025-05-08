@@ -1,14 +1,17 @@
+import 'package:querium/src/Features/AuthFeature/Register/Bloc/Model/user_model.dart';
+
 mixin ApiKey {
-  static const String apiBaseUrl = 'http://querium13.runasp.net/api/Student/';
+  static const String apiBaseUrl = 'http://querium13.runasp.net/api/';
 
   static const String account = 'account/';
   static const String public = 'public/';
   static const String transactions = 'transactions/';
   static const String customer = 'customer/';
+  static const String student = 'Student/';
 
   /// Auth
   final String uRLSetting = "${apiBaseUrl}setting";
-  final String uRLLogin = "${apiBaseUrl}login";
+  final String uRLLogin = "$apiBaseUrl${student}login";
   final String uRLLogout = "$apiBaseUrl$customer${account}logout";
   final String uRLGetMyAccountData = "$apiBaseUrl${account}my-account";
   final String uRLUpdateMyAccountData =
@@ -18,7 +21,7 @@ mixin ApiKey {
   final String uRLSendOTP = "$apiBaseUrl$customer${account}send-verify-otp";
   final String uRLVerifyAccountOtp =
       "$apiBaseUrl$customer${account}validate-otp-and-verify-account";
-  final String uRLRegister = "${apiBaseUrl}register";
+  final String uRLRegister = "${apiBaseUrl}${student}register";
   final String uRLCities = "$apiBaseUrl${public}cities";
   final String uRLDistricts = "$apiBaseUrl${public}districts";
 
@@ -32,14 +35,6 @@ mixin ApiKey {
 
   final String uRLNotifications = "$apiBaseUrl${account}notifications?=";
 
-  // Consultations
-  final String uRLOpportunities = "${apiBaseUrl}opportunities";
-  final String uRLInvestmentCategories = "${apiBaseUrl}investment-categories";
-  final String uRLInvestmentCompanies = "${apiBaseUrl}investment";
-  String uRLOpportunitiesRates(int id) =>
-      "${apiBaseUrl}opportunities/$id/rates";
-  String uRLInvestmentsRates(String id) => "${apiBaseUrl}investment/$id/rates";
-  String uRLProfitReturnRecord(int id) =>
-      "$apiBaseUrl${account}orders/$id/returnDurations";
-  final String uRLOrders = "$apiBaseUrl${account}orders";
+  // app
+  final String uRLGetQuestions = "${apiBaseUrl}FileUpload/questions";
 }

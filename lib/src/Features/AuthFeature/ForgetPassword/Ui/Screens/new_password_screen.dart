@@ -21,11 +21,17 @@ class NewPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var node = FocusScope.of(context);
-    return BaseScaffold(
-      appBar: AppBars.appBarBack(title: 'change_password'),
-      body: Padding(
-        padding: AppPadding.paddingScreenSH36,
-        child: Form(
+    return Container(
+      decoration: const BoxDecoration(
+        color: AppColors.scaffoldBackGround,
+        image: DecorationImage(
+            image: AssetImage('assets/images/Gradiant.png'), fit: BoxFit.cover),
+      ),
+      padding: AppPadding.paddingScreenSH36,
+      child: BaseScaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBars.appBarBack(title: 'change_password'),
+        body: Form(
           // key: _.resetPasswordGlobalKey,
           child: GetBuilder<ForgetPasswordController>(
             builder: (_) =>

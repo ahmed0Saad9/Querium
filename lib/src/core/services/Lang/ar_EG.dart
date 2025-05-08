@@ -117,11 +117,16 @@ const Map<String, String> arAE = {
   "GO": "انطلق",
   "Check_on_your_Credentials_and_Try_again":
       "تحقق من بيانات الاعتماد الخاصة بك وحاول مرة أخرى.",
-  "Quizzes": "الاختبارات",
+  "My_Quizzes": "اختباراتي",
   "Settings": "الإعدادات",
   "Remove_Account": "إزالة الحساب",
   "edit_account": "تعديل الحساب",
   "personal_data": "البيانات الشخصية",
   "edit": "تعديل",
   "change": "تغيير",
+  "Academic_year": "السنة الدراسية",
+  "First_Year": "السنة الأولى",
+  "Second_Year": "السنة الثانية",
+  "Third_Year": "السنة الثالثة",
+  "Fourth_Year": "السنة الرايعة",
 };

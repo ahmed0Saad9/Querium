@@ -10,10 +10,9 @@ class SubjectsCategoryController extends GetxController {
   }
 
   List<SubjectsCategoryModel> subjectsCategoryCards = [
-    const SubjectsCategoryModel(id: 1, label: 'All'),
-    const SubjectsCategoryModel(id: 2, label: 'Computer vision'),
-    const SubjectsCategoryModel(id: 3, label: 'AI'),
-    const SubjectsCategoryModel(id: 4, label: 'Software Engineering 2'),
-    const SubjectsCategoryModel(id: 5, label: 'Network Programing'),
+    const SubjectsCategoryModel(id: 1, label: 'First_Year'),
+    const SubjectsCategoryModel(id: 2, label: 'Second_Year'),
+    const SubjectsCategoryModel(id: 3, label: 'Third_Year'),
+    const SubjectsCategoryModel(id: 4, label: 'Fourth_Year'),
   ];
 }

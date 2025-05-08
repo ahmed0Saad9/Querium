@@ -36,7 +36,7 @@ class PinCodeServices {
               fontFamily: AppStrings.fontFamily),
           animationType: AnimationType.fade,
           pinTheme: PinTheme(
-            inactiveColor: AppColors.borderGreyE7,
+            inactiveColor: AppColors.main,
             inactiveFillColor: AppColors.transparentColor,
             activeColor: AppColors.main,
             disabledColor: Colors.black,

@@ -2,15 +2,60 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:querium/src/Features/HomeFeature/Bloc/model/answers_model.dart';
+import 'package:querium/src/Features/HomeFeature/Bloc/Repo/get_questions_repo.dart';
+import 'package:querium/src/Features/HomeFeature/Bloc/model/question_model.dart';
 import 'package:querium/src/Features/HomeFeature/UI/screens/results_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
+import 'package:querium/src/core/services/Base/base_controller.dart';
+import 'package:querium/src/core/services/Network/network_exceptions.dart';
+import 'package:querium/src/core/services/services_locator.dart';
 
-class QuizController extends GetxController {
+class QuizController extends BaseController<GetQuestionsRepository> {
+  @override
+  // TODO: implement repository
+  get repository => sl<GetQuestionsRepository>();
+  @override
+  void onInit() async {
+    // TODO: implement onInit
+    await getQuestions();
+    super.onInit();
+  }
+
+  final List<QuestionsModel> _questionsList = [];
+
+  List<QuestionsModel> get questionsList => _questionsList;
+
+  Future<void> getQuestions() async {
+    _questionsList.clear();
+    reInitPagination();
+    showLoading();
+
+    update();
+
+    var result = await repository!.getQuestions();
+
+    result.when(success: (List<QuestionsModel> q) {
+      _questionsList.addAll(q);
+      doneLoading();
+      update();
+    }, failure: (NetworkExceptions error) {
+      errorLoading();
+      status = actionNetworkExceptions(error);
+      update();
+    });
+  }
+
+  // String getAnswers(List<String> answers) {
+  //   for (int i = 0; i < answers.length; i++) {
+  //     answers[i];
+  //   }
+  // }
+
   Timer? _timer;
   int remainingSeconds = 1;
   String time = '00:01';
+
   @override
   void onReady() {
     // TODO: implement onReady
@@ -70,10 +115,10 @@ class QuizController extends GetxController {
     update();
   }
 
-  List<AnswersModel> answer = [
-    const AnswersModel(id: 1, label: 'A)', answer: 'To be'),
-    const AnswersModel(id: 2, label: 'B)', answer: 'Not to be'),
-    const AnswersModel(id: 3, label: 'C)', answer: 'Who Cares'),
-    const AnswersModel(id: 4, label: 'D)', answer: 'All answers are correct'),
-  ];
+  int index = 0;
+
+  void nextQuestion() {
+    index++;
+    update();
+  }
 }

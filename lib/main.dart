@@ -13,6 +13,7 @@ import 'package:querium/src/Features/AuthFeature/Register/Ui/Screens/pending_scr
 import 'package:querium/src/Features/AuthFeature/Register/Ui/Screens/register_screen.dart';
 import 'package:querium/src/Features/BaseBNBFeature/UI/screens/base_BNB_screen.dart';
 import 'package:querium/src/Features/HomeFeature/UI/screens/home_screen.dart';
+import 'package:querium/src/Features/HomeFeature/UI/screens/quiz_screen.dart';
 import 'package:querium/src/Features/SplachAndOnbordingFeature/ui/onbording_screen.dart';
 import 'package:querium/src/Features/SplachAndOnbordingFeature/ui/splash_screen.dart';
 import 'src/Features/AuthFeature/Register/Ui/Screens/account_denied_screen.dart';
@@ -96,8 +97,9 @@ class MyApp extends StatelessWidget {
             : route.isBack!
                 ? kNumOfNav--
                 : kNumOfNav++,
-        home: const SplashScreen(),
+        // home: const SplashScreen(),
 
+        home: const QuizScreen(),
         // home: const BaseBNBScreen(),
         // home: const ForgetPasswordScreen(),
         // home: const AccountDeniedScreen(),

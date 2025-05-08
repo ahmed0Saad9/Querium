@@ -7,7 +7,6 @@ import 'package:querium/src/Features/SplachAndOnbordingFeature/ui/onbording_scre
 class SplashController extends GetxController {
   Timer? _animationTimer;
   Timer? _visibleTimer;
-  Timer? _splashTimer;
   @override
   void onInit() async {
     super.onInit();
@@ -16,9 +15,6 @@ class SplashController extends GetxController {
     });
     _visibleTimer = Timer(const Duration(seconds: 3), () {
       toggleVisibility();
-    });
-    _splashTimer = Timer(const Duration(seconds: 5555), () async {
-      moveToChooseLanguage();
     });
   }
 
@@ -42,17 +38,11 @@ class SplashController extends GetxController {
     update();
   }
 
-  void moveToChooseLanguage() {
-    Get.offAll(() => const ChooseLanguageScreen(),
-        transition: Transition.fadeIn, duration: const Duration(seconds: 2));
-  }
-
   @override
   void onClose() {
     // TODO: implement onClose
     super.onClose();
     _animationTimer?.cancel();
     _visibleTimer?.cancel();
-    _splashTimer?.cancel();
   }
 }

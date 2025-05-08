@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:querium/src/Features/AuthFeature/DeleteAccount/Bloc/Repo/delete_account_repo.dart';
-import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Bloc/Repo/account_details_repo.dart';
 import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Bloc/Repo/efit_profile_repo.dart';
 import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Bloc/Repo/get_user_data_repo.dart';
 import 'package:querium/src/Features/AuthFeature/ForgetPassword/Bloc/repo/check_email_and_send_otp_repo.dart';
@@ -16,6 +15,7 @@ import 'package:querium/src/Features/AuthFeature/Register/Bloc/Repo/register_rep
 import 'package:querium/src/Features/AuthFeature/Verification/Bloc/Controller/send_otp_controller.dart';
 import 'package:querium/src/Features/AuthFeature/Verification/Bloc/Repo/send_otp_repository.dart';
 import 'package:querium/src/Features/AuthFeature/Verification/Bloc/Repo/verify_otp_repository.dart';
+import 'package:querium/src/Features/HomeFeature/Bloc/Repo/get_questions_repo.dart';
 import 'package:querium/src/core/ThemeData/theme_manager.dart';
 import 'package:querium/src/core/services/Network/network_services.dart';
 
@@ -49,6 +49,8 @@ class ServicesLocator {
     sl.registerLazySingleton(() => EditGeneralProfileRepository());
     // sl.registerLazySingleton(() => ChangePasswordRepository());
     sl.registerLazySingleton(() => GetUserDataRepository());
+
+    sl.registerLazySingleton(() => GetQuestionsRepository());
 
     //app
     // sl.registerLazySingleton(() => OpportunitiesRepository());

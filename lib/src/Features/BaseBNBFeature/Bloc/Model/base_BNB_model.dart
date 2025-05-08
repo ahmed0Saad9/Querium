@@ -34,8 +34,8 @@ List<AdminBaseModel> adminBaseModels = [
   ),
   AdminBaseModel(
     id: 2,
-    title: "Quizzes",
-    icon: 'Quizzes',
+    title: "My_Quizzes",
+    icon: 'MyQuizzes',
     child: const QuizzesScreen(),
   ),
   AdminBaseModel(

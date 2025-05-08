@@ -20,52 +20,54 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var node = FocusScope.of(context);
     return Container(
-      color: AppColors.scaffoldBackGround,
+      decoration: const BoxDecoration(
+        color: AppColors.scaffoldBackGround,
+        image: DecorationImage(
+            image: AssetImage('assets/images/Gradiant.png'), fit: BoxFit.cover),
+      ),
+      padding: AppPadding.paddingScreenSH36,
       child: GetBuilder<LoginController>(
         init: LoginController(),
         builder: (_) => KeyboardVisibilityBuilder(
           builder: (context, isKeyboardVisible) {
             return Form(
               key: _.globalKey,
-              child: Padding(
-                padding: AppPadding.paddingScreenSH36,
-                child: BaseStaggeredColumn(
-                  children: [
-                    160.ESH(),
-                    const CustomTextL('welcome_back', fontWeight: FW.bold),
-                    85.ESH(),
-                    TextFieldDefault(
-                      label: 'Email',
-                      controller: _.emailController,
-                      validation: emailValidator,
-                      keyboardType: TextInputType.emailAddress,
-                      onComplete: () {
-                        node.nextFocus();
-                      },
-                    ),
-                    24.ESH(),
-                    TextFieldDefault(
-                      label: 'Password',
-                      controller: _.passwordController,
-                      // validation: passwordValidator,
-                      secureType: SecureType.toggle,
-                      onComplete: () {
-                        node.unfocus();
-                        _.logIn();
-                      },
-                    ),
-                    ButtonForgetPassword(controller: _),
-                    350.ESH(),
-                    ButtonDefault.main(
-                      onTap: () => _.logIn(),
-                      // onTap: () => _.navigatorToBaseBNBScreen(),
-                      title: 'login',
-                    ),
-                    _DoNotHaveAccountWidget(
-                      controller: _,
-                    ),
-                  ],
-                ),
+              child: BaseStaggeredColumn(
+                children: [
+                  160.ESH(),
+                  const CustomTextL('welcome_back', fontWeight: FW.bold),
+                  85.ESH(),
+                  TextFieldDefault(
+                    label: 'Email',
+                    controller: _.emailController,
+                    validation: emailValidator,
+                    keyboardType: TextInputType.emailAddress,
+                    onComplete: () {
+                      node.nextFocus();
+                    },
+                  ),
+                  24.ESH(),
+                  TextFieldDefault(
+                    label: 'Password',
+                    controller: _.passwordController,
+                    // validation: passwordValidator,
+                    secureType: SecureType.toggle,
+                    onComplete: () {
+                      node.unfocus();
+                      _.logIn();
+                    },
+                  ),
+                  ButtonForgetPassword(controller: _),
+                  350.ESH(),
+                  ButtonDefault.main(
+                    onTap: () => _.logIn(),
+                    // onTap: () => _.navigatorToBaseBNBScreen(),
+                    title: 'login',
+                  ),
+                  _DoNotHaveAccountWidget(
+                    controller: _,
+                  ),
+                ],
               ),
             );
           },

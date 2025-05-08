@@ -15,7 +15,7 @@ class QuizzesScreen extends StatelessWidget {
     return GetBuilder<QuizzesController>(
       init: QuizzesController(),
       builder: (_) => BaseScaffold(
-        appBar: AppBars.appBarBack(title: 'Quizzes'),
+        appBar: AppBars.appBarBack(title: 'My_Quizzes'),
         body: ListView.separated(
           padding: AppPadding.paddingScreenSH22SV22,
           itemBuilder: (context, index) =>
