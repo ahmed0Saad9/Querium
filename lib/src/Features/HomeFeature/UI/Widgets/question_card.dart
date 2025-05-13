@@ -8,12 +8,10 @@ import 'package:querium/src/core/utils/extensions.dart';
 
 class QuestionCard extends StatelessWidget {
   final QuizController controller;
-  final int index;
 
   const QuestionCard({
     super.key,
     required this.controller,
-    required this.index,
   });
 
   @override
@@ -37,13 +35,13 @@ class QuestionCard extends StatelessWidget {
               ),
               30.ESH(),
               CustomTextR(
-                controller.questionsList[index].questions[index].questionText,
+                // controller.questionsList[index].questions[index].questionText,
+                controller.questionsList[controller.index].questionText,
                 fontSize: 16.sp,
               ),
             ],
           ),
         ),
-        30.ESH(),
       ],
     );
   }

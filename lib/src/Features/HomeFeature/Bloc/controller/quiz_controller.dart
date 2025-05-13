@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,23 +20,23 @@ class QuizController extends BaseController<GetQuestionsRepository> {
   void onInit() async {
     // TODO: implement onInit
     await getQuestions();
+
     super.onInit();
   }
 
-  final List<QuestionsModel> _questionsList = [];
+  final List<Questions> _questionsList = [];
 
-  List<QuestionsModel> get questionsList => _questionsList;
+  List<Questions> get questionsList => _questionsList;
 
   Future<void> getQuestions() async {
     _questionsList.clear();
-    reInitPagination();
     showLoading();
-
+    reInitPagination();
     update();
 
     var result = await repository!.getQuestions();
 
-    result.when(success: (List<QuestionsModel> q) {
+    result.when(success: (List<Questions> q) {
       _questionsList.addAll(q);
       doneLoading();
       update();
@@ -54,13 +55,13 @@ class QuizController extends BaseController<GetQuestionsRepository> {
 
   Timer? _timer;
   int remainingSeconds = 1;
-  String time = '00:01';
+  String time = '10:00';
 
   @override
   void onReady() {
     // TODO: implement onReady
-    // startTimer(600);
-    startTimer(1);
+    startTimer(600);
+    // startTimer(1);
     super.onReady();
   }
 
@@ -76,7 +77,7 @@ class QuizController extends BaseController<GetQuestionsRepository> {
     const duration = Duration(seconds: 1);
     remainingSeconds = seconds;
     _timer = Timer.periodic(duration, (Timer timer) {
-      if (remainingSeconds == 10) {
+      if (remainingSeconds == 0) {
         timer.cancel();
         // Get.off(const ResultsScreen());
         showNotification();
@@ -86,7 +87,7 @@ class QuizController extends BaseController<GetQuestionsRepository> {
         time = minutes.toString().padLeft(2, "0") +
             ":" +
             seconds.toString().padLeft(2, "0");
-        remainingSeconds++;
+        remainingSeconds--;
         update();
       }
     });
@@ -108,17 +109,35 @@ class QuizController extends BaseController<GetQuestionsRepository> {
     );
   }
 
-  int answerIdSelected = 0;
+  int answerIdSelected = -1;
 
   void selectTapId(int id) {
     answerIdSelected = id;
     update();
   }
 
+  bool isLastQuestion = false;
+
   int index = 0;
 
   void nextQuestion() {
-    index++;
+    if (index == 39) {
+      isLastQuestion = true;
+    } else {
+      isLastQuestion = false;
+      index++;
+    }
     update();
   }
+
+  void previousQuestion() {
+    if (index > 0) {
+      index--;
+    }
+    update();
+  }
+
+  // String? getAnswer(int index) {
+  //   return;
+  // }
 }

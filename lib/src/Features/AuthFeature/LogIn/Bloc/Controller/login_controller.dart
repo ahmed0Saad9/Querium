@@ -41,11 +41,6 @@ class LoginController extends BaseController<LogInRepository> {
         //     .saveItem(key: 'avatar', item: _userModel!.data.user.image);
         _navigatorAfterLogIn(_userModel!);
       }, failure: (NetworkExceptions error) {
-        if (_userModel!.student.isApproved == false) {
-          Get.offAll(() => const PendingScreen());
-        } else {
-          Get.offAll(() => const AccountDeniedScreen());
-        }
         actionNetworkExceptions(error);
       });
     }
@@ -85,8 +80,8 @@ class LoginController extends BaseController<LogInRepository> {
   void onInit() {
     super.onInit();
 
-    emailController = TextEditingController(text: 'xzhoadpsjdf@gmail.com');
-    passwordController = TextEditingController(text: 'freefree');
+    emailController = TextEditingController(text: 'ssssss@gmail.com');
+    passwordController = TextEditingController(text: '123456789aA@');
   }
 
   @override

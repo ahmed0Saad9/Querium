@@ -97,9 +97,9 @@ class MyApp extends StatelessWidget {
             : route.isBack!
                 ? kNumOfNav--
                 : kNumOfNav++,
-        // home: const SplashScreen(),
+        home: const SplashScreen(),
 
-        home: const QuizScreen(),
+        // home: const QuizScreen(),
         // home: const BaseBNBScreen(),
         // home: const ForgetPasswordScreen(),
         // home: const AccountDeniedScreen(),

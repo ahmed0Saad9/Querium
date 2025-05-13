@@ -9,13 +9,13 @@ import 'package:querium/src/core/services/services_locator.dart';
 class GetQuestionsRepository with ApiKey {
   final NetworkService _networkService = sl<NetworkService>();
 
-  Future<ApiResult<List<QuestionsModel>>> getQuestions() async {
+  Future<ApiResult<List<Questions>>> getQuestions() async {
     try {
       Response response = await _networkService.get(
         url: uRLGetQuestions,
       );
-      return ApiResult.success(List.from(response.data)
-          .map((e) => QuestionsModel.fromJson(e))
+      return ApiResult.success(List.from(response.data['questions'])
+          .map((e) => Questions.fromJson(e))
           .toList());
     } catch (e) {
       return ApiResult.failure(NetworkExceptions.getDioException(e));

@@ -1,7 +1,7 @@
 import 'package:querium/src/Features/AuthFeature/Register/Bloc/Model/user_model.dart';
 
 mixin ApiKey {
-  static const String apiBaseUrl = 'http://querium13.runasp.net/api/';
+  static const String apiBaseUrl = 'https://querium13.runasp.net/api/';
 
   static const String account = 'account/';
   static const String public = 'public/';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:querium/src/Features/HomeFeature/Bloc/controller/quiz_controller.dart';
 import 'package:querium/src/Features/HomeFeature/Bloc/model/question_model.dart';
@@ -38,35 +39,50 @@ class QuizScreen extends StatelessWidget {
                   appBar: AppBars.appBarBack(title: 'Compiler'),
                   body: Padding(
                     padding: AppPadding.paddingScreenSH36,
-                    child: Column(
-                      children: [
-                        40.ESH(),
-                        TimerWidget(controller: _),
-                        34.ESH(),
-                        QuestionCard(controller: _, index: _.index),
-                        AnswerWidget(controller: _),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ButtonDefault.main(
-                              title: 'Previous',
-                              active: false,
-                              fw: FW.regular,
-                              width: 200.w,
-                            ),
-                            20.ESW(),
-                            ButtonDefault.main(
-                              // onTap: () => Get.off(() => const ResultsScreen()),
-                              onTap: () => _.nextQuestion(),
-                              title: 'Next',
-                              fw: FW.regular,
-                              width: 200.w,
-                            ),
-                          ],
-                        ),
-                        50.ESH()
-                      ],
-                    ),
+                    child: (_.questionsList.isNotEmpty)
+                        ? Column(
+                            children: [
+                              40.ESH(),
+                              TimerWidget(controller: _),
+                              34.ESH(),
+                              QuestionCard(
+                                controller: _,
+                              ),
+                              30.ESH(),
+                              AnswerWidget(controller: _),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ButtonDefault.main(
+                                    title: 'Previous',
+                                    fw: FW.regular,
+                                    width: 200.w,
+                                    onTap: () => _.previousQuestion(),
+                                  ),
+                                  20.ESW(),
+                                  ButtonDefault.main(
+                                    onTap: () {
+                                      _.isLastQuestion
+                                          ? Get.off(() => const ResultsScreen())
+                                          : _.nextQuestion();
+                                    },
+                                    title: _.isLastQuestion ? 'finish' : 'Next',
+                                    fw: FW.regular,
+                                    width: 200.w,
+                                  ),
+                                ],
+                              ),
+                              50.ESH()
+                            ],
+                          )
+                        : Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SpinKitWave(
+                                color: AppColors.main,
+                              ),
+                            ],
+                          ),
                   ),
                 ),
               ],
@@ -82,16 +98,18 @@ class AnswerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.separated(
-        itemBuilder: (context, index) => AnswerCard(
-          label: controller.questionsList[index].questions[index].answers[0],
-          isSelected: true,
+    return GetBuilder<QuizController>(
+      builder: (controller) => Expanded(
+        child: ListView.separated(
+          padding: EdgeInsets.zero,
+          itemBuilder: (context, index) => AnswerCard(
+            label: controller.questionsList[controller.index].answers[index],
+            isSelected: controller.answerIdSelected == index,
+            onTap: () => controller.selectTapId(index),
+          ),
+          itemCount: 4,
+          separatorBuilder: (context, index) => 6.ESH(),
         ),
-        // itemCount: controller
-        //     .questions[controller.index].data[controller.index].answers.length,
-        itemCount: 4,
-        separatorBuilder: (context, index) => 6.ESH(),
       ),
     );
   }
