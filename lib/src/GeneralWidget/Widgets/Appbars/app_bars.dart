@@ -30,7 +30,7 @@ class AppBars {
       title: CustomTextL(
         title.tr,
         fontWeight: FW.bold,
-        fontSize: 16,
+        fontSize: 32,
         textAlign: TextAlign.start,
         color: titleColor,
       ),

@@ -130,4 +130,8 @@ const Map<String, String> arAE = {
   "Third_Year": "السنة الثالثة",
   "Fourth_Year": "السنة الرايعة",
   "Question": "السؤال",
+  "All": "الكل",
+  "Approved": "تمت الموافقة",
+  "Rejected": "تم رفضه",
+  "Pending": "قيد الانتظار",
 };

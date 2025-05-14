@@ -50,7 +50,7 @@ class LoginScreen extends StatelessWidget {
                   TextFieldDefault(
                     label: 'Password',
                     controller: _.passwordController,
-                    // validation: passwordValidator,
+                    validation: passwordValidator,
                     secureType: SecureType.toggle,
                     onComplete: () {
                       node.unfocus();
