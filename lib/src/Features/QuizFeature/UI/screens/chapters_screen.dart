@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
-import 'package:querium/src/Features/HomeFeature/UI/screens/quiz_details_screen.dart';
-import 'package:querium/src/Features/HomeFeature/UI/screens/quiz_screen.dart';
+import 'package:querium/src/Features/QuizFeature/UI/screens/quiz_details_screen.dart';
+import 'package:querium/src/Features/QuizFeature/UI/screens/quiz_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Appbars/app_bars.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Other/base_scaffold.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';

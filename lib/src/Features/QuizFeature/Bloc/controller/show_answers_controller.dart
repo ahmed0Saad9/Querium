@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:querium/src/Features/HomeFeature/Bloc/model/show_answers_model.dart';
+import 'package:querium/src/Features/QuizFeature/Bloc/model/show_answers_model.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 
 class ShowAnswersController extends GetxController {

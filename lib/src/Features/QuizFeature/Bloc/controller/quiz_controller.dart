@@ -3,9 +3,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:querium/src/Features/HomeFeature/Bloc/Repo/get_questions_repo.dart';
-import 'package:querium/src/Features/HomeFeature/Bloc/model/question_model.dart';
-import 'package:querium/src/Features/HomeFeature/UI/screens/results_screen.dart';
+import 'package:querium/src/Features/QuizFeature/Bloc/Repo/get_questions_repo.dart';
+import 'package:querium/src/Features/QuizFeature/Bloc/model/question_model.dart';
+import 'package:querium/src/Features/QuizFeature/UI/screens/results_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/services/Base/base_controller.dart';

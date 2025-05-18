@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:querium/src/Features/HomeFeature/Bloc/controller/quiz_controller.dart';
-import 'package:querium/src/Features/HomeFeature/Bloc/model/question_model.dart';
+import 'package:querium/src/Features/QuizFeature/Bloc/controller/quiz_controller.dart';
+import 'package:querium/src/Features/QuizFeature/Bloc/model/question_model.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 

@@ -5,21 +5,21 @@ class _SubjectsCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SubjectsCategoryController>(
-      init: SubjectsCategoryController(),
+    return GetBuilder<AcademicYearController>(
+      init: AcademicYearController(),
       builder: (controller) => SizedBox(
         height: 45.h,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           padding: AppPadding.paddingScreenSH36,
           itemBuilder: (context, index) => _CategoryCard(
-            subjectsCategory: controller.subjectsCategoryCards[index],
+            subjectsCategory: controller.academicYearCards[index],
             isSelected: controller.tapIdSelected ==
-                controller.subjectsCategoryCards[index].id,
-            onTapSelected: () => controller
-                .selectTapId(controller.subjectsCategoryCards[index].id),
+                controller.academicYearCards[index].id,
+            onTapSelected: () =>
+                controller.selectTapId(controller.academicYearCards[index].id),
           ),
-          itemCount: controller.subjectsCategoryCards.length,
+          itemCount: controller.academicYearCards.length,
           separatorBuilder: (context, index) => 8.ESW(),
         ),
       ),
@@ -28,7 +28,7 @@ class _SubjectsCategory extends StatelessWidget {
 }
 
 class _CategoryCard extends StatelessWidget {
-  final SubjectsCategoryModel subjectsCategory;
+  final AcademicYearModel subjectsCategory;
   final bool isSelected;
   final VoidCallback onTapSelected;
   const _CategoryCard({

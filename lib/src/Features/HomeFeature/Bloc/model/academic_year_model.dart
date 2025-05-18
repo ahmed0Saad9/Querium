@@ -1,8 +1,8 @@
-class SubjectsCategoryModel {
+class AcademicYearModel {
   final int id;
   final String label;
 
-  const SubjectsCategoryModel({
+  const AcademicYearModel({
     required this.id,
     required this.label,
   });
