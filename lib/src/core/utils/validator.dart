@@ -18,11 +18,15 @@ String? nameValidator(String? text) {
 
 String? emailValidator(String? text) {
   if (text!.isNotEmpty) {
-    if (!text.contains('@')) {
+    RegExp emailRegex =
+        RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+    if (!emailRegex.hasMatch(text)) {
       return 'Please enter a valid Email';
     }
-  } else {
+  } else if (text.isEmpty) {
     return 'Please enter an Email';
+  } else {
+    return null;
   }
   return null;
 }

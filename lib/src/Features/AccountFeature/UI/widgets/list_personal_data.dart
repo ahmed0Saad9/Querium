@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:querium/src/Features/AccountFeature/Bloc/Model/account_details_model.dart';
+import 'package:querium/src/Features/AuthFeature/Register/Bloc/Model/user_model.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/services/svg_widget.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
 class ListPersonalData extends StatelessWidget {
-  final AccountDetailsModel accountDetailsModel;
+  final Profile userData;
 
   const ListPersonalData({
     super.key,
-    required this.accountDetailsModel,
+    required this.userData,
   });
 
   @override
@@ -20,9 +21,7 @@ class ListPersonalData extends StatelessWidget {
     return Column(
       children: [
         PersonalData(
-            icon: 'Profile',
-            label: 'Full_Name',
-            data: accountDetailsModel.name),
+            icon: 'Profile', label: 'Full_Name', data: userData.fullName),
         const Divider(
           color: AppColors.dividerGrayD0,
           height: 0,
@@ -31,7 +30,7 @@ class ListPersonalData extends StatelessWidget {
         PersonalData(
           icon: 'Email',
           label: 'Email',
-          data: accountDetailsModel.email,
+          data: userData.email,
         ),
         const Divider(
           color: AppColors.dividerGrayD0,
@@ -41,7 +40,7 @@ class ListPersonalData extends StatelessWidget {
         PersonalData(
           icon: 'CollegeID',
           label: 'College_ID',
-          data: accountDetailsModel.idOfCollege,
+          data: userData.universityIDCard,
         ),
         const Divider(
           color: AppColors.dividerGrayD0,
@@ -51,7 +50,7 @@ class ListPersonalData extends StatelessWidget {
         PersonalData(
           icon: 'NationalID',
           label: 'National_ID',
-          data: accountDetailsModel.nationalID,
+          data: userData.nationalIDCard,
         ),
         const Divider(
           color: AppColors.dividerGrayD0,

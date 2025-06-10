@@ -61,6 +61,7 @@ const Map<String, String> arAE = {
 
   "phone_number": "رقم الهاتف",
   "edit_number": "تعديل الرقم",
+  "Notifications": "الإشعارات",
   "Skip": "تخطى",
   "start_now": "ابدأ الان",
   "Next": "التالي",

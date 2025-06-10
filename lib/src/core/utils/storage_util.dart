@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:querium/src/Features/AuthFeature/Register/Bloc/Model/user_model.dart';
+import 'package:querium/src/core/constants/app_assets.dart';
 import 'package:querium/src/core/services/services_locator.dart';
 
 class LocalStorageCubit extends GetxController {
@@ -10,6 +11,11 @@ class LocalStorageCubit extends GetxController {
 
   void storeUserModel(UserModel data) {
     sl<GetStorage>().write("UserName", data.student.fullName);
+    sl<GetStorage>().write("universityIDCard", data.student.universityIDCard);
+    printDM("ahmmed ${sl<GetStorage>().read(
+      "universityIDCard",
+    )}");
+
     // sl<GetStorage>().write("token", data.token);
     sl<GetStorage>().write("email", data.student.email);
     sl<GetStorage>().write("verified", data.student.isApproved);

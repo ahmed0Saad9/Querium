@@ -24,6 +24,8 @@ class QuizController extends BaseController<GetQuestionsRepository> {
     super.onInit();
   }
 
+  late final Questions _questions;
+
   final List<Questions> _questionsList = [];
 
   List<Questions> get questionsList => _questionsList;
@@ -121,12 +123,15 @@ class QuizController extends BaseController<GetQuestionsRepository> {
   int index = 0;
 
   void nextQuestion() {
-    if (index == 39) {
-      isLastQuestion = true;
-    } else {
+    if (index < 9) {
       isLastQuestion = false;
       index++;
+      // answerIdSelected = _questions.correctAnswer;
+      answerIdSelected = -1;
+    } else {
+      isLastQuestion = true;
     }
+
     update();
   }
 

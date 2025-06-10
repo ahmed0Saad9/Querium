@@ -3,9 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:querium/src/Features/SettingsFeature/UI/screens/settings_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Cards/card_avatar_image.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
+import 'package:querium/src/core/constants/sizes.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 import 'package:querium/src/core/utils/storage_util.dart';
 
@@ -298,103 +300,56 @@ class AppBars {
 
   static AppBar appBarHome({
     required int bNBIndex,
-    required bool withWallet,
   }) {
     return AppBar(
       scrolledUnderElevation: 0,
-      title: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              withWallet
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        CustomTextL(
-                          "good_morning".tr,
-                          fontSize: 12,
-                          color: AppColors.titleGreyC1,
-                          fontWeight: FW.medium,
-                        ),
-                        const CustomTextR(
-                          'احمد دومة 👋',
-                          color: AppColors.titleGreyC1,
-                          fontWeight: FW.medium,
-                        ),
-                      ],
-                    )
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        CustomTextL(
-                          "good_morning".tr,
-                          fontSize: 12,
-                          fontWeight: FW.medium,
-                        ),
-                        const CustomTextR(
-                          'احمد دومة',
-                          fontWeight: FW.medium,
-                        ),
-                        Image.asset(
-                          'assets/images/wave.png',
-                          width: 15.w,
-                          height: 18.h,
-                        ),
-                      ],
-                    ),
-              withWallet
-                  ? const CustomTextR(
-                      'الثلاثاء. 28 مايو. 2024',
-                      fontSize: 14,
-                      fontWeight: FW.bold,
-                      color: AppColors.titleWhite,
-                    )
-                  : const CustomTextR(
-                      'الثلاثاء. 28 مايو. 2024',
-                      fontSize: 14,
-                      fontWeight: FW.bold,
-                    ),
-            ],
-          ),
-        ],
-      ),
-      leading: IconButton(
-        icon: withWallet!
-            ? Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.lineGreen),
-                    shape: BoxShape.circle),
-                child: CardAvatarImage(
-                    size: 40,
-                    image: LocalStorageCubit().getItem(
-                          key: 'avatar',
-                        ) ??
-                        ''),
-              )
-            : CardAvatarImage(
-                size: 40,
-                image: LocalStorageCubit().getItem(
-                      key: 'avatar',
-                    ) ??
-                    ''),
-        tooltip: 'Open Profile',
-        onPressed: () {},
+      title: Padding(
+        padding: AppPadding.paddingScreenSH16,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                CustomTextL(
+                  'Hello',
+                  fontWeight: FW.bold,
+                ),
+                4.ESW(),
+                CustomTextR(
+                  '????',
+                  fontWeight: FW.bold,
+                ),
+              ],
+            ),
+            4.ESH(),
+            CustomTextL(
+              'lets_start_the_journey',
+              fontSize: 13,
+              fontWeight: FW.medium,
+            ),
+          ],
+        ),
       ),
       backgroundColor: Colors.transparent,
       elevation: 0.0,
       actions: [
-        if (bNBIndex == 0)
-          Center(
-              child: withWallet!
-                  ? const NotificationWidget(
-                      glassy: true,
-                    )
-                  : const NotificationWidget(
-                      glassy: false,
-                    )),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 36.w),
+          decoration: const BoxDecoration(
+              shape: BoxShape.circle, color: AppColors.borderGreyE5),
+          child: IconButton(
+            onPressed: () => Get.to(
+              () => const SettingsScreen(),
+              transition: Transition.rightToLeftWithFade,
+            ),
+            icon: Image.asset(
+              'assets/images/Settings.png',
+              height: 27.h,
+              width: 27.w,
+              fit: BoxFit.fill,
+            ),
+          ),
+        )
       ],
     );
   }

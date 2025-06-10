@@ -6,17 +6,18 @@ class _SubjectsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Get.height,
+      height: 500.h,
       child: GridView.builder(
+        shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisExtent: 230.h,
-            mainAxisSpacing: 12.h,
-            crossAxisSpacing: 12.w),
+            mainAxisSpacing: 10.h,
+            crossAxisSpacing: 10.w),
         itemBuilder: (context, index) => const _SubjectsCard(),
-        itemCount: 16,
-        padding:
-            EdgeInsetsDirectional.only(start: 36.w, end: 36.w, bottom: 50.h),
+        itemCount: 10,
+        padding: AppPadding.paddingScreenSH36,
       ),
     );
   }
@@ -59,13 +60,13 @@ class _SubjectsCard extends StatelessWidget {
               ),
             ],
           ),
-          13.ESH(),
+          // 13.ESH(),
+          const Spacer(),
           SizedBox(
-              height: 25.h,
-              width: 140.w,
-              child: BM.ButtonDefault.main(
+              height: 30.h,
+              child: ButtonDefault.main(
                 title: 'Start',
-                titleSize: 12.sp,
+                titleSize: 15.sp,
                 fw: FW.medium,
                 radius: 6,
                 onTap: () => Get.to(

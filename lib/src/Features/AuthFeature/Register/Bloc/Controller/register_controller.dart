@@ -78,11 +78,11 @@ class RegisterController extends BaseController<RegisterRepository> {
         // if (box.read('isApproved') == false) {
         if (userModel.student.isApproved == false) {
           Get.to(
-            () => PendingScreen(),
+            () => const PendingScreen(),
           );
         } else {
           Get.to(
-            () => AccountApprovedScreen(),
+            () => const AccountApprovedScreen(),
           );
         }
         // _sendOTPController.sendOTP(email: userModel.data.user.email);
@@ -123,6 +123,7 @@ class RegisterController extends BaseController<RegisterRepository> {
     emailController = TextEditingController();
     passwordController = TextEditingController(text: '123456789aA@');
     confirmPasswordController = TextEditingController(text: '123456789aA@');
+
     idOfCollegeController = TextEditingController();
     nationalIdController = TextEditingController();
   }

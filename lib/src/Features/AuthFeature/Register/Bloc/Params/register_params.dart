@@ -14,7 +14,6 @@ class RegisterParams {
   final String passwordConfirmation;
   final String nationalId;
   final String idOfCollege;
-  final String? isApproved;
 
   RegisterParams({
     required this.name,
@@ -23,7 +22,6 @@ class RegisterParams {
     required this.passwordConfirmation,
     required this.nationalId,
     required this.idOfCollege,
-    this.isApproved,
   });
 
   // final FirebaseMessaging _fcm = FirebaseMessaging.instance;
@@ -43,7 +41,6 @@ class RegisterParams {
       'password_confirmation': passwordConfirmation,
       'nationalIDCard': nationalId,
       'universityIDCard': idOfCollege,
-      'isApproved': isApproved,
       'device_key': 'token',
     };
   }

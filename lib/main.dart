@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key}) {
     EasyLoading.instance
       ..displayDuration = const Duration(milliseconds: 2000)
-      ..indicatorType = EasyLoadingIndicatorType.chasingDots
+      ..indicatorType = EasyLoadingIndicatorType.spinningCircle
       ..loadingStyle = EasyLoadingStyle.custom
       ..toastPosition = EasyLoadingToastPosition.center
       ..boxShadow = <BoxShadow>[]
@@ -100,6 +100,7 @@ class MyApp extends StatelessWidget {
         home: const SplashScreen(),
 
         // home: const QuizScreen(),
+        // home: const HomeScreen(),
         // home: const BaseBNBScreen(),
         // home: const ForgetPasswordScreen(),
         // home: const AccountDeniedScreen(),

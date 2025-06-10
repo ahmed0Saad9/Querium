@@ -79,7 +79,7 @@ class SplashScreen extends StatelessWidget {
                           width: splashController.width.w,
                           height: splashController.height.h,
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.only(end: 16),
+                            padding: const EdgeInsets.only(left: 16),
                             child: Image.asset(
                               'assets/images/logo.png',
                               fit: BoxFit.contain,
@@ -95,7 +95,7 @@ class SplashScreen extends StatelessWidget {
             GetBuilder<ChooseLanguageController>(
               init: ChooseLanguageController(),
               builder: (chooseLanguageController) => AnimatedPositioned(
-                duration: Duration(seconds: 2),
+                duration: const Duration(seconds: 2),
                 bottom: chooseLanguageController.position,
                 child: LanguageSelect(
                   controller: chooseLanguageController,

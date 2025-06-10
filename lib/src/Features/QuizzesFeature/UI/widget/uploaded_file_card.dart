@@ -26,7 +26,7 @@ class UploadedFileCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-              // height: 138.h,
+              height: 138.h,
               width: Get.width,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(16.r)),

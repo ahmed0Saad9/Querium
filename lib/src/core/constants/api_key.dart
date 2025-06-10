@@ -1,7 +1,5 @@
-import 'package:querium/src/Features/AuthFeature/Register/Bloc/Model/user_model.dart';
-
 mixin ApiKey {
-  static const String apiBaseUrl = 'https://querium13.runasp.net/api/';
+  static const String apiBaseUrl = 'https://querium.premiumasp.net/api/';
 
   static const String account = 'account/';
   static const String public = 'public/';
@@ -12,7 +10,7 @@ mixin ApiKey {
   /// Auth
   final String uRLSetting = "${apiBaseUrl}setting";
   final String uRLLogin = "$apiBaseUrl${student}login";
-  final String uRLLogout = "$apiBaseUrl$customer${account}logout";
+  final String uRLLogout = "$apiBaseUrl${student}logout";
   final String uRLGetMyAccountData = "$apiBaseUrl${account}my-account";
   final String uRLUpdateMyAccountData =
       "$apiBaseUrl${account}my-account/update";
@@ -21,7 +19,7 @@ mixin ApiKey {
   final String uRLSendOTP = "$apiBaseUrl$customer${account}send-verify-otp";
   final String uRLVerifyAccountOtp =
       "$apiBaseUrl$customer${account}validate-otp-and-verify-account";
-  final String uRLRegister = "${apiBaseUrl}${student}register";
+  final String uRLRegister = "$apiBaseUrl${student}register";
   final String uRLCities = "$apiBaseUrl${public}cities";
   final String uRLDistricts = "$apiBaseUrl${public}districts";
 
@@ -34,6 +32,8 @@ mixin ApiKey {
   final String uRLCheckQrCode = "$apiBaseUrl${account}qr-code-check";
 
   final String uRLNotifications = "$apiBaseUrl${account}notifications?=";
+  String uRLProfile({required int universityIDCard}) =>
+      "$apiBaseUrl${student}Profile/$universityIDCard";
 
   // app
   final String uRLGetQuestions = "${apiBaseUrl}FileUpload/questions";

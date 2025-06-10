@@ -1,27 +1,38 @@
 part of '../screens/home_screen.dart';
 
-class _SubjectsCategory extends StatelessWidget {
-  const _SubjectsCategory({super.key});
+class _AcademicYearFilter extends StatelessWidget {
+  const _AcademicYearFilter({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AcademicYearController>(
       init: AcademicYearController(),
-      builder: (controller) => SizedBox(
-        height: 45.h,
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          padding: AppPadding.paddingScreenSH36,
-          itemBuilder: (context, index) => _CategoryCard(
-            subjectsCategory: controller.academicYearCards[index],
-            isSelected: controller.tapIdSelected ==
-                controller.academicYearCards[index].id,
-            onTapSelected: () =>
-                controller.selectTapId(controller.academicYearCards[index].id),
+      builder: (controller) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomTextL(
+            'Academic_year',
+            padding: AppPadding.paddingScreenSH36,
           ),
-          itemCount: controller.academicYearCards.length,
-          separatorBuilder: (context, index) => 8.ESW(),
-        ),
+          10.ESH(),
+          SizedBox(
+            height: 45.h,
+            child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              padding: AppPadding.paddingScreenSH36,
+              itemBuilder: (context, index) => _CategoryCard(
+                subjectsCategory: controller.academicYearCards[index],
+                isSelected: controller.tapIdSelected ==
+                    controller.academicYearCards[index].id,
+                onTapSelected: () => controller
+                    .selectTapId(controller.academicYearCards[index].id),
+              ),
+              itemCount: controller.academicYearCards.length,
+              separatorBuilder: (context, index) => 8.ESW(),
+            ),
+          ),
+        ],
       ),
     );
   }

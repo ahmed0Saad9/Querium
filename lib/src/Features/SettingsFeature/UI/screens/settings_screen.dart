@@ -21,73 +21,60 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<SettingsController>(
       init: SettingsController(),
-      builder: (controller) => BaseScaffold(
-          appBar: AppBars.appBarBack(title: 'Settings'),
-          body: Padding(
-            padding: AppPadding.paddingScreenSH36,
-            child: BaseStaggeredColumn(
-              children: [
-                30.ESH(),
-                Row(
-                  children: [
-                    CardAvatarImage(
-                        size: 75,
-                        image: LocalStorageCubit().getItem(
-                              key: 'avatar',
-                            ) ??
-                            ''),
-                    16.ESW(),
-                    const CustomTextR(
-                      'Ahmed',
-                      fontWeight: FW.bold,
-                    )
-                  ],
-                ),
-                20.ESH(),
-                const _SectionHeader(
-                  title: 'Account',
-                  icon: 'Account',
-                ),
-                18.ESH(),
-                const _SettingsArrowTab(
-                  label: 'Edit Profile',
-                ),
-                24.ESH(),
-                const _SettingsArrowTab(
-                  label: 'Change Password',
-                ),
-                24.ESH(),
-                const _SettingsArrowTab(
-                  label: 'Privacy',
-                ),
-                30.ESH(),
-                const _SectionHeader(
-                  title: 'Notification',
-                  icon: 'Notification',
-                ),
-                18.ESH(),
-                _SettingsSwitchTab(
-                  label: 'Notification',
-                  switchValue: controller.notification,
-                  onToggle: (p0) => controller.toggleNotification(),
-                ),
-                24.ESH(),
-                _SettingsSwitchTab(
-                  label: 'Update',
-                  switchValue: controller.Update,
-                  onToggle: (p0) => controller.toggleUpdate(),
-                ),
-                30.ESH(),
-                const _SectionHeader(title: 'Other', icon: 'Other'),
-                18.ESH(),
-                _SettingsSwitchTab(
-                  label: 'Dark Mode',
-                  switchValue: controller.darkMode,
-                  onToggle: (p0) => controller.toggleDarkMode(),
-                )
-              ],
+      builder: (controller) => Container(
+        height: Get.height,
+        width: Get.width,
+        // padding: AppPadding.paddingScreenSH36,
+        decoration: const BoxDecoration(
+          color: AppColors.scaffoldBackGround,
+          image: DecorationImage(
+            image: AssetImage(
+              'assets/images/Gradiant.png',
             ),
-          )),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: BaseScaffold(
+            appBar: AppBars.appBarBack(title: 'Settings'),
+            backgroundColor: AppColors.transparentColor,
+            body: Padding(
+              padding: AppPadding.paddingScreenSH36,
+              child: BaseStaggeredColumn(
+                children: [
+                  Image.asset(
+                    'assets/images/logo.png',
+                    height: 200.h,
+                    fit: BoxFit.cover,
+                  ),
+                  50.ESH(),
+                  const _SectionHeader(
+                    title: 'Notifications',
+                    icon: 'Notification',
+                  ),
+                  18.ESH(),
+                  _SettingsSwitchTab(
+                    label: 'Notification',
+                    switchValue: controller.notification,
+                    onToggle: (p0) => controller.toggleNotification(),
+                  ),
+                  24.ESH(),
+                  _SettingsSwitchTab(
+                    label: 'Update',
+                    switchValue: controller.Update,
+                    onToggle: (p0) => controller.toggleUpdate(),
+                  ),
+                  30.ESH(),
+                  const _SectionHeader(title: 'Other', icon: 'Other'),
+                  18.ESH(),
+                  _SettingsSwitchTab(
+                    label: 'Dark Mode',
+                    switchValue: controller.darkMode,
+                    onToggle: (p0) => controller.toggleDarkMode(),
+                  )
+                ],
+              ),
+            )),
+      ),
     );
   }
 }

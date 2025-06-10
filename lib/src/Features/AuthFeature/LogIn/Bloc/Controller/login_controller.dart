@@ -21,9 +21,9 @@ class LoginController extends BaseController<LogInRepository> {
   get repository => sl<LogInRepository>();
   TextEditingController? emailController;
   TextEditingController? passwordController;
+  UserModel? _userModel;
 
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-  UserModel? _userModel;
 
   Future<void> logIn() async {
     if (globalKey.currentState!.validate()) {
@@ -80,7 +80,11 @@ class LoginController extends BaseController<LogInRepository> {
   void onInit() {
     super.onInit();
 
-    emailController = TextEditingController(text: 'ssssss@gmail.com');
+    textControllerInit();
+  }
+
+  void textControllerInit() {
+    emailController = TextEditingController(text: 'ahmedsaad12@gmail.com');
     passwordController = TextEditingController(text: '123456789aA@');
   }
 
