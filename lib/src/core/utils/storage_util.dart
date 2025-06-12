@@ -11,10 +11,8 @@ class LocalStorageCubit extends GetxController {
 
   void storeUserModel(UserModel data) {
     sl<GetStorage>().write("UserName", data.student.fullName);
+    sl<GetStorage>().write("studentID", data.student.id);
     sl<GetStorage>().write("universityIDCard", data.student.universityIDCard);
-    printDM("ahmmed ${sl<GetStorage>().read(
-      "universityIDCard",
-    )}");
 
     // sl<GetStorage>().write("token", data.token);
     sl<GetStorage>().write("email", data.student.email);

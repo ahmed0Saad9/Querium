@@ -32,9 +32,17 @@ mixin ApiKey {
   final String uRLCheckQrCode = "$apiBaseUrl${account}qr-code-check";
 
   final String uRLNotifications = "$apiBaseUrl${account}notifications?=";
+
   String uRLProfile({required int universityIDCard}) =>
       "$apiBaseUrl${student}Profile/$universityIDCard";
 
   // app
-  final String uRLGetQuestions = "${apiBaseUrl}FileUpload/questions";
+  String uRLGetAllSubjects({required int? academicYear}) =>
+      "${apiBaseUrl}General/subjects?academicYear=$academicYear";
+
+  String uRLGetChapters({required int? subjectID}) =>
+      "${apiBaseUrl}upload/subjects/$subjectID/chapters";
+
+  String uRLGetQuestions({required int? chaptersID}) =>
+      "${apiBaseUrl}upload/chapters/$chaptersID/questions";
 }

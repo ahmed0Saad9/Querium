@@ -1,39 +1,37 @@
 part of '../screens/home_screen.dart';
 
 class _AcademicYearFilter extends StatelessWidget {
-  const _AcademicYearFilter({super.key});
+  final SubjectsController controller;
+  const _AcademicYearFilter({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AcademicYearController>(
-      init: AcademicYearController(),
-      builder: (controller) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomTextL(
-            'Academic_year',
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CustomTextL(
+          'Academic_year',
+          padding: AppPadding.paddingScreenSH36,
+        ),
+        10.ESH(),
+        SizedBox(
+          height: 45.h,
+          child: ListView.separated(
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
             padding: AppPadding.paddingScreenSH36,
-          ),
-          10.ESH(),
-          SizedBox(
-            height: 45.h,
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              padding: AppPadding.paddingScreenSH36,
-              itemBuilder: (context, index) => _CategoryCard(
-                subjectsCategory: controller.academicYearCards[index],
-                isSelected: controller.tapIdSelected ==
-                    controller.academicYearCards[index].id,
-                onTapSelected: () => controller
-                    .selectTapId(controller.academicYearCards[index].id),
-              ),
-              itemCount: controller.academicYearCards.length,
-              separatorBuilder: (context, index) => 8.ESW(),
+            itemBuilder: (context, index) => _CategoryCard(
+              subjectsCategory: controller.academicYearCards[index],
+              isSelected: controller.tapIdSelected ==
+                  controller.academicYearCards[index].id,
+              onTapSelected: () => controller
+                  .selectTapId(controller.academicYearCards[index].id),
             ),
+            itemCount: controller.academicYearCards.length,
+            separatorBuilder: (context, index) => 8.ESW(),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

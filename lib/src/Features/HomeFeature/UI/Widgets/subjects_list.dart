@@ -1,36 +1,51 @@
 part of '../screens/home_screen.dart';
 
 class _SubjectsList extends StatelessWidget {
-  const _SubjectsList({super.key});
+  final SubjectsController controller;
+  const _SubjectsList({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 500.h,
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const BouncingScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisExtent: 230.h,
-            mainAxisSpacing: 10.h,
-            crossAxisSpacing: 10.w),
-        itemBuilder: (context, index) => const _SubjectsCard(),
-        itemCount: 10,
-        padding: AppPadding.paddingScreenSH36,
-      ),
-    );
+    return (controller.subjects.isNotEmpty)
+        ? SizedBox(
+            height: 500.h,
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.6,
+                  mainAxisSpacing: 10.h,
+                  crossAxisSpacing: 10.w),
+              itemBuilder: (context, index) =>
+                  _SubjectsCard(subject: controller.subjects[index]),
+              itemCount: controller.subjects.length,
+              padding: AppPadding.paddingScreenSH36,
+            ),
+          )
+        : Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              100.ESH(),
+              const SpinKitWave(
+                color: AppColors.main,
+              ),
+            ],
+          );
   }
 }
 
 class _SubjectsCard extends StatelessWidget {
+  final Subjects subject;
   const _SubjectsCard({
     super.key,
+    required this.subject,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: BoxConstraints(minHeight: 290.h),
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: AppColors.backGroundGreyF4,
@@ -42,25 +57,41 @@ class _SubjectsCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-              height: 138.h,
               width: 146.w,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(16.r)),
               child: Image.asset(
                 'assets/images/LectureImage.png',
               )),
-          10.ESH(),
+          13.ESH(),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              CustomTextR(
-                'Subject',
-                fontSize: 14.sp,
-                fontWeight: FW.bold,
+              SizedBox(
+                width: 150.w,
+                child: Column(
+                  children: [
+                    CustomTextR(
+                      subject.title,
+                      fontSize: 16.sp,
+                      fontWeight: FW.bold,
+                      textAlign: TextAlign.center,
+                      // isOverFlow: true,
+                    ),
+                    6.ESH(),
+                    CustomTextR(
+                      subject.description,
+                      fontSize: 12.sp,
+                      fontWeight: FW.medium,
+                      maxLines: 2,
+                      textAlign: TextAlign.left,
+                      color: AppColors.titleGray52,
+                    ),
+                    10.ESH(),
+                  ],
+                ),
               ),
             ],
           ),
-          // 13.ESH(),
           const Spacer(),
           SizedBox(
               height: 30.h,
@@ -70,9 +101,7 @@ class _SubjectsCard extends StatelessWidget {
                 fw: FW.medium,
                 radius: 6,
                 onTap: () => Get.to(
-                  () => const ChaptersScreen(),
-                  transition: Transition.rightToLeftWithFade,
-                  duration: const Duration(milliseconds: 200),
+                  () => ChaptersScreen(subjectID: subject.id),
                 ),
               ))
         ],

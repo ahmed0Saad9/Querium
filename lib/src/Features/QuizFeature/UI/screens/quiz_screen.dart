@@ -18,12 +18,15 @@ import 'package:querium/src/core/utils/extensions.dart';
 import 'package:linear_timer/linear_timer.dart';
 
 class QuizScreen extends StatelessWidget {
-  const QuizScreen({super.key});
+  final int chapterID;
+  final String subjectName;
+  const QuizScreen(
+      {super.key, required this.chapterID, required this.subjectName});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<QuizController>(
-        init: QuizController(),
+        init: QuizController(chapterID: chapterID, subjectName: subjectName),
         builder: (_) {
           return Container(
             width: Get.width,
@@ -36,7 +39,7 @@ class QuizScreen extends StatelessWidget {
                 ),
                 BaseScaffold(
                   backgroundColor: Colors.transparent,
-                  appBar: AppBars.appBarBack(title: 'Compiler'),
+                  appBar: AppBars.appBarBack(title: subjectName),
                   body: Padding(
                     padding: AppPadding.paddingScreenSH36,
                     child: (_.questionsList.isNotEmpty)
@@ -75,7 +78,7 @@ class QuizScreen extends StatelessWidget {
                               50.ESH()
                             ],
                           )
-                        : Column(
+                        : const Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SpinKitWave(

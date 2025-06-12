@@ -18,7 +18,10 @@ import 'package:querium/src/core/services/svg_widget.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
 class QuizDetailsScreen extends StatelessWidget {
-  const QuizDetailsScreen({super.key});
+  final int chapterID;
+  final String subjectName;
+  const QuizDetailsScreen(
+      {super.key, required this.chapterID, required this.subjectName});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +66,10 @@ class QuizDetailsScreen extends StatelessWidget {
                 const Spacer(),
                 ButtonDefault.main(
                   title: 'Continue',
-                  onTap: () => Get.off(() => const QuizScreen()),
+                  onTap: () => Get.off(() => QuizScreen(
+                        chapterID: chapterID,
+                        subjectName: subjectName,
+                      )),
                 ),
                 36.ESH(),
               ]),

@@ -83,7 +83,7 @@ const Map<String, String> arAE = {
   "Upload": "رفع",
   "Favorite": "المفضلة",
   "Profile": "الملف الشخصي",
-  "Hello": "مرحبًا,",
+  "Hello": "مرحبًا",
   "lets_start_the_journey": "دعونا نبدأ الرحلة.",
   "Search_lecture_name": "ابحث عن اسم المحاضرة اوالموضوع...",
   "Chapters": "الفصول",

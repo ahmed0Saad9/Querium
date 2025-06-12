@@ -3,11 +3,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:querium/src/Features/SettingsFeature/UI/screens/settings_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Cards/card_avatar_image.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/constants/sizes.dart';
+import 'package:querium/src/core/services/services_locator.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 import 'package:querium/src/core/utils/storage_util.dart';
 
@@ -310,19 +312,20 @@ class AppBars {
           children: [
             Row(
               children: [
-                CustomTextL(
+                const CustomTextL(
                   'Hello',
                   fontWeight: FW.bold,
                 ),
-                4.ESW(),
                 CustomTextR(
-                  '????',
+                  ", ${sl<GetStorage>().read(
+                    "UserName",
+                  )}",
                   fontWeight: FW.bold,
                 ),
               ],
             ),
             4.ESH(),
-            CustomTextL(
+            const CustomTextL(
               'lets_start_the_journey',
               fontSize: 13,
               fontWeight: FW.medium,

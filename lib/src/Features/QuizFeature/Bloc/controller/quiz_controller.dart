@@ -13,6 +13,9 @@ import 'package:querium/src/core/services/Network/network_exceptions.dart';
 import 'package:querium/src/core/services/services_locator.dart';
 
 class QuizController extends BaseController<GetQuestionsRepository> {
+  int chapterID;
+  String subjectName;
+
   @override
   // TODO: implement repository
   get repository => sl<GetQuestionsRepository>();
@@ -24,8 +27,6 @@ class QuizController extends BaseController<GetQuestionsRepository> {
     super.onInit();
   }
 
-  late final Questions _questions;
-
   final List<Questions> _questionsList = [];
 
   List<Questions> get questionsList => _questionsList;
@@ -36,7 +37,7 @@ class QuizController extends BaseController<GetQuestionsRepository> {
     reInitPagination();
     update();
 
-    var result = await repository!.getQuestions();
+    var result = await repository!.getQuestions(chaptersID: chapterID);
 
     result.when(success: (List<Questions> q) {
       _questionsList.addAll(q);
@@ -142,7 +143,12 @@ class QuizController extends BaseController<GetQuestionsRepository> {
     update();
   }
 
-  // String? getAnswer(int index) {
+  QuizController({
+    required this.chapterID,
+    required this.subjectName,
+  });
+
+// String? getAnswer(int index) {
   //   return;
   // }
 }

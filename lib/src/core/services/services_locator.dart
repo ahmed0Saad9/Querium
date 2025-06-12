@@ -16,6 +16,8 @@ import 'package:querium/src/Features/AuthFeature/Register/Bloc/Repo/register_rep
 import 'package:querium/src/Features/AuthFeature/Verification/Bloc/Controller/send_otp_controller.dart';
 import 'package:querium/src/Features/AuthFeature/Verification/Bloc/Repo/send_otp_repository.dart';
 import 'package:querium/src/Features/AuthFeature/Verification/Bloc/Repo/verify_otp_repository.dart';
+import 'package:querium/src/Features/HomeFeature/Bloc/Repo/chapters_repo.dart';
+import 'package:querium/src/Features/HomeFeature/Bloc/Repo/subjects_repo.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/Repo/get_questions_repo.dart';
 import 'package:querium/src/core/ThemeData/theme_manager.dart';
 import 'package:querium/src/core/services/Network/network_services.dart';
@@ -53,6 +55,8 @@ class ServicesLocator {
 
     sl.registerLazySingleton(() => GetQuestionsRepository());
     sl.registerLazySingleton(() => ProfileRepo());
+    sl.registerLazySingleton(() => SubjectsRepository());
+    sl.registerLazySingleton(() => ChaptersRepository());
 
     //app
     // sl.registerLazySingleton(() => OpportunitiesRepository());

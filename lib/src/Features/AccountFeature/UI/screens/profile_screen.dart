@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:querium/src/Features/AccountFeature/Bloc/Controller/profile_controller.dart';
 import 'package:querium/src/Features/AccountFeature/Bloc/Model/account_details_model.dart';
@@ -46,10 +47,19 @@ class ProfileScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             50.ESH(),
-            if (controller.user != null)
-              _CardAccountDetails(
-                profile: controller.user!,
-              ),
+            (controller.user != null)
+                ? _CardAccountDetails(
+                    profile: controller.user!,
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      100.ESH(),
+                      SpinKitWave(
+                        color: AppColors.main,
+                      ),
+                    ],
+                  ),
             const Spacer(),
             const ButtonDefault.main(
               title: 'Remove_Account',
