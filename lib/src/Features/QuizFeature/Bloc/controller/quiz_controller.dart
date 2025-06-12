@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/Repo/get_questions_repo.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/model/question_model.dart';
+import 'package:querium/src/Features/QuizFeature/Bloc/model/question_result.dart';
 import 'package:querium/src/Features/QuizFeature/UI/screens/results_screen.dart';
+import 'package:querium/src/Features/QuizFeature/UI/screens/showa_nswers_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/services/Base/base_controller.dart';
@@ -41,6 +43,7 @@ class QuizController extends BaseController<GetQuestionsRepository> {
 
     result.when(success: (List<Questions> q) {
       _questionsList.addAll(q);
+      _initializeQuestionResults(q);
       doneLoading();
       update();
     }, failure: (NetworkExceptions error) {
@@ -112,35 +115,105 @@ class QuizController extends BaseController<GetQuestionsRepository> {
     );
   }
 
+  int score = 0;
   int answerIdSelected = -1;
+  int index = 0;
+  bool isLastQuestion = false;
 
   void selectTapId(int id) {
     answerIdSelected = id;
     update();
   }
 
-  bool isLastQuestion = false;
+  List<QuestionResult> questionResults = [];
 
-  int index = 0;
-
-  void nextQuestion() {
-    if (index < 9) {
-      isLastQuestion = false;
-      index++;
-      // answerIdSelected = _questions.correctAnswer;
-      answerIdSelected = -1;
-    } else {
-      isLastQuestion = true;
-    }
-
-    update();
+  void _initializeQuestionResults(List<Questions> questions) {
+    questionResults = questions.asMap().entries.map((entry) {
+      return QuestionResult(
+        questionNumber: entry.key + 1, // 1-based index
+        isCorrect: false,
+        isAnswered: false,
+      );
+    }).toList();
   }
+
+  void validateAnswer() {
+    if (answerIdSelected != -1) {
+      final currentQuestion = questionsList[index];
+      bool isCorrect = currentQuestion.answers[answerIdSelected] ==
+          currentQuestion.correctAnswer;
+
+      // Update results with the selected answer
+      questionResults[index] = QuestionResult(
+        questionNumber: index + 1,
+        isCorrect: isCorrect,
+        isAnswered: true,
+        selectedAnswerIndex: answerIdSelected,
+        selectedAnswer: currentQuestion.answers[answerIdSelected],
+      );
+
+      if (isCorrect) score++;
+
+      // Move to next question or end quiz
+      if (index < questionsList.length - 1) {
+        isLastQuestion = false;
+        index++;
+        answerIdSelected = -1; // Reset selected answer
+      } else {
+        // Quiz completed
+        showFinalResults();
+      }
+      update();
+    }
+  }
+
+  // void nextQuestion() {
+  //   // First validate current answer before moving
+  //   validateAnswer();
+  //
+  //   // Then proceed if not last question
+  //   if (index < questionsList.length - 1) {
+  //     // index++;
+  //     answerIdSelected = -1;
+  //     update();
+  //   } else {
+  //     isLastQuestion = true;
+  //     showFinalResults();
+  //   }
+  // }
 
   void previousQuestion() {
     if (index > 0) {
       index--;
+      answerIdSelected = -1; // Reset selection when going back
+      update();
     }
-    update();
+  }
+
+  void showAnswersResults() {
+    debugPrint('Current results: $questionResults');
+    // Make sure we have results to pass
+    if (questionResults.isEmpty && questionsList.isNotEmpty) {
+      questionResults = questionsList.asMap().entries.map((entry) {
+        return QuestionResult(
+          questionNumber: entry.key + 1,
+          isCorrect: false, // Default to false if not answered
+          isAnswered: false,
+        );
+      }).toList();
+    }
+
+    Get.off(
+      ShowAnswersScreen(),
+      arguments: questionResults, // Explicitly pass the results
+    );
+  }
+
+  void showFinalResults() {
+    Get.to(ResultsScreen(
+      score: score,
+      totalQuestions: questionsList.length,
+    ));
   }
 
   QuizController({
@@ -149,6 +222,6 @@ class QuizController extends BaseController<GetQuestionsRepository> {
   });
 
 // String? getAnswer(int index) {
-  //   return;
-  // }
+//   return;
+// }
 }

@@ -65,11 +65,9 @@ class QuizScreen extends StatelessWidget {
                                   20.ESW(),
                                   ButtonDefault.main(
                                     onTap: () {
-                                      _.isLastQuestion
-                                          ? Get.off(() => const ResultsScreen())
-                                          : _.nextQuestion();
+                                      _.validateAnswer();
                                     },
-                                    title: _.isLastQuestion ? 'finish' : 'Next',
+                                    title: _.isLastQuestion ? 'Finish' : 'Next',
                                     fw: FW.regular,
                                     width: 200.w,
                                   ),
