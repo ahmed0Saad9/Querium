@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/controller/show_answers_controller.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/model/question_result.dart';
-import 'package:querium/src/Features/QuizFeature/UI/screens/review_answer_screen.dart';
+import 'package:querium/src/Features/QuizzesFeature/Bloc/Controller/custom_quiz_controller.dart';
+import 'package:querium/src/Features/QuizzesFeature/UI/screens/custom_review_answer_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Appbars/app_bars.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Other/base_scaffold.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
@@ -11,8 +12,10 @@ import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/constants/sizes.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
-class ShowAnswersScreen extends StatelessWidget {
-  const ShowAnswersScreen({super.key});
+class CustomShowAnswersScreen extends StatelessWidget {
+  const CustomShowAnswersScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -77,9 +80,12 @@ class ShowAnswersScreen extends StatelessWidget {
     );
   }
 
-  void _navigateToReview(int questionIndex, List<QuestionResult> results) {
+  void _navigateToReview(
+    int questionIndex,
+    List<QuestionResult> results,
+  ) {
     Get.to(
-      () => const ReviewAnswerScreen(),
+      () => const CustomReviewAnswerScreen(),
       arguments: {
         'questionIndex': questionIndex,
         'results': results,

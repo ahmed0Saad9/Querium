@@ -79,7 +79,7 @@ class UploadPDFScreen extends StatelessWidget {
                       strokeWidth: 2,
                       borderPadding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: InkWell(
-                        onTap: () => controller.pickImage(),
+                        onTap: () => controller.pickFile(),
                         child: SizedBox(
                           height: 255.h,
                           width: 255.w,
@@ -151,10 +151,12 @@ class UploadPDFScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               ButtonDefault.main(
                 title: 'Generate',
-                onTap: () {},
+                onTap: () {
+                  controller.storeFileUploaded();
+                },
                 active: controller.fileName != null,
               ),
               20.ESH(),

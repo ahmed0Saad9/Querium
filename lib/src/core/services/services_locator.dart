@@ -9,8 +9,7 @@ import 'package:querium/src/Features/AuthFeature/ForgetPassword/Bloc/repo/check_
 import 'package:querium/src/Features/AuthFeature/ForgetPassword/Bloc/repo/validate-otp-and-change-password_repo.dart';
 import 'package:querium/src/Features/AuthFeature/LogIn/Bloc/Repo/login_repo.dart';
 import 'package:querium/src/Features/AuthFeature/LogOut/Bloc/Repo/log_out_repo.dart';
-import 'package:querium/src/Features/AuthFeature/Register/Bloc/Repo/area_repo.dart';
-import 'package:querium/src/Features/AuthFeature/Register/Bloc/Repo/get_cities_repo.dart';
+
 import 'package:querium/src/Features/AuthFeature/Register/Bloc/Repo/get_company_categories_repo.dart';
 import 'package:querium/src/Features/AuthFeature/Register/Bloc/Repo/register_repo.dart';
 import 'package:querium/src/Features/AuthFeature/Verification/Bloc/Controller/send_otp_controller.dart';
@@ -19,8 +18,12 @@ import 'package:querium/src/Features/AuthFeature/Verification/Bloc/Repo/verify_o
 import 'package:querium/src/Features/HomeFeature/Bloc/Repo/chapters_repo.dart';
 import 'package:querium/src/Features/HomeFeature/Bloc/Repo/subjects_repo.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/Repo/get_questions_repo.dart';
+import 'package:querium/src/Features/QuizzesFeature/Bloc/Repo/custom_quiz_repo.dart';
+import 'package:querium/src/Features/QuizzesFeature/Bloc/Repo/uploaded_file_repo.dart';
 import 'package:querium/src/core/ThemeData/theme_manager.dart';
 import 'package:querium/src/core/services/Network/network_services.dart';
+
+import '../../Features/UploadPDFFeature/Bloc/Repo/upload_file_repo.dart';
 
 final sl = GetIt.instance;
 
@@ -45,7 +48,6 @@ class ServicesLocator {
     sl.registerLazySingleton(() => RegisterRepository());
     sl.registerLazySingleton(() => SendOTPRepository());
     sl.registerLazySingleton(() => VerifyOTPRepository());
-    sl.registerLazySingleton(() => GetCountriesRepository());
     sl.registerLazySingleton(() => GetCompanyCategoriesRepository());
     sl.registerLazySingleton(() => CheckEmailAndSendOtpRepo());
     sl.registerLazySingleton(() => ValidateOtpAndChangePasswordRepo());
@@ -57,6 +59,9 @@ class ServicesLocator {
     sl.registerLazySingleton(() => ProfileRepo());
     sl.registerLazySingleton(() => SubjectsRepository());
     sl.registerLazySingleton(() => ChaptersRepository());
+    sl.registerLazySingleton(() => GetUploadedFileRepository());
+    sl.registerLazySingleton(() => UploadFileRepository());
+    sl.registerLazySingleton(() => GetCustomQuestionsRepository());
 
     //app
     // sl.registerLazySingleton(() => OpportunitiesRepository());
@@ -67,7 +72,6 @@ class ServicesLocator {
     // Home
     // sl.registerLazySingleton<BaseHomeDataSource>(() => HomeDataSource());
 
-    sl.registerLazySingleton(() => AreaRepository());
     // sl.registerLazySingleton(() => AccountDetailsRepository());
 
     /// Other

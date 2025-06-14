@@ -33,8 +33,8 @@ class QuizzesScreen extends StatelessWidget {
             body: Column(
               children: [
                 30.ESH(),
-                const QuizzesCategoryWidget(),
-                30.ESH(),
+                QuizzesCategoryWidget(controller: _),
+                16.ESH(),
                 QuizzesList(
                   controller: _,
                 )

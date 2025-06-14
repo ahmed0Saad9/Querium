@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:querium/src/Features/QuizFeature/Bloc/controller/quiz_controller.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/controller/review_answer_controller.dart';
-import 'package:querium/src/Features/QuizFeature/UI/widgets/question_card.dart';
+import 'package:querium/src/Features/QuizzesFeature/Bloc/Controller/custom_quiz_controller.dart';
+import 'package:querium/src/Features/QuizzesFeature/Bloc/Controller/custom_review_answer_controller.dart';
+import 'package:querium/src/Features/QuizzesFeature/UI/screens/custom_quiz_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Appbars/app_bars.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Other/base_scaffold.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
@@ -12,13 +13,15 @@ import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/constants/sizes.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
-class ReviewAnswerScreen extends StatelessWidget {
-  const ReviewAnswerScreen({super.key});
+class CustomReviewAnswerScreen extends StatelessWidget {
+  const CustomReviewAnswerScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final reviewController = Get.put(ReviewAnswerController());
-    final quizController = Get.find<QuizController>();
+    final reviewController = Get.put(CustomReviewAnswerController());
+    final customQuizController = Get.find<CustomQuizController>();
 
     return Container(
       width: Get.width,
@@ -35,11 +38,11 @@ class ReviewAnswerScreen extends StatelessWidget {
               child: Column(
                 children: [
                   40.ESH(),
-                  _buildQuestionInfo(reviewController, quizController),
+                  _buildQuestionInfo(reviewController, customQuizController),
                   20.ESH(),
-                  _buildQuestionCard(quizController),
+                  _buildQuestionCard(customQuizController),
                   30.ESH(),
-                  _buildAnswerWidget(reviewController, quizController),
+                  _buildAnswerWidget(reviewController, customQuizController),
                   _buildNavigationButtons(reviewController),
                   50.ESH(),
                 ],
@@ -51,9 +54,9 @@ class ReviewAnswerScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildQuestionInfo(
-      ReviewAnswerController reviewController, QuizController quizController) {
-    return GetBuilder<ReviewAnswerController>(
+  Widget _buildQuestionInfo(CustomReviewAnswerController reviewController,
+      CustomQuizController quizController) {
+    return GetBuilder<CustomReviewAnswerController>(
       builder: (_) {
         final result = reviewController
             .questionResults[reviewController.currentQuestionIndex];
@@ -79,29 +82,30 @@ class ReviewAnswerScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildQuestionCard(QuizController quizController) {
-    return GetBuilder<QuizController>(
+  Widget _buildQuestionCard(CustomQuizController customQuizController) {
+    return GetBuilder<CustomQuizController>(
       id: 'question_card',
       builder: (_) {
-        return QuestionCard(controller: quizController);
+        return CustomQuestionCard(controller: customQuizController);
       },
     );
   }
 
   Widget _buildAnswerWidget(
-      ReviewAnswerController reviewController, QuizController quizController) {
-    return GetBuilder<ReviewAnswerController>(
+      CustomReviewAnswerController customReviewAnswerController,
+      CustomQuizController customQuizController) {
+    return GetBuilder<CustomReviewAnswerController>(
       builder: (_) {
         return _AnswerWidget(
-          quizController: quizController,
-          reviewAnswerController: reviewController,
+          customQuizController: customQuizController,
+          customReviewAnswerController: customReviewAnswerController,
         );
       },
     );
   }
 
-  Widget _buildNavigationButtons(ReviewAnswerController controller) {
-    return GetBuilder<ReviewAnswerController>(
+  Widget _buildNavigationButtons(CustomReviewAnswerController controller) {
+    return GetBuilder<CustomReviewAnswerController>(
       builder: (_) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -198,29 +202,28 @@ class AnswerCard extends StatelessWidget {
 }
 
 class _AnswerWidget extends StatelessWidget {
-  final QuizController quizController;
-  final ReviewAnswerController reviewAnswerController;
+  final CustomQuizController customQuizController;
+  final CustomReviewAnswerController customReviewAnswerController;
   const _AnswerWidget({
     super.key,
-    required this.quizController,
-    required this.reviewAnswerController,
+    required this.customQuizController,
+    required this.customReviewAnswerController,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<QuizController>(
+    return GetBuilder<CustomQuizController>(
       builder: (controller) {
         final question = controller.questionsList[controller.index];
-        final result = reviewAnswerController
-            .questionResults[reviewAnswerController.currentQuestionIndex];
+        final result = customReviewAnswerController
+            .questionResults[customReviewAnswerController.currentQuestionIndex];
 
         return Expanded(
           child: ListView.separated(
-            physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             itemBuilder: (context, index) {
               final answer = question.answers[index];
-              final isCorrect = answer == question.correctAnswer;
+              final isCorrect = answer == question.questionCorrectAnswer;
               final isSelected = result.selectedAnswerIndex == index;
 
               return AnswerCard(

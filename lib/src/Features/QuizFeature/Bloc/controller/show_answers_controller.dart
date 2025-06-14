@@ -5,7 +5,7 @@ import 'package:querium/src/core/constants/color_constants.dart';
 
 class ShowAnswersController extends GetxController {
   final List<ShowAnswersModel> answersListCards = [];
-  List<QuestionResult> questionResults = []; // Add this line
+  List<QuestionResult> questionResults = [];
 
   @override
   void onInit() {

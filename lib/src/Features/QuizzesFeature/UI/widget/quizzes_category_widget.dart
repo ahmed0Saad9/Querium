@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:querium/src/Features/QuizzesFeature/Bloc/Controller/quizzes_category_controller.dart';
+import 'package:querium/src/Features/QuizzesFeature/Bloc/Controller/quizzes_controller.dart';
 import 'package:querium/src/Features/QuizzesFeature/Bloc/Model/quizzes_category_model.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
@@ -9,26 +10,24 @@ import 'package:querium/src/core/constants/sizes.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
 class QuizzesCategoryWidget extends StatelessWidget {
-  const QuizzesCategoryWidget({super.key});
+  final QuizzesController controller;
+  const QuizzesCategoryWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<QuizzesCategoryController>(
-      init: QuizzesCategoryController(),
-      builder: (QuizzesCategoryController controller) => SizedBox(
-        height: 47.h,
-        child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            padding: AppPadding.paddingScreenSH36,
-            itemBuilder: (context, index) => _CategoryCard(
-                quizzesCategory: controller.quizzesCategory[index],
-                isSelected: controller.tapIdSelected ==
-                    controller.quizzesCategory[index].id,
-                onTapSelected: () => controller
-                    .selectTapId(controller.quizzesCategory[index].id)),
-            separatorBuilder: (context, index) => 4.ESW(),
-            itemCount: controller.quizzesCategory.length),
-      ),
+    return SizedBox(
+      height: 47.h,
+      child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          padding: AppPadding.paddingScreenSH36,
+          itemBuilder: (context, index) => _CategoryCard(
+              quizzesCategory: controller.quizzesCategory[index],
+              isSelected: controller.tapIdSelected ==
+                  controller.quizzesCategory[index].id,
+              onTapSelected: () =>
+                  controller.selectTapId(controller.quizzesCategory[index].id)),
+          separatorBuilder: (context, index) => 4.ESW(),
+          itemCount: controller.quizzesCategory.length),
     );
   }
 }

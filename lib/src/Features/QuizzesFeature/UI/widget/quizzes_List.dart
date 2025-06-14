@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:querium/src/Features/QuizzesFeature/Bloc/Controller/quizzes_controller.dart';
 import 'package:querium/src/Features/QuizzesFeature/UI/widget/uploaded_file_card.dart';
+import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/constants/sizes.dart';
+import 'package:querium/src/core/utils/extensions.dart';
 
 class QuizzesList extends StatelessWidget {
   final QuizzesController controller;
@@ -10,19 +13,29 @@ class QuizzesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 16.w,
-            mainAxisSpacing: 16.h,
-            mainAxisExtent: 170),
-        padding: AppPadding.paddingScreenSH36,
-        itemBuilder: (context, index) => UploadedFileCard(
-          card: controller.quizzes[index],
-        ),
-        itemCount: controller.quizzes.length,
-      ),
-    );
+    return controller.uploadedFiles.isNotEmpty
+        ? Expanded(
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16.w,
+                  mainAxisSpacing: 16.h,
+                  mainAxisExtent: 170),
+              padding: EdgeInsets.symmetric(horizontal: 36.w, vertical: 24.h),
+              itemBuilder: (context, index) => UploadedFileCard(
+                card: controller.uploadedFiles[index],
+              ),
+              itemCount: controller.uploadedFiles.length,
+            ),
+          )
+        : Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              100.ESH(),
+              const SpinKitWave(
+                color: AppColors.main,
+              ),
+            ],
+          );
   }
 }

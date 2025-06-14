@@ -7,7 +7,6 @@ import 'package:querium/src/core/services/services_locator.dart';
 
 import '../../../../core/services/Network/network_exceptions.dart';
 import '../../../AuthFeature/Register/Bloc/Model/user_model.dart';
-import '../params/profile_params.dart';
 
 class ProfileController extends BaseController<ProfileRepo> {
   @override
