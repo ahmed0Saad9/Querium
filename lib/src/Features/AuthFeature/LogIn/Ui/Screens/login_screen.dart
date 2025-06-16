@@ -31,7 +31,7 @@ class LoginScreen extends StatelessWidget {
         builder: (_) => KeyboardVisibilityBuilder(
           builder: (context, isKeyboardVisible) {
             return Form(
-              key: _.globalKey,
+              key: _.loginGlobalKey,
               child: BaseStaggeredColumn(
                 children: [
                   160.ESH(),

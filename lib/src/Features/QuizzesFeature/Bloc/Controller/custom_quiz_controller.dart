@@ -76,7 +76,7 @@ class CustomQuizController
   @override
   void onReady() {
     // TODO: implement onReady
-    startTimer(600);
+    // startTimer(600);
     // startTimer(1);
     super.onReady();
   }

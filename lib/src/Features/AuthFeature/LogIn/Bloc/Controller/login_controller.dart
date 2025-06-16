@@ -23,11 +23,11 @@ class LoginController extends BaseController<LogInRepository> {
   TextEditingController? passwordController;
   UserModel? _userModel;
 
-  final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> loginGlobalKey = GlobalKey<FormState>();
 
   Future<void> logIn() async {
-    if (globalKey.currentState!.validate()) {
-      globalKey.currentState!.save();
+    if (loginGlobalKey.currentState!.validate()) {
+      loginGlobalKey.currentState!.save();
       showEasyLoading();
       var result = await repository!.logIn(
         password: passwordController!.text,

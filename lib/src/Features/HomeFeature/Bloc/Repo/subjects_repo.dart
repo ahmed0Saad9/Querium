@@ -10,10 +10,10 @@ class SubjectsRepository with ApiKey {
   final NetworkService _networkService = sl<NetworkService>();
 
   Future<ApiResult<List<Subjects>>> getAllSubjects(
-      {required int academicYear}) async {
+      {required int academicYear, required String search}) async {
     try {
       Response response = await _networkService.get(
-        url: uRLGetAllSubjects(academicYear: academicYear),
+        url: uRLGetAllSubjects(academicYear: academicYear, search: search),
       );
       return ApiResult.success(
           List.from(response.data).map((e) => Subjects.fromJson(e)).toList());

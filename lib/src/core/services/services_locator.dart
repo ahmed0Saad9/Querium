@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:querium/src/Features/AccountFeature/Bloc/Repo/profile_repo.dart';
+import 'package:querium/src/Features/AccountFeature/Bloc/Repo/reset_password_repo.dart';
 import 'package:querium/src/Features/AuthFeature/DeleteAccount/Bloc/Repo/delete_account_repo.dart';
 import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Bloc/Repo/efit_profile_repo.dart';
 import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Bloc/Repo/get_user_data_repo.dart';
@@ -45,6 +46,7 @@ class ServicesLocator {
     // sl.registerLazySingleton(() => GetMyAccountDataRepository());
     sl.registerLazySingleton(() => LogOutRepository());
     sl.registerLazySingleton(() => DeleteAccountRepository());
+    sl.registerLazySingleton(() => ResetPasswordRepository());
     sl.registerLazySingleton(() => RegisterRepository());
     sl.registerLazySingleton(() => SendOTPRepository());
     sl.registerLazySingleton(() => VerifyOTPRepository());

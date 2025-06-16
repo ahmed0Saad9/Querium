@@ -50,7 +50,7 @@ class NewPasswordScreen extends StatelessWidget {
               40.ESH(),
               TextFieldDefault(
                 label: 'new_Password',
-                controller: _.passwordController,
+                controller: _.newPasswordController,
                 validation: passwordValidator,
                 secureType: SecureType.toggle,
                 onComplete: () {
@@ -63,7 +63,7 @@ class NewPasswordScreen extends StatelessWidget {
                 controller: _.confirmPasswordController,
                 validation: (value) {
                   return confirmPasswordValidator(
-                      value, _.passwordController.text);
+                      value, _.newPasswordController.text);
                 },
                 secureType: SecureType.toggle,
                 onComplete: () {

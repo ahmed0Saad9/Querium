@@ -195,7 +195,6 @@ class _TimerWidget extends StatelessWidget {
             color: AppColors.linearTimer,
             duration: Duration(
               minutes: 10,
-              // seconds: 10,
             ),
           ),
         ),

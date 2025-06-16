@@ -3,7 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:querium/src/Features/QuizzesFeature/Bloc/Model/quizzes_model.dart';
 import 'package:querium/src/Features/QuizzesFeature/Bloc/Model/uploaded_file_model.dart';
+import 'package:querium/src/Features/QuizzesFeature/UI/screens/custom_quiz_details_screen.dart';
 import 'package:querium/src/Features/QuizzesFeature/UI/screens/custom_quiz_screen.dart';
+import 'package:querium/src/Features/QuizzesFeature/UI/widget/pending_dialog.dart';
+import 'package:querium/src/Features/QuizzesFeature/UI/widget/rejected_dialog.dart';
 import 'package:querium/src/Features/SettingsFeature/UI/screens/settings_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/GeneralWidget/Widgets/buttons/button_default.dart';
@@ -20,9 +23,14 @@ class UploadedFileCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         (card.status == 'Approved')
-            ? Get.to(() => CustomQuizScreen(
-               fileId: card.id,))
-            : null;
+            ? Get.to(() => CustomQuizDetailsScreen(
+                  fileId: card.id,
+                  fileName: card.fileName,
+                  status: card.status,
+                ))
+            : (card.status == 'Pending')
+                ? Get.dialog(const PendingDialog())
+                : Get.dialog(const RejectedDialog());
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),

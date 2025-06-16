@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:querium/src/Features/HomeFeature/UI/screens/home_screen.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/controller/quiz_controller.dart';
 import 'package:querium/src/Features/QuizFeature/UI/screens/showa_nswers_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Appbars/app_bars.dart';
@@ -15,7 +16,11 @@ import 'package:querium/src/core/utils/extensions.dart';
 class ResultsScreen extends StatelessWidget {
   int score;
   int totalQuestions;
-  ResultsScreen({super.key, required this.score, required this.totalQuestions});
+  ResultsScreen({
+    super.key,
+    required this.score,
+    required this.totalQuestions,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +37,10 @@ class ResultsScreen extends StatelessWidget {
             BaseScaffold(
               backgroundColor: AppColors.transparentColor,
               appBar: AppBars.appBarBack(
-                isBack: true,
                 title: 'Results',
+                onTap: () {
+                  Get.off(() => const HomeScreen());
+                },
               ),
               body: Padding(
                 padding: AppPadding.paddingScreenSH36,
@@ -52,7 +59,7 @@ class ResultsScreen extends StatelessWidget {
                             ),
                           ),
                           CustomTextR(
-                            '${score}0%',
+                            '${(score / totalQuestions) * 100}%',
                             fontSize: 55,
                             color: AppColors.main,
                             fontWeight: FW.bold,
@@ -115,17 +122,12 @@ class ResultsScreen extends StatelessWidget {
                         ],
                       ),
                       // 42.ESH(),
-                      Spacer(),
+                      const Spacer(),
                       ButtonDefault.main(
                         title: 'Show_answers',
                         onTap: () => controller.showAnswersResults(),
                       ),
-                      23.ESH(),
-                      const ButtonDefault.main(
-                        title: 'Try_Again',
-                        iconSvg: 'TryAgain',
-                        iconSize: 32,
-                      ),
+
                       36.ESH(),
                     ]),
               ),

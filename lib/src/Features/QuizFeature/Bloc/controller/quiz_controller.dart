@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/Repo/get_questions_repo.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/model/question_model.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/model/question_result.dart';
+import 'package:querium/src/Features/QuizFeature/UI/screens/quiz_screen.dart';
 import 'package:querium/src/Features/QuizFeature/UI/screens/results_screen.dart';
 import 'package:querium/src/Features/QuizFeature/UI/screens/showa_nswers_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
@@ -25,7 +26,6 @@ class QuizController extends BaseController<GetQuestionsRepository> {
   void onInit() async {
     // TODO: implement onInit
     await getQuestions();
-
     super.onInit();
   }
 
@@ -64,19 +64,15 @@ class QuizController extends BaseController<GetQuestionsRepository> {
   String time = '10:00';
 
   @override
-  void onReady() {
-    // TODO: implement onReady
-    startTimer(600);
-    // startTimer(1);
-    super.onReady();
-  }
-
-  @override
   void onClose() {
     if (_timer != null) {
       _timer!.cancel();
     }
     super.onClose();
+  }
+
+  void stopTimer() {
+    _timer!.cancel();
   }
 
   void startTimer(int seconds) {
@@ -86,7 +82,7 @@ class QuizController extends BaseController<GetQuestionsRepository> {
       if (remainingSeconds == 0) {
         timer.cancel();
         // Get.off(const ResultsScreen());
-        showNotification();
+        // showNotification();
       } else {
         int minutes = remainingSeconds ~/ 60;
         int seconds = remainingSeconds % 60;
@@ -151,7 +147,6 @@ class QuizController extends BaseController<GetQuestionsRepository> {
         selectedAnswerIndex: answerIdSelected,
         selectedAnswer: currentQuestion.answers[answerIdSelected],
       );
-
       if (isCorrect) score++;
 
       // Move to next question or end quiz
@@ -166,21 +161,6 @@ class QuizController extends BaseController<GetQuestionsRepository> {
       update();
     }
   }
-
-  // void nextQuestion() {
-  //   // First validate current answer before moving
-  //   validateAnswer();
-  //
-  //   // Then proceed if not last question
-  //   if (index < questionsList.length - 1) {
-  //     // index++;
-  //     answerIdSelected = -1;
-  //     update();
-  //   } else {
-  //     isLastQuestion = true;
-  //     showFinalResults();
-  //   }
-  // }
 
   void previousQuestion() {
     if (index > 0) {
@@ -204,24 +184,26 @@ class QuizController extends BaseController<GetQuestionsRepository> {
     }
 
     Get.off(
-      ShowAnswersScreen(),
+      const ShowAnswersScreen(),
       arguments: questionResults, // Explicitly pass the results
     );
+    stopTimer();
   }
 
   void showFinalResults() {
-    Get.to(ResultsScreen(
+    Get.off(ResultsScreen(
       score: score,
       totalQuestions: questionsList.length,
     ));
+    stopTimer();
+  }
+
+  void startExam() {
+    startTimer(600);
   }
 
   QuizController({
     required this.chapterID,
     required this.subjectName,
   });
-
-// String? getAnswer(int index) {
-//   return;
-// }
 }

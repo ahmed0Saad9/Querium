@@ -20,11 +20,19 @@ class UploadPDFScreen extends StatelessWidget {
     return GetBuilder<UploadPDFController>(
       init: UploadPDFController(),
       builder: (controller) => BaseScaffold(
-        appBar: AppBars.appBarBack(title: 'Create_Quiz_Set', isBack: false),
+        // appBar: AppBars.appBarBack(title: 'Create_Quiz_Set', isBack: false),
         body: Padding(
           padding: AppPadding.paddingScreenSH36,
           child: Column(
             children: [
+              80.ESH(),
+              const CustomTextL(
+                'Create_Quiz_Set',
+                fontWeight: FW.bold,
+                fontSize: 32,
+                textAlign: TextAlign.center,
+                color: AppColors.titleMain,
+              ),
               50.ESH(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

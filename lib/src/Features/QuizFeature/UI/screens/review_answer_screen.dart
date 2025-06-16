@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:querium/src/Features/HomeFeature/UI/screens/home_screen.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/controller/quiz_controller.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/controller/review_answer_controller.dart';
 import 'package:querium/src/Features/QuizFeature/UI/widgets/question_card.dart';
@@ -29,7 +30,12 @@ class ReviewAnswerScreen extends StatelessWidget {
           Image.asset('assets/images/QuizBG.png'),
           BaseScaffold(
             backgroundColor: Colors.transparent,
-            appBar: AppBars.appBarBack(title: 'Review Answers'),
+            appBar: AppBars.appBarBack(
+              title: 'Review_Answers',
+              onTap: () {
+                Get.off(() => const HomeScreen());
+              },
+            ),
             body: Padding(
               padding: AppPadding.paddingScreenSH36,
               child: Column(

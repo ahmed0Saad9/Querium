@@ -20,7 +20,7 @@ class ForgetPasswordController
   // TODO: implement repository
   get repository => sl<CheckEmailAndSendOtpRepo>();
   TextEditingController pinCodeController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController newPasswordController = TextEditingController();
   TextEditingController currentPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -79,7 +79,7 @@ class ForgetPasswordController
           await _validateOtpAndChangePasswordRepo.validateOtpAndChangePassword(
         verifyToken: _token,
         otp: pinCodeController.text,
-        password: passwordController.text,
+        password: newPasswordController.text,
         passwordConfirmation: confirmPasswordController.text,
       );
       closeEasyLoading();
@@ -129,7 +129,7 @@ class ForgetPasswordController
   void _initTextEditing() {
     pinCodeController = TextEditingController();
     errorController = StreamController<ErrorAnimationType>();
-    passwordController = TextEditingController();
+    newPasswordController = TextEditingController();
     // passwordController = TextEditingController(text: "123456789");
     confirmPasswordController = TextEditingController();
     // confirmPasswordController = TextEditingController(text: "123456789");
@@ -139,7 +139,7 @@ class ForgetPasswordController
 
   void _disposeTextEditing() {
     pinCodeController.dispose();
-    passwordController.dispose();
+    newPasswordController.dispose();
     confirmPasswordController.dispose();
     emailController.dispose();
   }

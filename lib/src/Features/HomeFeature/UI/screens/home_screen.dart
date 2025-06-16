@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:querium/src/Features/HomeFeature/Bloc/controller/academic_year_controller.dart';
 import 'package:querium/src/Features/HomeFeature/Bloc/controller/subjects_controller.dart';
 import 'package:querium/src/Features/HomeFeature/Bloc/model/academic_year_model.dart';
 import 'package:querium/src/Features/HomeFeature/Bloc/model/subjects_model.dart';
@@ -31,31 +30,60 @@ class HomeScreen extends StatelessWidget {
     var node = FocusScope.of(context);
     return GetBuilder<SubjectsController>(
       init: SubjectsController(),
-      builder: (_) => BaseScaffold(
-        backgroundColor: AppColors.scaffoldBackGround,
-        appBar: AppBars.appBarHome(
-          bNBIndex: 0,
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      builder: (_) => Container(
+        color: AppColors.scaffoldBackGround,
+        child: Stack(
           children: [
-            20.ESH(),
-            Padding(
-              padding: AppPadding.paddingScreenSH36,
-              child: SearchTextField(
-                  node: node,
-                  enable: false,
-                  onComplete: () {},
-                  hint: 'Search_lecture_name'),
-            ),
-            20.ESH(),
-            Expanded(
-              child: Column(
+            Image.asset('assets/images/HomeScreenBG.png'),
+            BaseScaffold(
+              backgroundColor: AppColors.transparentColor,
+              appBar: AppBars.appBarHome(
+                bNBIndex: 0,
+              ),
+              body: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _AcademicYearFilter(controller: _),
-                  20.ESH(),
-                  _SubjectsList(controller: _),
+                  15.ESH(),
+                  Padding(
+                    padding: AppPadding.paddingScreenSH36,
+                    child:
+                        // TextField(
+                        //   controller: _.searchController,
+                        //   onChanged: (value) {
+                        //     // Add a slight delay to avoid too many API calls
+                        //     _.debounceSearch();
+                        //   },
+                        //   onSubmitted: (value) {
+                        //     node.unfocus();
+                        //     _.getSubjects();
+                        //   },
+                        //   // ... other properties
+                        // ),
+
+                        SearchTextField(
+                            node: node,
+                            searchController: _.searchController,
+                            onChanged: (value) {
+                              // Add a slight delay to avoid too many API calls
+                              _.debounceSearch();
+                            },
+                            onComplete: () {
+                              node.unfocus();
+                              _.getSubjects();
+                            },
+                            hint: 'Search_lecture_name'),
+                  ),
+                  32.ESH(),
+                  Expanded(
+                    child: ListView(
+                      physics: NeverScrollableScrollPhysics(),
+                      children: [
+                        _AcademicYearFilter(controller: _),
+                        20.ESH(),
+                        _SubjectsList(controller: _),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

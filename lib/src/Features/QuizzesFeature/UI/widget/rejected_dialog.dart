@@ -10,8 +10,8 @@ import 'package:querium/src/GeneralWidget/Widgets/buttons/button_default.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
-class DialogDone extends StatelessWidget {
-  const DialogDone({super.key});
+class RejectedDialog extends StatelessWidget {
+  const RejectedDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,29 +25,29 @@ class DialogDone extends StatelessWidget {
           SizedBox(
             height: 150,
             child: Lottie.asset(
-              'assets/lottie/DoneAnimation.json', // Add your Lottie file
+              'assets/lottie/FailAnimation.json', // Add your Lottie file
               fit: BoxFit.contain,
             ),
           ),
           const SizedBox(height: 20),
           const CustomTextL(
-            'Upload_Complete',
+            'Your_file_has_been_rejected',
             color: AppColors.main,
             fontWeight: FW.bold,
           ),
           10.ESH(),
-          CustomTextL(
-            'Upload_is_done_waiting_for_the_admin_to_approve',
+          const CustomTextL(
+            'Contact_an_administrator_or_upload_again',
             textAlign: TextAlign.center,
-            color: Colors.green[900],
+            color: AppColors.main,
           ),
           20.ESH(),
           GetBuilder<BaseNBNController>(
             builder: (controller) => ButtonDefault.main(
-                title: 'ok',
+                title: 'Upload',
                 onTap: () {
                   Get.back();
-                  controller.updateIndex(2);
+                  controller.updateIndex(1);
                 }),
           ),
         ]),

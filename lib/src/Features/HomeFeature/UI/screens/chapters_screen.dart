@@ -64,6 +64,8 @@ class ChaptersCard extends StatelessWidget {
         () => QuizDetailsScreen(
           chapterID: chapterID,
           subjectName: chapters.subjectName,
+          chapterName: chapters.title,
+          description: chapters.description,
         ),
       ),
       child: Container(
@@ -86,6 +88,7 @@ class ChaptersCard extends StatelessWidget {
                 chapters.description,
                 fontSize: 12.sp,
                 fontWeight: FW.medium,
+                color: AppColors.titleGray95,
               )
             ],
           ),

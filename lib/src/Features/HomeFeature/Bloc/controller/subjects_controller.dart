@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
 import 'package:querium/src/Features/HomeFeature/Bloc/Repo/subjects_repo.dart';
 import 'package:querium/src/Features/HomeFeature/Bloc/model/academic_year_model.dart';
 import 'package:querium/src/Features/HomeFeature/Bloc/model/subjects_model.dart';
@@ -6,13 +9,14 @@ import 'package:querium/src/core/services/Network/network_exceptions.dart';
 import 'package:querium/src/core/services/services_locator.dart';
 
 class SubjectsController extends BaseController<SubjectsRepository> {
+  TextEditingController searchController = TextEditingController();
   @override
   // TODO: implement repository
   get repository => sl<SubjectsRepository>();
   @override
   void onInit() async {
     // TODO: implement onInit
-    await getSubjects(tapIdSelected);
+    await getSubjects();
     super.onInit();
   }
 
@@ -20,7 +24,9 @@ class SubjectsController extends BaseController<SubjectsRepository> {
 
   List<Subjects> get subjects => _subjects;
 
-  Future<void> getSubjects(int academicYear) async {
+  Future<void> getSubjects() async {
+    debugPrint(
+        'Fetching subjects with year: $tapIdSelected, search: ${searchController.text}');
     _subjects.clear();
     reInitPagination();
     showLoading();
@@ -29,6 +35,7 @@ class SubjectsController extends BaseController<SubjectsRepository> {
 
     var result = await repository!.getAllSubjects(
       academicYear: tapIdSelected,
+      search: searchController.text,
     );
 
     result.when(success: (List<Subjects> s) {
@@ -47,8 +54,31 @@ class SubjectsController extends BaseController<SubjectsRepository> {
 
   void selectTapId(int id) {
     tapIdSelected = id;
-    getSubjects(id);
+    getSubjects();
     update();
+  }
+
+  Timer? _debounce;
+  void debounceSearch() {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      getSubjects();
+    });
+  }
+
+  List<Subjects> get filteredSubjects {
+    if (searchController.text.isEmpty) return _subjects;
+    return _subjects
+        .where((subject) => subject.title
+            .toLowerCase()
+            .contains(searchController.text.toLowerCase()))
+        .toList();
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
   }
 
   List<AcademicYearModel> academicYearCards = [

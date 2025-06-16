@@ -10,6 +10,7 @@ mixin ApiKey {
   final String uRLLogin = "$apiBaseUrl${student}login";
   final String uRLRegister = "$apiBaseUrl${student}register";
   final String uRLLogout = "$apiBaseUrl${student}logout";
+  final String uRLResetPassword = "$apiBaseUrl${student}ChangePassword";
   final String uRLGetMyAccountData = "$apiBaseUrl${account}my-account";
   final String uRLUpdateMyAccountData =
       "$apiBaseUrl${account}my-account/update";
@@ -35,8 +36,9 @@ mixin ApiKey {
       "$apiBaseUrl${student}Profile/$universityIDCard";
 
   // app
-  String uRLGetAllSubjects({required int? academicYear}) =>
-      "$apiBaseUrl${general}subjects?academicYear=$academicYear";
+  String uRLGetAllSubjects(
+          {required int academicYear, required String search}) =>
+      "$apiBaseUrl${general}subjects?academicYear=$academicYear&search=$search";
 
   String uRLGetChapters({required int? subjectID}) =>
       "${apiBaseUrl}upload/subjects/$subjectID/chapters";

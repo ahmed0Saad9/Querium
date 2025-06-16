@@ -10,8 +10,8 @@ import 'package:querium/src/GeneralWidget/Widgets/buttons/button_default.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
-class DialogDone extends StatelessWidget {
-  const DialogDone({super.key});
+class PasswordUpdatedDialog extends StatelessWidget {
+  const PasswordUpdatedDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +29,12 @@ class DialogDone extends StatelessWidget {
               fit: BoxFit.contain,
             ),
           ),
-          const SizedBox(height: 20),
+          20.ESH(),
           const CustomTextL(
-            'Upload_Complete',
+            'Password_changed_successfully',
             color: AppColors.main,
             fontWeight: FW.bold,
-          ),
-          10.ESH(),
-          CustomTextL(
-            'Upload_is_done_waiting_for_the_admin_to_approve',
             textAlign: TextAlign.center,
-            color: Colors.green[900],
           ),
           20.ESH(),
           GetBuilder<BaseNBNController>(
@@ -47,7 +42,7 @@ class DialogDone extends StatelessWidget {
                 title: 'ok',
                 onTap: () {
                   Get.back();
-                  controller.updateIndex(2);
+                  controller.updateIndex(0);
                 }),
           ),
         ]),

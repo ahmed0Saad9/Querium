@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:querium/src/Features/HomeFeature/UI/screens/home_screen.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/controller/quiz_controller.dart';
 import 'package:querium/src/Features/QuizFeature/UI/widgets/answer_card.dart';
 import 'package:querium/src/Features/QuizFeature/UI/widgets/question_card.dart';
@@ -17,76 +18,85 @@ import 'package:querium/src/core/utils/extensions.dart';
 class QuizScreen extends StatelessWidget {
   final int chapterID;
   final String subjectName;
+  final QuizController controller;
   const QuizScreen(
-      {super.key, required this.chapterID, required this.subjectName});
+      {super.key,
+      required this.chapterID,
+      required this.subjectName,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<QuizController>(
-        init: QuizController(chapterID: chapterID, subjectName: subjectName),
-        builder: (_) {
-          return Container(
-            width: Get.width,
-            height: Get.height,
-            color: AppColors.backGroundWhite,
-            child: Stack(
-              children: [
-                Image.asset(
-                  'assets/images/QuizBG.png',
-                ),
-                BaseScaffold(
-                  backgroundColor: Colors.transparent,
-                  appBar: AppBars.appBarBack(title: subjectName),
-                  body: Padding(
-                    padding: AppPadding.paddingScreenSH36,
-                    child: (_.questionsList.isNotEmpty)
-                        ? Column(
-                            children: [
-                              40.ESH(),
-                              TimerWidget(controller: _),
-                              34.ESH(),
-                              QuestionCard(
-                                controller: _,
-                              ),
-                              30.ESH(),
-                              AnswerWidget(controller: _),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ButtonDefault.main(
-                                    title: 'Previous',
-                                    fw: FW.regular,
-                                    width: 200.w,
-                                    onTap: () => _.previousQuestion(),
-                                  ),
-                                  20.ESW(),
-                                  ButtonDefault.main(
-                                    onTap: () {
-                                      _.validateAnswer();
-                                    },
-                                    title: _.isLastQuestion ? 'Finish' : 'Next',
-                                    fw: FW.regular,
-                                    width: 200.w,
-                                  ),
-                                ],
-                              ),
-                              50.ESH()
-                            ],
-                          )
-                        : const Column(
+      builder: (controller) => Container(
+        width: Get.width,
+        height: Get.height,
+        color: AppColors.backGroundWhite,
+        child: Stack(
+          children: [
+            Image.asset(
+              'assets/images/QuizBG.png',
+            ),
+            BaseScaffold(
+              backgroundColor: Colors.transparent,
+              appBar: AppBars.appBarBack(
+                title: subjectName,
+                onTap: () {
+                  Get.off(() => const HomeScreen());
+                },
+              ),
+              body: Padding(
+                padding: AppPadding.paddingScreenSH36,
+                child: (controller.questionsList.isNotEmpty)
+                    ? Column(
+                        children: [
+                          40.ESH(),
+                          TimerWidget(controller: controller),
+                          34.ESH(),
+                          QuestionCard(
+                            controller: controller,
+                          ),
+                          30.ESH(),
+                          AnswerWidget(controller: controller),
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SpinKitWave(
-                                color: AppColors.main,
+                              ButtonDefault.main(
+                                title: 'Previous',
+                                fw: FW.regular,
+                                width: 200.w,
+                                onTap: () => controller.previousQuestion(),
+                              ),
+                              20.ESW(),
+                              ButtonDefault.main(
+                                onTap: () {
+                                  controller.validateAnswer();
+                                },
+                                title: controller.isLastQuestion
+                                    ? 'Finish'
+                                    : 'Next',
+                                fw: FW.regular,
+                                width: 200.w,
                               ),
                             ],
                           ),
-                  ),
-                ),
-              ],
+                          50.ESH()
+                        ],
+                      )
+                    : const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SpinKitWave(
+                            color: AppColors.main,
+                          ),
+                        ],
+                      ),
+              ),
             ),
-          );
-        });
+          ],
+        ),
+      ),
+    );
   }
 }
 

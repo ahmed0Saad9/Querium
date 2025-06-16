@@ -77,6 +77,7 @@ const Map<String, String> arAE = {
   "Sign_up": "انشاء حساب",
   "show_details": "عرض التفاصيل",
   "Continue": "التالي",
+  "Please_enter_an_Email": "الرجاء إدخال بريد إلكتروني",
 
   // new
   "Home": "الرئيسية",
@@ -135,4 +136,24 @@ const Map<String, String> arAE = {
   "Approved": "تمت الموافقة",
   "Rejected": "تم رفضه",
   "Pending": "قيد الانتظار",
+  "Password_changed_successfully": "تم تغيير كلمة المرور بنجاح",
+  "Could_not_change_password": "لم يتم تغيير كلمة المرور",
+  "TRY_AGAIN": "حاول مرة أخرى",
+  "Upload_Complete": "تم الرفع",
+  "Upload_Failed": "فشل التحميل",
+  "Upload_is_done_waiting_for_the_admin_to_approve":
+      "تم التحميل في انتظار موافقة المسؤول",
+  "The_upload_could_not_be_completed": "لم يتمكن من إكمال التحميل",
+  "ok": "حسناً",
+  "File_Name": "اسم الملف",
+  "Subject_Name": "اسم الموضوع",
+  "Chapter_Name": "اسم الفصل",
+  "Description": "الوصف",
+  "Total_Questions": "عدد الاسئلة",
+  "status": "الحالة",
+  "Waiting_for_admin_approval": "في انتظار موافقة المسؤول",
+  "Your_file_has_been_rejected": "تم رفض ملفك",
+  "Contact_an_administrator_or_upload_again":
+      "تواصل مع احد المسؤولين او قم بالرفع مرة اخرى",
+  "Review_Answers": "مراجعة الإجابات",
 };

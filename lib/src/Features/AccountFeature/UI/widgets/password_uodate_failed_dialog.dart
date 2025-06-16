@@ -7,8 +7,8 @@ import 'package:querium/src/GeneralWidget/Widgets/buttons/button_default.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
-class DialogFail extends StatelessWidget {
-  const DialogFail({super.key});
+class PasswordUpdateFailedDialog extends StatelessWidget {
+  const PasswordUpdateFailedDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +30,10 @@ class DialogFail extends StatelessWidget {
             ),
             10.ESH(),
             CustomTextL(
-              'Upload_Failed',
+              'Could_not_change_password',
               fontSize: 20.sp,
               fontWeight: FW.bold,
               color: Colors.red,
-            ),
-            15.ESH(),
-            CustomTextL(
-              'The_upload_could_not_be_completed',
-              textAlign: TextAlign.center,
-              color: Colors.red[800],
             ),
             20.ESH(),
             Row(

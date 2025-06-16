@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:querium/src/Features/AccountFeature/Bloc/Controller/reset_password_controller.dart';
 
 import 'package:querium/src/Features/AuthFeature/ForgetPassword/Bloc/Controller/forget_password_controller.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Appbars/app_bars.dart';
@@ -33,9 +34,10 @@ class ResetPasswordScreen extends StatelessWidget {
         appBar: AppBars.appBarBack(),
         body: Padding(
           padding: AppPadding.paddingScreenSH36,
-          child: GetBuilder<ForgetPasswordController>(
+          child: GetBuilder<ResetPasswordController>(
+            init: ResetPasswordController(),
             builder: (_) => Form(
-                key: _.resetPasswordGlobalKey,
+                key: _.resetPasswordKey,
                 child: Column(
                   children: [
                     Image.asset(
@@ -62,24 +64,24 @@ class ResetPasswordScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           24.ESH(),
-                          CustomTextL('Reset_Password'),
+                          const CustomTextL('Reset_Password'),
                           18.ESH(),
                           TextFieldDefault(
-                            label: "current_Password",
+                            label: "current_Password".tr,
                             validation: passwordValidator,
                             controller: _.currentPasswordController,
                             secureType: SecureType.toggle,
                           ),
                           24.ESH(),
                           TextFieldDefault(
-                            label: "new_Password",
+                            label: "new_Password".tr,
                             validation: passwordValidator,
-                            controller: _.passwordController,
+                            controller: _.newPasswordController,
                             secureType: SecureType.toggle,
                           ),
                           24.ESH(),
                           TextFieldDefault(
-                            label: "Confirm_New_Password",
+                            label: "Confirm_New_Password".tr,
                             validation: passwordValidator,
                             controller: _.confirmPasswordController,
                             secureType: SecureType.toggle,
@@ -92,8 +94,9 @@ class ResetPasswordScreen extends StatelessWidget {
                     ButtonDefault.main(
                       title: 'change_password',
                       active: _.currentPasswordController.text.isNotEmpty &&
-                          _.passwordController.text.isNotEmpty &&
+                          _.newPasswordController.text.isNotEmpty &&
                           _.confirmPasswordController.text.isNotEmpty,
+                      onTap: () => _.resetPassword(),
                     ),
                     24.ESH(),
                   ],

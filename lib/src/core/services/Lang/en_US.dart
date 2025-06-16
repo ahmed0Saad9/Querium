@@ -297,4 +297,6 @@ const Map<String, String> enUS = {
   "Now_you_can_use_the_app_freely": "Now you can use the app freely.",
   "Account_Denied": "Account Denied.",
   "Account_Approved": "Account Approved.",
+  "Upload_Complete": "Upload Complete!",
+  "Upload_Failed": "Upload Failed!",
 };

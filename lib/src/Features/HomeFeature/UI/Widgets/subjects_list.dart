@@ -18,8 +18,8 @@ class _SubjectsList extends StatelessWidget {
                   mainAxisSpacing: 10.h,
                   crossAxisSpacing: 10.w),
               itemBuilder: (context, index) =>
-                  _SubjectsCard(subject: controller.subjects[index]),
-              itemCount: controller.subjects.length,
+                  _SubjectsCard(subject: controller.filteredSubjects[index]),
+              itemCount: controller.filteredSubjects.length,
               padding: AppPadding.paddingScreenSH36,
             ),
           )
@@ -48,7 +48,8 @@ class _SubjectsCard extends StatelessWidget {
       constraints: BoxConstraints(minHeight: 290.h),
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       decoration: BoxDecoration(
-        color: AppColors.backGroundGreyF4,
+        color: AppColors.backGroundGreyF2,
+        // boxShadow: AppColors.cardShadowBlack,
         borderRadius: BorderRadius.circular(
           12.r,
         ),

@@ -93,10 +93,18 @@ class AppBars {
           color: AppColors.dividerGrayD0,
         ),
       ),
-      leading: isBack == false
-          ? 0.0.ESH()
-          : IconButton(
+      leading: isBack == true
+          ? IconButton(
               onPressed: () => Get.back(),
+              icon: IconSvg(
+                'Back',
+                boxFit: BoxFit.fill,
+                height: 28.h,
+                width: 15.w,
+              ),
+            )
+          : IconButton(
+              onPressed: onTap,
               icon: IconSvg(
                 'Back',
                 boxFit: BoxFit.fill,
@@ -315,11 +323,13 @@ class AppBars {
                 const CustomTextL(
                   'Hello',
                   fontWeight: FW.bold,
+                  color: AppColors.titleWhite,
                 ),
                 CustomTextR(
                   ", ${sl<GetStorage>().read(
                     "UserName",
                   )}",
+                  color: AppColors.titleWhite,
                   fontWeight: FW.bold,
                 ),
               ],
@@ -329,6 +339,7 @@ class AppBars {
               'lets_start_the_journey',
               fontSize: 13,
               fontWeight: FW.medium,
+              color: AppColors.titleWhite,
             ),
           ],
         ),
@@ -339,16 +350,17 @@ class AppBars {
         Container(
           margin: EdgeInsets.symmetric(horizontal: 36.w),
           decoration: const BoxDecoration(
-              shape: BoxShape.circle, color: AppColors.borderGreyE5),
+            shape: BoxShape.circle,
+            color: AppColors.titleWhite,
+          ),
           child: IconButton(
             onPressed: () => Get.to(
               () => const SettingsScreen(),
-              transition: Transition.rightToLeftWithFade,
             ),
             icon: Image.asset(
               'assets/images/Settings.png',
-              height: 27.h,
-              width: 27.w,
+              height: 30.h,
+              width: 30.w,
               fit: BoxFit.fill,
             ),
           ),

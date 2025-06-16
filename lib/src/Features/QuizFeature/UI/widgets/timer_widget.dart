@@ -43,7 +43,7 @@ class TimerWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(27.r)),
           child: const LinearTimer(
             backgroundColor: Colors.transparent,
-            forward: true,
+            forward: false,
             minHeight: 7,
             color: AppColors.linearTimer,
             duration: Duration(
