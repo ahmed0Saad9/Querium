@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:querium/src/Features/AuthFeature/Register/Bloc/Controller/register_controller.dart';
-import 'package:querium/src/Features/AuthFeature/Verification/Ui/Screens/verification_account_screen.dart';
-import 'package:querium/src/GeneralWidget/Widgets/Other/base_scaffold.dart';
+
 import 'package:querium/src/GeneralWidget/Widgets/StaggeredAnimations/base_column.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/GeneralWidget/Widgets/TextFields/text_field_default.dart';
@@ -18,7 +17,6 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var node = FocusScope.of(context);
     return GetBuilder<RegisterController>(
       init: RegisterController(),
       builder: (_) => Container(
@@ -28,94 +26,108 @@ class RegisterScreen extends StatelessWidget {
               image: AssetImage('assets/images/Gradiant.png'),
               fit: BoxFit.cover),
         ),
-        padding: AppPadding.paddingScreenSH36,
         child: Form(
           key: _.registerGlobalKey,
-          child: BaseStaggeredColumn(
+          child: ListView(
+            shrinkWrap: true,
+            padding: AppPadding.paddingScreenSH36,
             children: [
-              160.ESH(),
-              const CustomTextL('Join_us_to_start', fontWeight: FW.bold),
-              85.ESH(),
-              TextFieldDefault(
-                label: 'Full_Name',
-                controller: _.nameController,
-                validation: nameValidator,
-                onComplete: () {
-                  node.nextFocus();
-                },
-              ),
-              24.ESH(),
-              TextFieldDefault(
-                label: 'Email',
-                controller: _.emailController,
-                validation: emailValidator,
-                keyboardType: TextInputType.emailAddress,
-                onComplete: () {
-                  node.nextFocus();
-                },
-              ),
-              24.ESH(),
-              TextFieldDefault(
-                label: 'Password',
-                controller: _.passwordController,
-                validation: passwordValidator,
-                secureType: SecureType.toggle,
-                onComplete: () {
-                  node.nextFocus();
-                },
-              ),
-              24.ESH(),
-              TextFieldDefault(
-                label: 'Confirm_Password',
-                controller: _.confirmPasswordController,
-                validation: (value) {
-                  return confirmPasswordValidator(
-                      value, _.passwordController.text);
-                },
-                secureType: SecureType.toggle,
-                onComplete: () {
-                  node.nextFocus();
-                },
-              ),
-              24.ESH(),
-              TextFieldDefault(
-                label: 'College_ID',
-                controller: _.idOfCollegeController,
-                validation: idValidator,
-                keyboardType: TextInputType.number,
-                maxLength: 5,
-                onComplete: () {
-                  node.nextFocus();
-                },
-              ),
-              24.ESH(),
-              TextFieldDefault(
-                label: 'National_ID',
-                controller: _.nationalIdController,
-                validation: nationalIdValidator,
-                keyboardType: TextInputType.number,
-                maxLength: 14,
-                onComplete: () {
-                  node.unfocus();
-                  _.createAccount();
-                },
-              ),
-              50.ESH(),
-              ButtonDefault.main(
-                onTap: () {
-                  // Get.to(const VerificationAccountScreen(
-                  //     token: '1', email: 'email'));
-                  _.createAccount();
-                },
-                title: 'Sign_up',
-              ),
-              _LoginWidget(
-                controller: _,
-              )
+              _Body(controller: _),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  final RegisterController controller;
+  const _Body({super.key, required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    var node = FocusScope.of(context);
+    return BaseStaggeredColumn(
+      children: [
+        100.ESH(),
+        const CustomTextL('Join_us_to_start', fontWeight: FW.bold),
+        70.ESH(),
+        TextFieldDefault(
+          label: 'Full_Name',
+          controller: controller.nameController,
+          validation: nameValidator,
+          onComplete: () {
+            node.nextFocus();
+          },
+        ),
+        24.ESH(),
+        TextFieldDefault(
+          label: 'Email',
+          controller: controller.emailController,
+          validation: emailValidator,
+          keyboardType: TextInputType.emailAddress,
+          onComplete: () {
+            node.nextFocus();
+          },
+        ),
+        24.ESH(),
+        TextFieldDefault(
+          label: 'Password',
+          controller: controller.passwordController,
+          validation: passwordValidator,
+          secureType: SecureType.toggle,
+          onComplete: () {
+            node.nextFocus();
+          },
+        ),
+        24.ESH(),
+        TextFieldDefault(
+          label: 'Confirm_Password',
+          controller: controller.confirmPasswordController,
+          validation: (value) {
+            return confirmPasswordValidator(
+                value, controller.passwordController.text);
+          },
+          secureType: SecureType.toggle,
+          onComplete: () {
+            node.nextFocus();
+          },
+        ),
+        24.ESH(),
+        TextFieldDefault(
+          label: 'College_ID',
+          controller: controller.idOfCollegeController,
+          validation: idValidator,
+          keyboardType: TextInputType.number,
+          maxLength: 5,
+          onComplete: () {
+            node.nextFocus();
+          },
+        ),
+        24.ESH(),
+        TextFieldDefault(
+          label: 'National_ID',
+          controller: controller.nationalIdController,
+          validation: nationalIdValidator,
+          keyboardType: TextInputType.number,
+          maxLength: 14,
+          onComplete: () {
+            node.unfocus();
+            controller.createAccount();
+          },
+        ),
+        120.ESH(),
+        ButtonDefault.main(
+          onTap: () {
+            controller.createAccount();
+          },
+          title: 'Sign_up',
+        ),
+        _LoginWidget(
+          controller: controller,
+        )
+      ],
     );
   }
 }

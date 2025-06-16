@@ -4,7 +4,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:querium/src/Features/QuizzesFeature/Bloc/Controller/quizzes_controller.dart';
 import 'package:querium/src/Features/QuizzesFeature/UI/widget/uploaded_file_card.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
-import 'package:querium/src/core/constants/sizes.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
 class QuizzesList extends StatelessWidget {

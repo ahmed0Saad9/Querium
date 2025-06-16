@@ -59,7 +59,7 @@ class ResultsScreen extends StatelessWidget {
                             ),
                           ),
                           CustomTextR(
-                            '${(score / totalQuestions) * 100}%',
+                            '$score%',
                             fontSize: 55,
                             color: AppColors.main,
                             fontWeight: FW.bold,

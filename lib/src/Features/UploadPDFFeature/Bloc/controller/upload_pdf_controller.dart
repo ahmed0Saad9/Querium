@@ -15,75 +15,99 @@ import 'package:querium/src/core/services/Network/network_exceptions.dart';
 import 'package:querium/src/core/services/services_locator.dart';
 
 class UploadPDFController extends BaseController<UploadFileRepository> {
+  // Constants
+  static const List<String> allowedExtensions = ['pdf'];
+  static const double bytesToKb = 1024;
+
+  // State variables
   String? fileName;
   MediaType? userFile;
   String? fileExtension;
   double? fileSize;
 
+  // Keys
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
-// TODO: implement repository
-  get repository => sl<UploadFileRepository>();
+  UploadFileRepository get repository => sl<UploadFileRepository>();
 
   @override
   void onInit() {
-// TODO: implement onInit
     super.onInit();
   }
 
-  final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-
   Future<void> storeFileUploaded() async {
+    if (userFile == null) return;
+
     showEasyLoading();
-    var result = await repository!.storeFileUploaded(
+
+    final result = await repository!.storeFileUploaded(
       param: UploadParams(
         studentId: sl<GetStorage>().read('studentID'),
         file: userFile!,
       ),
     );
+
     closeEasyLoading();
-    result.when(success: (Response response) {
-      clearFile();
-      Get.dialog(const DialogDone());
-    }, failure: (NetworkExceptions error) {
-      Get.dialog(const DialogFail());
-      actionNetworkExceptions(error);
-    });
+
+    result.when(
+      success: (Response response) {
+        clearFile();
+        Get.dialog(const DialogDone());
+      },
+      failure: (NetworkExceptions error) {
+        Get.dialog(const DialogFail());
+        actionNetworkExceptions(error);
+      },
+    );
   }
 
-  // Function to pick an image file
   Future<void> pickFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['pdf'],
-    );
+    try {
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: allowedExtensions,
+      );
 
-    if (result != null) {
-      PlatformFile file = result.files.first;
-      userFile = MediaType(
-          media: await platformFileToFile(file), type: file.extension!);
-      fileName = file.name;
-      fileExtension = file.extension;
-      fileSize = file.size / 1024; // Extract the file size in bytes
-      update();
+      if (result != null && result.files.isNotEmpty) {
+        final file = result.files.first;
+        final convertedFile = await platformFileToFile(file);
+
+        userFile = MediaType(
+          media: convertedFile,
+          type: file.extension ?? 'pdf',
+        );
+        fileName = file.name;
+        fileExtension = file.extension;
+        fileSize = file.size / bytesToKb;
+        update();
+      }
+    } catch (e) {
+      Get.dialog(const DialogFail());
+      debugPrint('File picking error: $e');
     }
   }
 
   Future<File> platformFileToFile(PlatformFile platformFile) async {
-    if (platformFile.path == null) {
-      // For web or when path is not available, create a temporary file
-      final file = File('${Directory.systemTemp.path}/${platformFile.name}');
-      await file.writeAsBytes(platformFile.bytes!);
-      return file;
+    if (platformFile.path != null) {
+      return File(platformFile.path!);
     }
-    return File(platformFile.path!);
+
+    if (platformFile.bytes != null) {
+      final tempFile =
+          File('${Directory.systemTemp.path}/${platformFile.name}');
+      await tempFile.writeAsBytes(platformFile.bytes!);
+      return tempFile;
+    }
+
+    throw Exception('No valid file data available');
   }
 
-  // Function to clear the selected file
   void clearFile() {
     fileName = null;
+    userFile = null;
     fileExtension = null;
     fileSize = null;
-
     update();
   }
 }

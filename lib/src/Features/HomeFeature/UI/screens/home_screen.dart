@@ -46,37 +46,22 @@ class HomeScreen extends StatelessWidget {
                   15.ESH(),
                   Padding(
                     padding: AppPadding.paddingScreenSH36,
-                    child:
-                        // TextField(
-                        //   controller: _.searchController,
-                        //   onChanged: (value) {
-                        //     // Add a slight delay to avoid too many API calls
-                        //     _.debounceSearch();
-                        //   },
-                        //   onSubmitted: (value) {
-                        //     node.unfocus();
-                        //     _.getSubjects();
-                        //   },
-                        //   // ... other properties
-                        // ),
-
-                        SearchTextField(
-                            node: node,
-                            searchController: _.searchController,
-                            onChanged: (value) {
-                              // Add a slight delay to avoid too many API calls
-                              _.debounceSearch();
-                            },
-                            onComplete: () {
-                              node.unfocus();
-                              _.getSubjects();
-                            },
-                            hint: 'Search_lecture_name'),
+                    child: SearchTextField(
+                        node: node,
+                        searchController: _.searchController,
+                        onChanged: (value) {
+                          _.debounceSearch();
+                        },
+                        onComplete: () {
+                          node.unfocus();
+                          _.getSubjects();
+                        },
+                        hint: 'Search_lecture_name'),
                   ),
                   32.ESH(),
                   Expanded(
                     child: ListView(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       children: [
                         _AcademicYearFilter(controller: _),
                         20.ESH(),

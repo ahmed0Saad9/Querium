@@ -9,82 +9,94 @@ import 'package:querium/src/core/services/Network/network_exceptions.dart';
 import 'package:querium/src/core/services/services_locator.dart';
 
 class SubjectsController extends BaseController<SubjectsRepository> {
-  TextEditingController searchController = TextEditingController();
+  // Constants
+  static const _debounceDuration = Duration(milliseconds: 500);
+
+  // Controllers
+  final TextEditingController searchController = TextEditingController();
+
+  // State variables
+  final List<Subjects> _subjects = [];
+  int tapIdSelected = 1;
+  Timer? _debounce;
+
+  // Academic years data
+  final List<AcademicYearModel> academicYearCards = const [
+    AcademicYearModel(id: 1, label: 'First_Year'),
+    AcademicYearModel(id: 2, label: 'Second_Year'),
+    AcademicYearModel(id: 3, label: 'Third_Year'),
+    AcademicYearModel(id: 4, label: 'Fourth_Year'),
+  ];
+
   @override
-  // TODO: implement repository
-  get repository => sl<SubjectsRepository>();
+  SubjectsRepository get repository => sl<SubjectsRepository>();
+
   @override
   void onInit() async {
-    // TODO: implement onInit
     await getSubjects();
     super.onInit();
-  }
-
-  final List<Subjects> _subjects = [];
-
-  List<Subjects> get subjects => _subjects;
-
-  Future<void> getSubjects() async {
-    debugPrint(
-        'Fetching subjects with year: $tapIdSelected, search: ${searchController.text}');
-    _subjects.clear();
-    reInitPagination();
-    showLoading();
-
-    update();
-
-    var result = await repository!.getAllSubjects(
-      academicYear: tapIdSelected,
-      search: searchController.text,
-    );
-
-    result.when(success: (List<Subjects> s) {
-      incrementPageNumber(s.isNotEmpty);
-      _subjects.addAll(s);
-      doneLoading();
-      update();
-    }, failure: (NetworkExceptions error) {
-      errorLoading();
-      status = actionNetworkExceptions(error);
-      update();
-    });
-  }
-
-  int tapIdSelected = 1;
-
-  void selectTapId(int id) {
-    tapIdSelected = id;
-    getSubjects();
-    update();
-  }
-
-  Timer? _debounce;
-  void debounceSearch() {
-    if (_debounce?.isActive ?? false) _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 500), () {
-      getSubjects();
-    });
-  }
-
-  List<Subjects> get filteredSubjects {
-    if (searchController.text.isEmpty) return _subjects;
-    return _subjects
-        .where((subject) => subject.title
-            .toLowerCase()
-            .contains(searchController.text.toLowerCase()))
-        .toList();
   }
 
   @override
   void dispose() {
     _debounce?.cancel();
+    searchController.dispose();
     super.dispose();
   }
 
-  List<AcademicYearModel> academicYearCards = [
-    const AcademicYearModel(id: 1, label: 'First_Year'),
-    const AcademicYearModel(id: 2, label: 'Second_Year'),
-    const AcademicYearModel(id: 3, label: 'Third_Year'),
-    const AcademicYearModel(id: 4, label: 'Fourth_Year'),
-  ];
+  // Public getters
+  List<Subjects> get subjects => _subjects;
+
+  List<Subjects> get filteredSubjects {
+    final searchText = searchController.text.toLowerCase();
+    return searchText.isEmpty
+        ? _subjects
+        : _subjects
+            .where(
+                (subject) => subject.title.toLowerCase().contains(searchText))
+            .toList();
+  }
+
+  // Actions
+  Future<void> getSubjects() async {
+    debugPrint(
+        'Fetching subjects with year: $tapIdSelected, search: ${searchController.text}');
+
+    _subjects.clear();
+    reInitPagination();
+    showLoading();
+    update();
+
+    final result = await repository!.getAllSubjects(
+      academicYear: tapIdSelected,
+      search: searchController.text,
+    );
+
+    result.when(
+      success: (List<Subjects> subjects) {
+        incrementPageNumber(subjects.isNotEmpty);
+        _subjects.addAll(subjects);
+        doneLoading();
+        update();
+      },
+      failure: (NetworkExceptions error) {
+        errorLoading();
+        status = actionNetworkExceptions(error);
+        update();
+      },
+    );
+  }
+
+  void selectTapId(int id) {
+    if (tapIdSelected == id) return;
+
+    tapIdSelected = id;
+    getSubjects();
+    update();
+  }
+
+  void debounceSearch() {
+    _debounce?.cancel();
+    _debounce = Timer(_debounceDuration, getSubjects);
+  }
 }

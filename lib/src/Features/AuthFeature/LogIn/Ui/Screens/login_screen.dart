@@ -34,9 +34,9 @@ class LoginScreen extends StatelessWidget {
               key: _.loginGlobalKey,
               child: BaseStaggeredColumn(
                 children: [
-                  160.ESH(),
+                  100.ESH(),
                   const CustomTextL('welcome_back', fontWeight: FW.bold),
-                  85.ESH(),
+                  70.ESH(),
                   TextFieldDefault(
                     label: 'Email',
                     controller: _.emailController,
@@ -57,11 +57,10 @@ class LoginScreen extends StatelessWidget {
                       _.logIn();
                     },
                   ),
-                  ButtonForgetPassword(controller: _),
-                  350.ESH(),
+                  // ButtonForgetPassword(controller: _),
+                  480.ESH(),
                   ButtonDefault.main(
                     onTap: () => _.logIn(),
-                    // onTap: () => _.navigatorToBaseBNBScreen(),
                     title: 'login',
                   ),
                   _DoNotHaveAccountWidget(

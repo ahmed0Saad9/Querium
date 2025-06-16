@@ -38,7 +38,7 @@ class ResetPasswordScreen extends StatelessWidget {
             init: ResetPasswordController(),
             builder: (_) => Form(
                 key: _.resetPasswordKey,
-                child: Column(
+                child: ListView(
                   children: [
                     Image.asset(
                       'assets/images/logo.png',
@@ -90,7 +90,8 @@ class ResetPasswordScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Spacer(),
+                    // Spacer(),
+                    170.ESH(),
                     ButtonDefault.main(
                       title: 'change_password',
                       active: _.currentPasswordController.text.isNotEmpty &&

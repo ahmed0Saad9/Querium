@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:querium/src/Features/QuizzesFeature/Bloc/Controller/quizzes_category_controller.dart';
 import 'package:querium/src/Features/QuizzesFeature/Bloc/Controller/quizzes_controller.dart';
 import 'package:querium/src/Features/QuizzesFeature/Bloc/Model/quizzes_category_model.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
