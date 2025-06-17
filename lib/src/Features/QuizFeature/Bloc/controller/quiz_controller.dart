@@ -18,6 +18,19 @@ import 'package:querium/src/core/services/services_locator.dart';
 class QuizController extends BaseController<GetQuestionsRepository> {
   int chapterID;
   String subjectName;
+  Timer? _timer;
+  int remainingSeconds = 1;
+  String time = '10:00';
+  int score = 0;
+  int answerIdSelected = -1;
+  int index = 0;
+  bool isLastQuestion = false;
+  List<QuestionResult> questionResults = [];
+
+  QuizController({
+    required this.chapterID,
+    required this.subjectName,
+  });
 
   @override
   // TODO: implement repository
@@ -53,16 +66,6 @@ class QuizController extends BaseController<GetQuestionsRepository> {
     });
   }
 
-  // String getAnswers(List<String> answers) {
-  //   for (int i = 0; i < answers.length; i++) {
-  //     answers[i];
-  //   }
-  // }
-
-  Timer? _timer;
-  int remainingSeconds = 1;
-  String time = '10:00';
-
   @override
   void onClose() {
     if (_timer != null) {
@@ -78,11 +81,10 @@ class QuizController extends BaseController<GetQuestionsRepository> {
   void startTimer(int seconds) {
     const duration = Duration(seconds: 1);
     remainingSeconds = seconds;
+    stopTimer();
     _timer = Timer.periodic(duration, (Timer timer) {
       if (remainingSeconds == 0) {
         timer.cancel();
-        // Get.off(const ResultsScreen());
-        // showNotification();
       } else {
         int minutes = remainingSeconds ~/ 60;
         int seconds = remainingSeconds % 60;
@@ -95,33 +97,10 @@ class QuizController extends BaseController<GetQuestionsRepository> {
     });
   }
 
-  void showNotification() {
-    // Show a SnackBar using GetX
-    Get.snackbar(
-      "Time is up", // Title
-      "This will effect your results", // Message
-      snackPosition: SnackPosition.TOP,
-      duration: const Duration(seconds: 3),
-      mainButton: TextButton(
-        onPressed: () {
-          Get.back(); // Dismiss the SnackBar
-        },
-        child: const CustomTextL("Dismiss", color: AppColors.main),
-      ),
-    );
-  }
-
-  int score = 0;
-  int answerIdSelected = -1;
-  int index = 0;
-  bool isLastQuestion = false;
-
   void selectTapId(int id) {
     answerIdSelected = id;
     update();
   }
-
-  List<QuestionResult> questionResults = [];
 
   void _initializeQuestionResults(List<Questions> questions) {
     questionResults = questions.asMap().entries.map((entry) {
@@ -201,9 +180,4 @@ class QuizController extends BaseController<GetQuestionsRepository> {
   void startExam() {
     startTimer(600);
   }
-
-  QuizController({
-    required this.chapterID,
-    required this.subjectName,
-  });
 }

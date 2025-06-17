@@ -156,4 +156,5 @@ const Map<String, String> arAE = {
   "Contact_an_administrator_or_upload_again":
       "تواصل مع احد المسؤولين او قم بالرفع مرة اخرى",
   "Review_Answers": "مراجعة الإجابات",
+  "Start_Quiz": "ابدأ الاختبار",
 };
