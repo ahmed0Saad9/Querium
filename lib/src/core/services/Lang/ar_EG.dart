@@ -18,8 +18,8 @@ const Map<String, String> arAE = {
   "Reset_Password": "إعادة تعيين كلمة المرور",
   "Reset_Password_subtitle":
       "قم بتعيين كلمة المرور الجديدة لحسابك حتى \nتتمكن من تسجيل الدخول والوصول إلى كافة الميزات.",
-  "current_Password": "كلمة المرور الحالية",
-  "new_Password": "كلمة المرور الجديدة",
+  "Current_Password": "كلمة المرور الحالية",
+  "New_Password": "كلمة المرور الجديدة",
   "Confirm_Password": "تأكيد كلمة المرور",
   "Confirm_New_Password": "تأكيد كلمة المرور الجديدة",
   "Re_Enter_Password": "تأكيد كلمة المرور",
@@ -157,4 +157,12 @@ const Map<String, String> arAE = {
       "تواصل مع احد المسؤولين او قم بالرفع مرة اخرى",
   "Review_Answers": "مراجعة الإجابات",
   "Start_Quiz": "ابدأ الاختبار",
+  "Correct": "صحيح",
+  "Incorrect": "غير صحيح",
+  "Dark_Mode": "الوضع المظلم",
+  "Other": "اخرى",
+  "Update": "تحديث تلقائي",
+  "Notification": "تلقي الاشعارات",
+  "Language": "اللغة",
+  "No_files_uploaded": "لم يتم رفع أي ملفات",
 };

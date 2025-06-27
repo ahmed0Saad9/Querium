@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:querium/src/Features/HomeFeature/Bloc/controller/chapters_controller.dart';
-import 'package:querium/src/Features/QuizFeature/Bloc/controller/quiz_controller.dart';
+import 'package:querium/src/Features/CustomQuizzesFeature/Bloc/Controller/custom_quiz_controller.dart';
+import 'package:querium/src/Features/CustomQuizzesFeature/UI/screens/custom_quiz_screen.dart';
 import 'package:querium/src/Features/QuizFeature/UI/screens/quiz_details_screen.dart';
-import 'package:querium/src/Features/QuizFeature/UI/widgets/custom_drop_down_menu.dart';
-import 'package:querium/src/Features/QuizFeature/UI/screens/quiz_screen.dart';
-import 'package:querium/src/Features/QuizzesFeature/Bloc/Controller/custom_quiz_controller.dart';
-import 'package:querium/src/Features/QuizzesFeature/UI/screens/custom_quiz_screen.dart';
+
 import 'package:querium/src/GeneralWidget/Widgets/Appbars/app_bars.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Other/base_scaffold.dart';
-import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/GeneralWidget/Widgets/buttons/button_default.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/constants/sizes.dart';
@@ -41,7 +36,6 @@ class CustomQuizDetailsScreen extends StatelessWidget {
           BaseScaffold(
             backgroundColor: AppColors.transparentColor,
             appBar: AppBars.appBarBack(
-              isBack: true,
               title: 'Create_Quiz',
             ),
             body: Padding(

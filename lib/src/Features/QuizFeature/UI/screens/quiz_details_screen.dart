@@ -20,7 +20,6 @@ class QuizDetailsScreen extends StatelessWidget {
   final String chapterName;
   final String description;
 
-// final ChaptersController controller;
   const QuizDetailsScreen({
     super.key,
     required this.chapterID,
@@ -45,9 +44,6 @@ class QuizDetailsScreen extends StatelessWidget {
               backgroundColor: AppColors.transparentColor,
               appBar: AppBars.appBarBack(
                 title: 'Create_Quiz',
-                onTap: () {
-                  Get.off(() => const HomeScreen());
-                },
               ),
               body: Padding(
                 padding: AppPadding.paddingScreenSH36,
@@ -76,17 +72,15 @@ class QuizDetailsScreen extends StatelessWidget {
                       ),
                       const Spacer(),
                       ButtonDefault.main(
-                        title: 'Start_Quiz',
-                        active: (controller.questionsList.isNotEmpty),
-                        onTap: () {
-                          Get.to(() => QuizScreen(
-                                chapterID: chapterID,
-                                subjectName: subjectName,
-                                controller: controller,
-                              ));
-                          controller.startTimer(600);
-                        },
-                      ),
+                          title: 'Start_Quiz',
+                          active: (controller.questionsList.isNotEmpty),
+                          onTap: () {
+                            Get.to(() => QuizScreen(
+                                  chapterID: chapterID,
+                                  subjectName: subjectName,
+                                ));
+                            controller.startTimer(600);
+                          }),
                       36.ESH(),
                     ]),
               ),

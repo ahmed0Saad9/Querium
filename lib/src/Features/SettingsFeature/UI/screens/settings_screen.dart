@@ -4,7 +4,6 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:querium/src/Features/SettingsFeature/Bloc/controller/settings_controller.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Appbars/app_bars.dart';
-import 'package:querium/src/GeneralWidget/Widgets/Cards/card_avatar_image.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Other/base_scaffold.dart';
 import 'package:querium/src/GeneralWidget/Widgets/StaggeredAnimations/base_column.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
@@ -12,7 +11,6 @@ import 'package:querium/src/core/constants/color_constants.dart';
 import 'package:querium/src/core/constants/sizes.dart';
 import 'package:querium/src/core/services/svg_widget.dart';
 import 'package:querium/src/core/utils/extensions.dart';
-import 'package:querium/src/core/utils/storage_util.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -65,12 +63,44 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   30.ESH(),
                   const _SectionHeader(title: 'Other', icon: 'Other'),
-                  18.ESH(),
-                  _SettingsSwitchTab(
-                    label: 'Dark Mode',
-                    switchValue: controller.darkMode,
-                    onToggle: (p0) => controller.toggleDarkMode(),
-                  )
+                  20.ESH(),
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () => controller.changeLanguage('ar'),
+                        child: Row(
+                          children: [
+                            Radio(
+                              value: 'ar',
+                              groupValue: controller.selectedLanguage,
+                              onChanged: (value) =>
+                                  controller.changeLanguage(value!),
+                              activeColor: AppColors.main,
+                            ),
+                            const CustomTextL('العربية',
+                                fontSize: 16, fontWeight: FW.bold),
+                          ],
+                        ),
+                      ),
+                      100.ESW(),
+                      InkWell(
+                        onTap: () => controller.changeLanguage('en'),
+                        child: Row(
+                          children: [
+                            Radio(
+                              value: 'en',
+                              groupValue: controller.selectedLanguage,
+                              onChanged: (value) =>
+                                  controller.changeLanguage(value!),
+                              activeColor: AppColors.main,
+                            ),
+                            const CustomTextL('English',
+                                fontSize: 16, fontWeight: FW.bold),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             )),
@@ -152,7 +182,7 @@ class _SettingsSwitchTab extends StatelessWidget {
           height: 29.h,
           toggleSize: 22,
           padding: 3.62,
-          inactiveColor: AppColors.backGroundGreyE5,
+          inactiveColor: AppColors.backGroundWhite,
           inactiveToggleColor: AppColors.main,
           activeColor: AppColors.main,
           value: switchValue,

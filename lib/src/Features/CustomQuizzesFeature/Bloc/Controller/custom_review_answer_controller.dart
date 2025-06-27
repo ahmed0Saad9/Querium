@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:querium/src/Features/CustomQuizzesFeature/Bloc/Controller/custom_quiz_controller.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/controller/quiz_controller.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/model/question_model.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/model/question_result.dart';
-import 'package:querium/src/Features/QuizzesFeature/Bloc/Controller/custom_quiz_controller.dart';
 
 class CustomReviewAnswerController extends GetxController {
   final CustomQuizController quizController = Get.find<CustomQuizController>();

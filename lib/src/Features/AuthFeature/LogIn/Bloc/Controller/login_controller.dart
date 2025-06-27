@@ -36,9 +36,8 @@ class LoginController extends BaseController<LogInRepository> {
       closeEasyLoading();
       result.when(success: (Response response) {
         _userModel = UserModel.fromJson(response.data);
-        LocalStorageCubit().storeUserModel(_userModel!);
-        // LocalStorageCubit()
-        //     .saveItem(key: 'avatar', item: _userModel!.data.user.image);
+        LocalStorageCubit().storeUserModel(
+            _userModel!); //stores the user data locally by GetStorage
         _navigatorAfterLogIn(_userModel!);
       }, failure: (NetworkExceptions error) {
         actionNetworkExceptions(error);
@@ -54,15 +53,11 @@ class LoginController extends BaseController<LogInRepository> {
   final SendOTPController _sendOTPController = sl<SendOTPController>();
 
   void _navigatorAfterLogIn(UserModel user) async {
-    // if (!user.verified) {
-    //   _sendOTPController.sendOTP(
-    //       email: emailController!.text, verifyAccount: true);
-    // } else {
     if (user.student.isApproved) {
       Get.offAll(() => const AccountApprovedScreen());
     }
     // navigatorToBaseBNBScreen();
-    successEasyLoading('hello');
+    successEasyLoading('Welcome to Querium');
     // }
   }
 

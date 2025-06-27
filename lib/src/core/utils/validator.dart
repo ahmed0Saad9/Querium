@@ -21,7 +21,7 @@ String? emailValidator(String? text) {
     RegExp emailRegex =
         RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
     if (!emailRegex.hasMatch(text)) {
-      return 'Please enter a valid Email';
+      return 'Please enter Valid Email';
     }
   } else if (text.isEmpty) {
     return 'Please enter an Email';
@@ -39,13 +39,13 @@ String? passwordValidator(String? text) {
       return null;
     } else {
       if (!regex.hasMatch(text)) {
-        return 'Enter valid password';
+        return 'Password must contain symbols, Letters, numbers ';
       } else {
         return null;
       }
     }
   }
-  return 'Please enter password';
+  return 'Password minimum 8 digits';
 }
 
 String? confirmPasswordValidator(String? text, String? oldPassword) {

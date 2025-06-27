@@ -29,25 +29,28 @@ class ReviewAnswerController extends GetxController {
     quizController.update(['question_card']); // Targeted update
   }
 
-  void goToNextQuestion() {
-    if (currentQuestionIndex < questionResults.length - 1) {
-      currentQuestionIndex++;
-      _updateQuestionView();
-    }
-  }
-
-  void goToPreviousQuestion() {
-    if (currentQuestionIndex > 0) {
-      currentQuestionIndex--;
-      _updateQuestionView();
-    }
-  }
-
   void _updateQuestionView() {
+    //Make sure that the UI reflects the current question state
     quizController.index = currentQuestionIndex;
     quizController.answerIdSelected =
         questionResults[currentQuestionIndex].selectedAnswerIndex ?? -1;
     quizController.update(['question_card']); // Targeted update
     update(); // Update review controller
+  }
+
+  void goToNextQuestion() {
+    //Moves to the next question if available
+    if (currentQuestionIndex < questionResults.length - 1) {
+      currentQuestionIndex++;
+      _updateQuestionView(); //to refresh the display
+    }
+  }
+
+  void goToPreviousQuestion() {
+    //Moves to the previous question if available
+    if (currentQuestionIndex > 0) {
+      currentQuestionIndex--;
+      _updateQuestionView(); //to refresh the display
+    }
   }
 }

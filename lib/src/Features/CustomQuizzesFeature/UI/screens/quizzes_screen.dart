@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:querium/src/Features/QuizzesFeature/Bloc/Controller/quizzes_controller.dart';
-import 'package:querium/src/Features/QuizzesFeature/UI/widget/quizzes_List.dart';
-import 'package:querium/src/Features/QuizzesFeature/UI/widget/quizzes_category_widget.dart';
+import 'package:querium/src/Features/CustomQuizzesFeature/Bloc/Controller/quizzes_controller.dart';
+import 'package:querium/src/Features/CustomQuizzesFeature/UI/widget/quizzes_List.dart';
+import 'package:querium/src/Features/CustomQuizzesFeature/UI/widget/quizzes_category_widget.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Appbars/app_bars.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Other/base_scaffold.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
-import 'package:querium/src/core/constants/sizes.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
 class QuizzesScreen extends StatelessWidget {

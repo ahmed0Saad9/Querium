@@ -4,9 +4,7 @@ import 'package:querium/src/Features/AccountFeature/Bloc/Model/account_details_m
 import 'package:querium/src/Features/AccountFeature/Bloc/Repo/profile_repo.dart';
 import 'package:querium/src/core/services/Base/base_controller.dart';
 import 'package:querium/src/core/services/services_locator.dart';
-
 import '../../../../core/services/Network/network_exceptions.dart';
-import '../../../AuthFeature/Register/Bloc/Model/user_model.dart';
 
 class ProfileController extends BaseController<ProfileRepo> {
   @override
@@ -21,7 +19,6 @@ class ProfileController extends BaseController<ProfileRepo> {
     super.onInit();
   }
 
-  UserModel? userModel;
   Profile? _user;
 
   Profile? get user => _user;
@@ -47,8 +44,7 @@ class ProfileController extends BaseController<ProfileRepo> {
 
   void getUniversityIDCard() {
     universityIDCard = int.parse(sl<GetStorage>().read(
-          "universityIDCard",
-        )) ??
-        0;
+      "universityIDCard",
+    ));
   }
 }

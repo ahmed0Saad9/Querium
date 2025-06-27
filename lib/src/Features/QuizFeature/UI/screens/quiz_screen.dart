@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:querium/src/Features/BaseBNBFeature/UI/screens/base_BNB_screen.dart';
+import 'package:querium/src/Features/HomeFeature/UI/screens/chapters_screen.dart';
 import 'package:querium/src/Features/HomeFeature/UI/screens/home_screen.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/controller/quiz_controller.dart';
+import 'package:querium/src/Features/QuizFeature/UI/screens/quiz_details_screen.dart';
 import 'package:querium/src/Features/QuizFeature/UI/widgets/answer_card.dart';
 import 'package:querium/src/Features/QuizFeature/UI/widgets/question_card.dart';
 import 'package:querium/src/Features/QuizFeature/UI/widgets/timer_widget.dart';
@@ -18,12 +21,12 @@ import 'package:querium/src/core/utils/extensions.dart';
 class QuizScreen extends StatelessWidget {
   final int chapterID;
   final String subjectName;
-  final QuizController controller;
-  const QuizScreen(
-      {super.key,
-      required this.chapterID,
-      required this.subjectName,
-      required this.controller});
+
+  const QuizScreen({
+    super.key,
+    required this.chapterID,
+    required this.subjectName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +44,8 @@ class QuizScreen extends StatelessWidget {
               backgroundColor: Colors.transparent,
               appBar: AppBars.appBarBack(
                 title: subjectName,
-                onTap: () {
-                  Get.off(() => const HomeScreen());
-                },
+                isBack: false,
+                onTap: () => Get.off(() => const BaseBNBScreen()),
               ),
               body: Padding(
                 padding: AppPadding.paddingScreenSH36,

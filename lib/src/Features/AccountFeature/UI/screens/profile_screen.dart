@@ -8,7 +8,6 @@ import 'package:querium/src/Features/AccountFeature/UI/screens/reset_password_sc
 import 'package:querium/src/Features/AccountFeature/UI/widgets/list_personal_data.dart';
 import 'package:querium/src/Features/AuthFeature/EditGeneralProfile/Ui/Screen/edit_profile_screen.dart';
 import 'package:querium/src/Features/AuthFeature/LogOut/Bloc/Controller/log_out_controller.dart';
-import 'package:querium/src/Features/AuthFeature/Register/Bloc/Model/user_model.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/GeneralWidget/Widgets/buttons/button_default.dart';
 import 'package:querium/src/core/constants/color_constants.dart';

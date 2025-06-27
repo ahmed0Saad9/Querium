@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:querium/src/Features/AuthFeature/Verification/Bloc/Controller/send_otp_controller.dart';
 import 'package:querium/src/Features/SplachAndOnbordingFeature/ui/onbording_screen.dart';
 import 'package:querium/src/core/services/Lang/localization_services.dart';
 import 'package:querium/src/core/services/services_locator.dart';
@@ -14,7 +13,7 @@ class ChooseLanguageController extends GetxController {
     return (_box.read('token') != null && _box.read('token') != "");
   }
 
-  String selectedLanguage = 'ar';
+  String? selectedLanguage;
 
   void changeLanguage(String languageCode) {
     selectedLanguage = languageCode;
@@ -26,7 +25,9 @@ class ChooseLanguageController extends GetxController {
       LocalizationServices().changeLocale("English");
       _box.write("lan", "en");
       _box.write("language", "english");
+      selectedLanguage = 'en';
     }
+
     update(); // To refresh the UI
   }
 

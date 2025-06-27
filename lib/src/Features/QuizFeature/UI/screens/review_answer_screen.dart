@@ -32,9 +32,6 @@ class ReviewAnswerScreen extends StatelessWidget {
             backgroundColor: Colors.transparent,
             appBar: AppBars.appBarBack(
               title: 'Review_Answers',
-              onTap: () {
-                Get.off(() => const HomeScreen());
-              },
             ),
             body: Padding(
               padding: AppPadding.paddingScreenSH36,

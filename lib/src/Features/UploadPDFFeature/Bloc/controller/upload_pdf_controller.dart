@@ -41,7 +41,7 @@ class UploadPDFController extends BaseController<UploadFileRepository> {
 
     showEasyLoading();
 
-    final result = await repository!.storeFileUploaded(
+    final result = await repository.storeFileUploaded(
       param: UploadParams(
         studentId: sl<GetStorage>().read('studentID'),
         file: userFile!,

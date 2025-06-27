@@ -28,16 +28,12 @@ class ChaptersController extends BaseController<ChaptersRepository> {
     _chapters.clear();
     reInitPagination();
     showLoading();
-
     update();
-
     var result = await repository!.getChapters(
       subjectID: subjectID,
     );
-
     result.when(success: (List<Chapters> c) {
       incrementPageNumber(c.isNotEmpty);
-
       _chapters.addAll(c);
       doneLoading();
       update();

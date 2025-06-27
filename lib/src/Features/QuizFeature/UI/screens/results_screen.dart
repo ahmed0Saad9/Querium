@@ -14,12 +14,14 @@ import 'package:querium/src/core/constants/sizes.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
 class ResultsScreen extends StatelessWidget {
-  int score;
+  int correctAnswers;
   int totalQuestions;
+  int percentageScore;
   ResultsScreen({
     super.key,
-    required this.score,
+    required this.correctAnswers,
     required this.totalQuestions,
+    required this.percentageScore,
   });
 
   @override
@@ -38,9 +40,6 @@ class ResultsScreen extends StatelessWidget {
               backgroundColor: AppColors.transparentColor,
               appBar: AppBars.appBarBack(
                 title: 'Results',
-                onTap: () {
-                  Get.off(() => const HomeScreen());
-                },
               ),
               body: Padding(
                 padding: AppPadding.paddingScreenSH36,
@@ -59,7 +58,7 @@ class ResultsScreen extends StatelessWidget {
                             ),
                           ),
                           CustomTextR(
-                            '$score%',
+                            '${percentageScore.toInt()}%',
                             fontSize: 55,
                             color: AppColors.main,
                             fontWeight: FW.bold,
@@ -99,7 +98,7 @@ class ResultsScreen extends StatelessWidget {
                           ),
                           4.ESW(),
                           CustomTextR(
-                            '$score',
+                            '$correctAnswers',
                             fontSize: 20,
                             color: AppColors.main,
                           ),
@@ -115,7 +114,7 @@ class ResultsScreen extends StatelessWidget {
                           ),
                           4.ESW(),
                           CustomTextR(
-                            '${totalQuestions - score}',
+                            '${totalQuestions - correctAnswers}',
                             fontSize: 20,
                             color: AppColors.main,
                           ),

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:querium/src/Features/QuizFeature/Bloc/controller/quiz_controller.dart';
-import 'package:querium/src/Features/QuizFeature/UI/screens/showa_nswers_screen.dart';
-import 'package:querium/src/Features/QuizzesFeature/Bloc/Controller/custom_quiz_controller.dart';
+import 'package:querium/src/Features/CustomQuizzesFeature/Bloc/Controller/custom_quiz_controller.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Appbars/app_bars.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Other/base_scaffold.dart';
-import 'package:querium/src/GeneralWidget/Widgets/StaggeredAnimations/base_column.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
 import 'package:querium/src/GeneralWidget/Widgets/buttons/button_default.dart';
 import 'package:querium/src/core/constants/color_constants.dart';
@@ -14,10 +11,14 @@ import 'package:querium/src/core/constants/sizes.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
 class CustomResultsScreen extends StatelessWidget {
-  int score;
+  int correctQuestions;
   int totalQuestions;
+  int percentageScore;
   CustomResultsScreen(
-      {super.key, required this.score, required this.totalQuestions});
+      {super.key,
+      required this.percentageScore,
+      required this.totalQuestions,
+      required this.correctQuestions});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,6 @@ class CustomResultsScreen extends StatelessWidget {
             BaseScaffold(
               backgroundColor: AppColors.transparentColor,
               appBar: AppBars.appBarBack(
-                isBack: true,
                 title: 'Results',
               ),
               body: Padding(
@@ -54,7 +54,7 @@ class CustomResultsScreen extends StatelessWidget {
                             ),
                           ),
                           CustomTextR(
-                            '${score}0%',
+                            '${percentageScore}%',
                             fontSize: 55,
                             color: AppColors.main,
                             fontWeight: FW.bold,
@@ -94,7 +94,7 @@ class CustomResultsScreen extends StatelessWidget {
                           ),
                           4.ESW(),
                           CustomTextR(
-                            '$score',
+                            '$correctQuestions',
                             fontSize: 20,
                             color: AppColors.main,
                           ),
@@ -110,7 +110,7 @@ class CustomResultsScreen extends StatelessWidget {
                           ),
                           4.ESW(),
                           CustomTextR(
-                            '${totalQuestions - score}',
+                            '${totalQuestions - correctQuestions}',
                             fontSize: 20,
                             color: AppColors.main,
                           ),

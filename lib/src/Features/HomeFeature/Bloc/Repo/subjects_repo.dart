@@ -13,6 +13,7 @@ class SubjectsRepository with ApiKey {
       {required int academicYear, required String search}) async {
     try {
       Response response = await _networkService.get(
+        //the service that runs the Api and get data based on the params(academicYear,search)
         url: uRLGetAllSubjects(academicYear: academicYear, search: search),
       );
       return ApiResult.success(

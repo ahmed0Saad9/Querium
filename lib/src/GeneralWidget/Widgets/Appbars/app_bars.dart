@@ -325,12 +325,16 @@ class AppBars {
                   fontWeight: FW.bold,
                   color: AppColors.titleWhite,
                 ),
-                CustomTextR(
-                  ", ${sl<GetStorage>().read(
-                    "UserName",
-                  )}",
-                  color: AppColors.titleWhite,
-                  fontWeight: FW.bold,
+                SizedBox(
+                  width: 150.w,
+                  child: CustomTextR(
+                    ", ${sl<GetStorage>().read(
+                      "UserName",
+                    )}",
+                    isOverFlow: true,
+                    color: AppColors.titleWhite,
+                    fontWeight: FW.bold,
+                  ),
                 ),
               ],
             ),

@@ -21,7 +21,7 @@ class ShowAnswersScreen extends StatelessWidget {
       builder: (controller) {
         return BaseScaffold(
           backgroundColor: AppColors.scaffoldBackGround,
-          appBar: AppBars.appBarBack(title: 'إظهار الإجابات'),
+          appBar: AppBars.appBarBack(title: 'Show_answers'),
           body: Padding(
             padding: AppPadding.paddingScreenSH36,
             child: ListView(
@@ -90,9 +90,9 @@ class ShowAnswersScreen extends StatelessWidget {
   Widget _buildLegend() {
     return Column(
       children: [
-        _buildLegendItem(AppColors.correctAnswer, 'الإجابة الصحيحة'),
+        _buildLegendItem(AppColors.correctAnswer, 'Correct_Answer'),
         35.ESH(),
-        _buildLegendItem(AppColors.incorrectAnswer, 'الإجابة الخاطئة'),
+        _buildLegendItem(AppColors.incorrectAnswer, 'Incorrect_Answer'),
         35.ESH(),
       ],
     );

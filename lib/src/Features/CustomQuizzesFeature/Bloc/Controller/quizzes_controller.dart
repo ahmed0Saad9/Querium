@@ -1,6 +1,6 @@
 import 'package:get_storage/get_storage.dart';
-import 'package:querium/src/Features/QuizzesFeature/Bloc/Model/uploaded_file_model.dart';
-import 'package:querium/src/Features/QuizzesFeature/Bloc/Repo/uploaded_file_repo.dart';
+import 'package:querium/src/Features/CustomQuizzesFeature/Bloc/Model/uploaded_file_model.dart';
+import 'package:querium/src/Features/CustomQuizzesFeature/Bloc/Repo/uploaded_file_repo.dart';
 import 'package:querium/src/core/services/Base/base_controller.dart';
 import 'package:querium/src/core/services/Network/network_exceptions.dart';
 import 'package:querium/src/core/services/services_locator.dart';

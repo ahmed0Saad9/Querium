@@ -89,7 +89,7 @@ class PersonalData extends StatelessWidget {
               size: 20,
               boxFit: BoxFit.fill,
             ),
-            9.ESW(),
+            6.ESW(),
             CustomTextL.title(
               label,
               fontSize: 14,

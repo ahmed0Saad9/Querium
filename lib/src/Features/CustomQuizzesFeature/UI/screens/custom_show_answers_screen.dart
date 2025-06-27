@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:querium/src/Features/CustomQuizzesFeature/UI/screens/custom_review_answer_screen.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/controller/show_answers_controller.dart';
 import 'package:querium/src/Features/QuizFeature/Bloc/model/question_result.dart';
-import 'package:querium/src/Features/QuizzesFeature/Bloc/Controller/custom_quiz_controller.dart';
-import 'package:querium/src/Features/QuizzesFeature/UI/screens/custom_review_answer_screen.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Appbars/app_bars.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Other/base_scaffold.dart';
 import 'package:querium/src/GeneralWidget/Widgets/Text/custom_text.dart';
@@ -24,7 +23,7 @@ class CustomShowAnswersScreen extends StatelessWidget {
       builder: (controller) {
         return BaseScaffold(
           backgroundColor: AppColors.scaffoldBackGround,
-          appBar: AppBars.appBarBack(title: 'إظهار الإجابات'),
+          appBar: AppBars.appBarBack(title: 'Show_answers'),
           body: Padding(
             padding: AppPadding.paddingScreenSH36,
             child: ListView(
@@ -96,9 +95,9 @@ class CustomShowAnswersScreen extends StatelessWidget {
   Widget _buildLegend() {
     return Column(
       children: [
-        _buildLegendItem(AppColors.correctAnswer, 'الإجابة الصحيحة'),
+        _buildLegendItem(AppColors.correctAnswer, 'Correct_Answer'),
         35.ESH(),
-        _buildLegendItem(AppColors.incorrectAnswer, 'الإجابة الخاطئة'),
+        _buildLegendItem(AppColors.incorrectAnswer, 'Incorrect_Answer'),
         35.ESH(),
       ],
     );

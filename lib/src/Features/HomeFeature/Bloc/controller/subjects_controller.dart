@@ -44,7 +44,7 @@ class SubjectsController extends BaseController<SubjectsRepository> {
     super.dispose();
   }
 
-  // Public getters
+  // Public getter
   List<Subjects> get subjects => _subjects;
 
   List<Subjects> get filteredSubjects {
@@ -59,27 +59,26 @@ class SubjectsController extends BaseController<SubjectsRepository> {
 
   // Actions
   Future<void> getSubjects() async {
-    debugPrint(
-        'Fetching subjects with year: $tapIdSelected, search: ${searchController.text}');
-
     _subjects.clear();
-    reInitPagination();
     showLoading();
     update();
 
-    final result = await repository!.getAllSubjects(
+    final result = await repository.getAllSubjects(
+      // the function that gets all subjects
       academicYear: tapIdSelected,
       search: searchController.text,
     );
 
     result.when(
       success: (List<Subjects> subjects) {
-        incrementPageNumber(subjects.isNotEmpty);
+        //if the Api works successfully the functions in here will be executed
+        //adds all subjects received to the list _subjects that will be used in UI
         _subjects.addAll(subjects);
         doneLoading();
         update();
       },
       failure: (NetworkExceptions error) {
+        //if the Api service fails the functions in here will be executed
         errorLoading();
         status = actionNetworkExceptions(error);
         update();
@@ -89,7 +88,6 @@ class SubjectsController extends BaseController<SubjectsRepository> {
 
   void selectTapId(int id) {
     if (tapIdSelected == id) return;
-
     tapIdSelected = id;
     getSubjects();
     update();

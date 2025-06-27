@@ -21,7 +21,7 @@ class QuizController extends BaseController<GetQuestionsRepository> {
   Timer? _timer;
   int remainingSeconds = 1;
   String time = '10:00';
-  int score = 0;
+  int correctAnswers = 0;
   int answerIdSelected = -1;
   int index = 0;
   bool isLastQuestion = false;
@@ -35,6 +35,7 @@ class QuizController extends BaseController<GetQuestionsRepository> {
   @override
   // TODO: implement repository
   get repository => sl<GetQuestionsRepository>();
+
   @override
   void onInit() async {
     // TODO: implement onInit
@@ -68,9 +69,7 @@ class QuizController extends BaseController<GetQuestionsRepository> {
 
   @override
   void onClose() {
-    if (_timer != null) {
-      _timer!.cancel();
-    }
+    _timer!.cancel();
     super.onClose();
   }
 
@@ -81,16 +80,15 @@ class QuizController extends BaseController<GetQuestionsRepository> {
   void startTimer(int seconds) {
     const duration = Duration(seconds: 1);
     remainingSeconds = seconds;
-    stopTimer();
+    // stopTimer();
     _timer = Timer.periodic(duration, (Timer timer) {
       if (remainingSeconds == 0) {
         timer.cancel();
       } else {
         int minutes = remainingSeconds ~/ 60;
         int seconds = remainingSeconds % 60;
-        time = minutes.toString().padLeft(2, "0") +
-            ":" +
-            seconds.toString().padLeft(2, "0");
+        time =
+            "${minutes.toString().padLeft(2, "0")}:${seconds.toString().padLeft(2, "0")}";
         remainingSeconds--;
         update();
       }
@@ -100,6 +98,11 @@ class QuizController extends BaseController<GetQuestionsRepository> {
   void selectTapId(int id) {
     answerIdSelected = id;
     update();
+  }
+
+  int get percentageScore {
+    if (questionsList.isEmpty) return 0;
+    return ((correctAnswers / questionsList.length) * 100).round();
   }
 
   void _initializeQuestionResults(List<Questions> questions) {
@@ -126,7 +129,7 @@ class QuizController extends BaseController<GetQuestionsRepository> {
         selectedAnswerIndex: answerIdSelected,
         selectedAnswer: currentQuestion.answers[answerIdSelected],
       );
-      if (isCorrect) score++;
+      if (isCorrect) correctAnswers++;
 
       // Move to next question or end quiz
       if (index < questionsList.length - 1) {
@@ -143,14 +146,38 @@ class QuizController extends BaseController<GetQuestionsRepository> {
 
   void previousQuestion() {
     if (index > 0) {
+      // Check if current question was answered before moving back
+      if (answerIdSelected != -1) {
+        final currentQuestion = questionsList[index];
+        bool isCorrect = currentQuestion.answers[answerIdSelected] ==
+            currentQuestion.correctAnswer;
+
+        // If answer was correct, decrement correctAnswers count
+        if (isCorrect) {
+          correctAnswers--;
+        }
+
+        // Reset the question result for current question
+        questionResults[index] = QuestionResult(
+          questionNumber: index + 1,
+          isCorrect: false,
+          isAnswered: false,
+          selectedAnswerIndex: null,
+          selectedAnswer: null,
+        );
+      }
+
+      // Move to previous question
       index--;
-      answerIdSelected = -1; // Reset selection when going back
+
+      // Set the selected answer for the previous question if it was answered
+      answerIdSelected = questionResults[index].selectedAnswerIndex ?? -1;
+
       update();
     }
   }
 
   void showAnswersResults() {
-    debugPrint('Current results: $questionResults');
     // Make sure we have results to pass
     if (questionResults.isEmpty && questionsList.isNotEmpty) {
       questionResults = questionsList.asMap().entries.map((entry) {
@@ -161,7 +188,6 @@ class QuizController extends BaseController<GetQuestionsRepository> {
         );
       }).toList();
     }
-
     Get.off(
       const ShowAnswersScreen(),
       arguments: questionResults, // Explicitly pass the results
@@ -171,7 +197,8 @@ class QuizController extends BaseController<GetQuestionsRepository> {
 
   void showFinalResults() {
     Get.off(ResultsScreen(
-      score: score,
+      percentageScore: percentageScore,
+      correctAnswers: correctAnswers,
       totalQuestions: questionsList.length,
     ));
     stopTimer();

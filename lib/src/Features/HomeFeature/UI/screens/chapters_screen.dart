@@ -22,7 +22,7 @@ class ChaptersScreen extends StatelessWidget {
     return GetBuilder<ChaptersController>(
       init: ChaptersController(subjectID: subjectID),
       builder: (controller) => BaseScaffold(
-        appBar: AppBars.appBarBack(title: 'Chapters'),
+        appBar: AppBars.appBarBack(title: 'Chapters', isBack: true),
         backgroundColor: AppColors.backGroundGreyF4,
         body: (controller.chapters.isNotEmpty)
             ? ListView.separated(

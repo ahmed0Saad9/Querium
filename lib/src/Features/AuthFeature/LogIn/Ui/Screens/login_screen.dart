@@ -57,8 +57,8 @@ class LoginScreen extends StatelessWidget {
                       _.logIn();
                     },
                   ),
-                  // ButtonForgetPassword(controller: _),
-                  480.ESH(),
+                  ButtonForgetPassword(controller: _),
+                  430.ESH(),
                   ButtonDefault.main(
                     onTap: () => _.logIn(),
                     title: 'login',
