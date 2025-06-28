@@ -79,8 +79,8 @@ class LoginController extends BaseController<LogInRepository> {
   }
 
   void textControllerInit() {
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    emailController = TextEditingController(text: 'ahmedsaadaboraya@gmail.com');
+    passwordController = TextEditingController(text: '987654321sS#');
   }
 
   @override

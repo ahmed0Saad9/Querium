@@ -36,7 +36,14 @@ class CustomQuizScreen extends StatelessWidget {
                 ),
                 BaseScaffold(
                   backgroundColor: Colors.transparent,
-                  appBar: AppBars.appBarBack(title: 'quiz'),
+                  appBar: AppBars.appBarBack(
+                    title: 'quiz',
+                    isBack: false,
+                    onTap: () {
+                      Get.back();
+                      Get.back();
+                    },
+                  ),
                   body: Padding(
                     padding: AppPadding.paddingScreenSH36,
                     child: (_.questionsList.isNotEmpty)

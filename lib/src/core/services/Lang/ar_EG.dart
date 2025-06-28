@@ -165,4 +165,27 @@ const Map<String, String> arAE = {
   "Notification": "تلقي الاشعارات",
   "Language": "اللغة",
   "No_files_uploaded": "لم يتم رفع أي ملفات",
+  "Password_must_contain_symbols_Letters_numbers":
+      "يجب أن تحتوي كلمة المرور على:\n- 8 أحرف على الأقل\n- حرف كبير واحد على الأقل (A-Z)\n- حرف صغير واحد على الأقل (a-z)\n- رقم واحد على الأقل (0-9)\n- رمز خاص واحد على الأقل (!@#\\\$&*~)",
+  "Please enter your name": "الرجاء إدخال الاسم",
+  "Please enter alphabets only": "الرجاء إدخال أحرف فقط",
+  "Minimum 6 characters required": "مطلوب 6 أحرف على الأقل",
+  "Maximum 50 characters allowed": "الحد الأقصى 50 حرفًا",
+  "Please enter an email": "الرجاء إدخال البريد الإلكتروني",
+  "Please enter a valid email": "الرجاء إدخال بريد إلكتروني صالح",
+  "Password is required": "كلمة المرور مطلوبة",
+  "Please confirm your password": "الرجاء تأكيد كلمة المرور",
+  "Passwords do not match": "كلمات المرور غير متطابقة",
+  "College ID is required": "معرف الكلية مطلوب",
+  "College ID must be 5 digits": "يجب أن يتكون معرف الكلية من 5 أرقام",
+  "College ID must contain numbers only":
+      "يجب أن يحتوي معرف الكلية على أرقام فقط",
+  "National ID is required": "الرقم القومي مطلوب",
+  "National ID must be 14 digits": "يجب أن يتكون الرقم القومي من 14 رقمًا",
+  "National ID must contain numbers only":
+      "يجب أن يحتوي الرقم القومي على أرقام فقط",
+  "This field is required": "هذا الحقل مطلوب",
+  "No_chapters_have_been_uploaded_for_this_subject":
+      "لم يتم تحميل أي فصول لهذا الموضوع",
+  "Select_another_subject": "اختر موضوعًا آخر"
 };

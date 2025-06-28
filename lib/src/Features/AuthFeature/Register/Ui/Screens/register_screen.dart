@@ -98,7 +98,7 @@ class _Body extends StatelessWidget {
         TextFieldDefault(
           label: 'College_ID',
           controller: controller.idOfCollegeController,
-          validation: idValidator,
+          validation: collegeIdValidator,
           keyboardType: TextInputType.number,
           maxLength: 5,
           onComplete: () {

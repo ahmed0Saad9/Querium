@@ -7,8 +7,15 @@ import 'package:querium/src/GeneralWidget/Widgets/buttons/button_default.dart';
 import 'package:querium/src/core/constants/sizes.dart';
 import 'package:querium/src/core/utils/extensions.dart';
 
-class NoFilesUploaded extends StatelessWidget {
-  const NoFilesUploaded({super.key});
+class NoDataUploaded extends StatelessWidget {
+  final String title;
+  final String buttonTitle;
+  final VoidCallback onTap;
+  const NoDataUploaded(
+      {super.key,
+      required this.title,
+      required this.onTap,
+      required this.buttonTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +26,11 @@ class NoFilesUploaded extends StatelessWidget {
           100.ESH(),
           Image.asset('assets/images/NoFilesUploaded.png'),
           15.ESH(),
-          const CustomTextL('No_files_uploaded', fontWeight: FW.bold),
+          CustomTextL(title, fontWeight: FW.bold),
           30.ESH(),
-          GetBuilder<BaseNBNController>(
-            builder: (controller) => ButtonDefault.main(
-                title: 'Upload',
-                onTap: () {
-                  controller.updateIndex(1);
-                }),
+          ButtonDefault.main(
+            title: buttonTitle,
+            onTap: onTap,
           ),
         ],
       ),

@@ -299,4 +299,26 @@ const Map<String, String> enUS = {
   "Account_Approved": "Account Approved.",
   "Upload_Complete": "Upload Complete!",
   "Upload_Failed": "Upload Failed!",
+  "Password_must_contain_symbols_Letters_numbers":
+      "Password must contain at least:\n- 8 characters\n- 1 uppercase letter\n- 1 lowercase letter\n- 1 number\n- 1 special character (!@#\$&*~)",
+
+// en.arb
+  "Please enter your name": "Please enter your name",
+  "Please enter alphabets only": "Please enter alphabets only",
+  "Minimum 6 characters required": "Minimum 6 characters required",
+  "Maximum 50 characters allowed": "Maximum 50 characters allowed",
+  "Please enter an email": "Please enter an email",
+  "Please enter a valid email": "Please enter a valid email",
+  "Password is required": "Password is required",
+  "Please confirm your password": "Please confirm your password",
+  "Passwords do not match": "Passwords do not match",
+  "College ID is required": "College ID is required",
+  "College ID must be 5 digits": "College ID must be 5 digits",
+  "College ID must contain numbers only":
+      "College ID must contain numbers only",
+  "National ID is required": "National ID is required",
+  "National ID must be 14 digits": "National ID must be 14 digits",
+  "National ID must contain numbers only":
+      "National ID must contain numbers only",
+  "This field is required": "This field is required"
 };

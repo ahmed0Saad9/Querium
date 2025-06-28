@@ -96,6 +96,7 @@ class CustomQuizController
     _timer = Timer.periodic(duration, (Timer timer) {
       if (remainingSeconds == 0) {
         timer.cancel();
+        _showTimeUpSnackbar();
       } else {
         int minutes = remainingSeconds ~/ 60;
         int seconds = remainingSeconds % 60;
@@ -105,6 +106,22 @@ class CustomQuizController
         update();
       }
     });
+  }
+
+  void _showTimeUpSnackbar() {
+    Get.snackbar(
+      'Time Up!',
+      'Your quiz time has expired.',
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: Colors.red,
+      colorText: Colors.white,
+      duration: const Duration(seconds: 3),
+      margin: const EdgeInsets.all(10),
+      borderRadius: 8,
+      isDismissible: true,
+      dismissDirection: DismissDirection.horizontal,
+      forwardAnimationCurve: Curves.easeOutBack,
+    );
   }
 
   int correctQuestions = 0;

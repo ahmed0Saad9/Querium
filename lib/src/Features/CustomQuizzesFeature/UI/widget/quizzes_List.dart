@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
+import 'package:querium/src/Features/BaseBNBFeature/Bloc/Controller/base_BNB_controller.dart';
 import 'package:querium/src/Features/CustomQuizzesFeature/Bloc/Controller/quizzes_controller.dart';
 import 'package:querium/src/Features/CustomQuizzesFeature/UI/widget/no_files_uploaded.dart';
 import 'package:querium/src/Features/CustomQuizzesFeature/UI/widget/uploaded_file_card.dart';
@@ -29,7 +31,14 @@ class QuizzesList extends StatelessWidget {
                   itemCount: controller.uploadedFiles.length,
                 ),
               )
-            : const NoFilesUploaded()
+            : GetBuilder<BaseNBNController>(
+                builder: (controller) => NoDataUploaded(
+                    title: 'No_files_uploaded',
+                    buttonTitle: 'Upload',
+                    onTap: () {
+                      controller.updateIndex(1);
+                    }),
+              )
         // Column(
         //         mainAxisAlignment: MainAxisAlignment.center,
         //         children: [

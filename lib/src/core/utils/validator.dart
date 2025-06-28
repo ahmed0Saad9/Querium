@@ -1,119 +1,106 @@
 import 'package:get/get.dart';
 
 String? nameValidator(String? text) {
-  if (text!.isNotEmpty) {
-    RegExp regex = RegExp('[a-zA-Z]');
-    if (regex.hasMatch(text)) {
-      if (text.length >= 6 && text.length <= 50) {
-        return null;
-      } else {
-        return 'Minimum 6 letters and maximum 50 letters';
-      }
-    } else {
-      return 'Please enter from a-z only';
-    }
+  if (text == null || text.isEmpty) {
+    return 'Please enter your name'.tr;
   }
-  return 'Please enter your name';
+
+  RegExp regex = RegExp(r'^[a-zA-Z ]+$');
+  if (!regex.hasMatch(text)) {
+    return 'Please enter alphabets only'.tr;
+  }
+
+  if (text.length < 6) {
+    return 'Minimum 6 characters required'.tr;
+  }
+
+  if (text.length > 50) {
+    return 'Maximum 50 characters allowed'.tr;
+  }
+
+  return null;
 }
 
 String? emailValidator(String? text) {
-  if (text!.isNotEmpty) {
-    RegExp emailRegex =
-        RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
-    if (!emailRegex.hasMatch(text)) {
-      return 'Please enter Valid Email';
-    }
-  } else if (text.isEmpty) {
-    return 'Please enter an Email';
-  } else {
-    return null;
+  if (text == null || text.isEmpty) {
+    return 'Please enter an email'.tr;
   }
+
+  RegExp emailRegex = RegExp(
+    r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    caseSensitive: false,
+  );
+
+  if (!emailRegex.hasMatch(text)) {
+    return 'Please enter a valid email'.tr;
+  }
+
   return null;
 }
 
 String? passwordValidator(String? text) {
-  if (text!.isNotEmpty) {
-    RegExp regex =
-        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-    if (text.isEmpty) {
-      return null;
-    } else {
-      if (!regex.hasMatch(text)) {
-        return 'Password must contain symbols, Letters, numbers ';
-      } else {
-        return null;
-      }
-    }
+  if (text == null || text.isEmpty) {
+    return 'Password is required'.tr;
   }
-  return 'Password minimum 8 digits';
+
+  RegExp regex = RegExp(
+    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$',
+  );
+
+  if (!regex.hasMatch(text)) {
+    return 'Password_must_contain_symbols_Letters_numbers'.tr;
+  }
+
+  return null;
 }
 
-String? confirmPasswordValidator(String? text, String? oldPassword) {
-  if (text!.isNotEmpty) {
-    if (text != oldPassword) {
-      return 'The passwords do not match.';
-    } else {
-      return null;
-    }
-  } else {
-    return 'Please confirm your password';
+String? confirmPasswordValidator(String? text, String? password) {
+  if (text == null || text.isEmpty) {
+    return 'Please confirm your password'.tr;
   }
+
+  if (text != password) {
+    return 'Passwords do not match'.tr;
+  }
+
+  return null;
 }
 
-String? idValidator(String? text) {
-  if (text!.isEmpty || text.length != 5) {
-    return 'your national id must be 5 numbers';
+String? collegeIdValidator(String? text) {
+  if (text == null || text.isEmpty) {
+    return 'College ID is required'.tr;
   }
+
+  if (text.length != 5) {
+    return 'College ID must be 5 digits'.tr;
+  }
+
+  if (!RegExp(r'^[0-9]+$').hasMatch(text)) {
+    return 'College ID must contain numbers only'.tr;
+  }
+
   return null;
 }
 
 String? nationalIdValidator(String? text) {
-  if (text!.isEmpty || text.length != 14) {
-    return 'your national id must be 14 numbers';
+  if (text == null || text.isEmpty) {
+    return 'National ID is required'.tr;
   }
+
+  if (text.length != 14) {
+    return 'National ID must be 14 digits'.tr;
+  }
+
+  if (!RegExp(r'^[0-9]+$').hasMatch(text)) {
+    return 'National ID must contain numbers only'.tr;
+  }
+
   return null;
 }
 
-String? urlValidator(String? text) {
-  if (text!.isNotEmpty) {
-    if (!text.contains('http') && !text.contains("://")) {
-      return 'Must_enter_Valid_URL'.tr;
-    } else {
-      return null;
-    }
-  } else {
-    return 'Must_enter_URL'.tr;
+String? emptyValidator(String? text, {String? errorMessage}) {
+  if (text == null || text.isEmpty) {
+    return errorMessage?.tr ?? 'This field is required'.tr;
   }
-}
-
-String? phoneValidator(String? text) {
-  if (text!.isNotEmpty) {
-    if (text.startsWith('0') && text.length == 11) {
-      return null;
-    } else {
-      return 'يجب ادخال رقم هاتف صحيح';
-    }
-  } else {
-    return 'يجب عليك ادخال رقم هاتف';
-  }
-}
-
-// String? passwordValidator(String? text) {
-//   if (text!.isNotEmpty) {
-//     if (text.length > 8 && text.contains()) {
-//       return null;
-//     } else {
-//       return 'validation_password'.tr;
-//     }
-//   } else {
-//     return 'validation_empty_field'.tr;
-//   }
-// }
-
-String? emptyValidator(String? text, {String error = ''}) {
-  if (text!.isEmpty) {
-    return 'validation_empty_field'.tr;
-  } else {
-    return null;
-  }
+  return null;
 }

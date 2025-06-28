@@ -45,7 +45,10 @@ class QuizScreen extends StatelessWidget {
               appBar: AppBars.appBarBack(
                 title: subjectName,
                 isBack: false,
-                onTap: () => Get.off(() => const BaseBNBScreen()),
+                onTap: () {
+                  Get.back();
+                  Get.back();
+                },
               ),
               body: Padding(
                 padding: AppPadding.paddingScreenSH36,

@@ -120,6 +120,7 @@ class LanguageSelect extends StatelessWidget {
           ButtonDefault.main(
             onTap: () => controller.moveToOnBoarding(),
             title: 'Confirm',
+            active: (controller.selectedLanguage != null),
           )
         ],
       ),

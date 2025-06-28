@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:querium/src/Features/BaseBNBFeature/Bloc/Controller/base_BNB_controller.dart';
+import 'package:querium/src/Features/CustomQuizzesFeature/UI/widget/no_files_uploaded.dart';
 import 'package:querium/src/Features/HomeFeature/Bloc/controller/chapters_controller.dart';
 import 'package:querium/src/Features/HomeFeature/Bloc/model/chapters_model.dart';
 import 'package:querium/src/Features/QuizFeature/UI/screens/quiz_details_screen.dart';
@@ -22,28 +24,22 @@ class ChaptersScreen extends StatelessWidget {
     return GetBuilder<ChaptersController>(
       init: ChaptersController(subjectID: subjectID),
       builder: (controller) => BaseScaffold(
-        appBar: AppBars.appBarBack(title: 'Chapters', isBack: true),
-        backgroundColor: AppColors.backGroundGreyF4,
-        body: (controller.chapters.isNotEmpty)
-            ? ListView.separated(
-                itemBuilder: (context, index) => ChaptersCard(
-                      chapters: controller.chapters[index],
-                      chapterID: controller.chapters[index].id,
-                    ),
-                separatorBuilder: (context, index) => 16.ESH(),
-                padding: EdgeInsets.only(
-                    right: 36.w, left: 36.w, top: 40.h, bottom: 16.h),
-                itemCount: controller.chapters.length)
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  100.ESH(),
-                  const SpinKitWave(
-                    color: AppColors.main,
-                  ),
-                ],
-              ),
-      ),
+          appBar: AppBars.appBarBack(title: 'Chapters', isBack: true),
+          backgroundColor: AppColors.backGroundGreyF4,
+          body: (controller.chapters.isNotEmpty)
+              ? ListView.separated(
+                  itemBuilder: (context, index) => ChaptersCard(
+                        chapters: controller.chapters[index],
+                        chapterID: controller.chapters[index].id,
+                      ),
+                  separatorBuilder: (context, index) => 16.ESH(),
+                  padding: EdgeInsets.only(
+                      right: 36.w, left: 36.w, top: 40.h, bottom: 16.h),
+                  itemCount: controller.chapters.length)
+              : NoDataUploaded(
+                  title: 'No_chapters_have_been_uploaded_for_this_subject',
+                  onTap: () => Get.back(),
+                  buttonTitle: 'Select_another_subject')),
     );
   }
 }

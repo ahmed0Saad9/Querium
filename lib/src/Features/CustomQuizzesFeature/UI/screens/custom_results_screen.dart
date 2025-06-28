@@ -54,7 +54,7 @@ class CustomResultsScreen extends StatelessWidget {
                             ),
                           ),
                           CustomTextR(
-                            '${percentageScore}%',
+                            '$percentageScore%',
                             fontSize: 55,
                             color: AppColors.main,
                             fontWeight: FW.bold,
@@ -117,7 +117,7 @@ class CustomResultsScreen extends StatelessWidget {
                         ],
                       ),
                       // 42.ESH(),
-                      Spacer(),
+                      const Spacer(),
                       ButtonDefault.main(
                         title: 'Show_answers',
                         onTap: () =>
